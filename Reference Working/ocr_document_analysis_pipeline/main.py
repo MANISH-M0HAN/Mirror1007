@@ -19,7 +19,7 @@ from document_analysis.topic_modeling import perform_topic_modeling
 
 def main():
     # Specify the path to your image
-    image_path = 'images/Sample_Image4.png'
+    image_path = 'images/Sample_Image5.jpg'
     
     # Step 1: Extract text from the imagex
     extracted_text = extract_text_from_image(image_path)

@@ -68,4 +68,10 @@ Each row is processed to extract:
 Each trigger word, synonym, and keyword is converted into an embedding using the SentenceTransformer model.
 These embeddings are stored in a structured format in the db_embeddings list for efficient lookup during query matching.
 
+**Key Concepts:
+1.Spelling Correction					: Ensures that the user query is correctly interpreted by correcting any spelling mistakes.
+2.Retrieval-Augmented Generation (RAG)	: Combines the retrieval of relevant information from a precomputed database (based on embeddings and cosine similarity) with generative model responses.
+3.Generative Model						: Uses the Gemini model to generate a coherent and contextually relevant response based on the user's query and context history.
+4.Session Management					: Maintains a history of user interactions to provide contextually relevant responses in future queries.
+
 By following these steps, the system attempts to match the user's query to the best possible response based on the provided data and context history.

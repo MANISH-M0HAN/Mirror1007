@@ -83,43 +83,31 @@ def find_best_context(query, threshold=0.4):
     
     return best_match_response
 
-# def generate_response_with_gemini(prompt):
-#     try:
-#         response = gemini_model.generate_content(prompt)
-#         print(f"Gemini API Response: {response}")  # Debug print to check the response
-
-#         if response and hasattr(response, 'result'):
-#             candidates = response.result.candidates
-#             for candidate in candidates:
-#                 # Extract text only if safety ratings are negligible
-#                 if all(rating.probability == "NEGLIGIBLE" for rating in candidate.safety_ratings):
-#                     if hasattr(candidate, 'content') and candidate.content.parts:
-#                         return candidate.content.parts[0].text.strip()
-        
-#         return "I'm sorry, but I couldn't generate a response. Please try rephrasing your question."
-#     except Exception as e:
-#         print(f"Error generating response: {e}")  # Debug print for error
-#         return f"Error: {e}"
 def generate_response_with_gemini(prompt):
     try:
-        response = gemini_model.generate_content(prompt)  # Limit response length to 150 words
-        return response.text.strip()
+        response = gemini_model.generate_content(prompt)
+        print(f"Gemini API Response: {response}")  # Debug print to check the response
+
+        if response and hasattr(response, 'candidates'):
+            for candidate in response.candidates:
+                # Extract text only if safety ratings are negligible
+                if all(rating.probability == "NEGLIGIBLE" for rating in candidate.safety_ratings):
+                    if hasattr(candidate, 'content') and candidate.content.parts:
+                        return candidate.content.parts[0].text.strip()
+        
+        return "I'm sorry, but I couldn't generate a response. Please try rephrasing your question."
     except Exception as e:
+        print(f"Error generating response: {e}")  # Debug print for error
         return f"Error: {e}"
+
 
 def get_relevant_context(user_input, context_history):
     follow_up_keywords = ["what about", "and", "also", "more", "else", "further"]
 
-    if any(keyword in user_input.lower() for keyword in follow_up_keywords) and len(context_history['history']) > 1:
-        relevant_context = " ".join(
-            [h['user_input'] for h in context_history['history'][-2:]] + 
-            [h['bot_response'] for h in context_history['history'][-2:]]
-        )
+    if any(keyword in user_input.lower() for keyword in follow_up_keywords) and len(context_history) > 1:
+        relevant_context = " ".join([entry['response'] for entry in context_history[-2:]])
     else:
-        relevant_context = " ".join(
-            [h['user_input'] for h in context_history['history'][-1:]] + 
-            [h['bot_response'] for h in context_history['history'][-1:]]
-        )
+        relevant_context = " ".join([entry['response'] for entry in context_history[-1:]])
 
     return relevant_context
 
@@ -132,16 +120,16 @@ def get_response(user_input, context_history, threshold=0.4):
 
     context = find_best_context(user_input, threshold)
     if context:
-        context_history['context'].append({"info": context})
-    context_history['history'].append({"user_input": user_input, "bot_response": ""})
+        context_history.append({"user_input": user_input, "response": context})
+    else:
+        context_history.append({"user_input": user_input, "response": "No matching context found."})
 
     relevant_context = get_relevant_context(user_input, context_history)
-    prompt = f"User asked: {user_input}\nContext: {relevant_context}\nPlease provide a concise response within 150 words."
-    response = generate_response_with_gemini(prompt)
+    response = generate_response_with_gemini(f"Keep the response concise and within 150 words. {relevant_context}")
 
-    context_history['history'][-1]['bot_response'] = response
-    if len(context_history['history']) > 10:  # Limit context history to 10 exchanges
-        context_history['history'] = context_history['history'][-10:]
+    context_history[-1]["response"] = response
+    if len(context_history) > 10:  # Limit context history to 10 exchanges
+        context_history = context_history[-10:]
 
     return response, context_history
 
@@ -149,7 +137,7 @@ def get_response(user_input, context_history, threshold=0.4):
 def chatbot():
     user_input = request.json.get("user_input")
     if 'context_history' not in session:
-        session['context_history'] = {"context": [], "history": []}
+        session['context_history'] = []
     context_history = session['context_history']
 
     # Debugging step
@@ -166,7 +154,7 @@ def chatbot():
 
 @app.route('/context_history', methods=['GET'])
 def get_context_history():
-    context_history = session.get('context_history', {"context": [], "history": []})
+    context_history = session.get('context_history', [])
     return jsonify({"context_history": context_history})
 
 @app.route('/clear_context_history', methods=['POST'])

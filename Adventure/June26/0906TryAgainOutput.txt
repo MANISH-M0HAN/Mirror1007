@@ -1,0 +1,27 @@
+{
+    "session_data": {
+        "context_history": {
+            "context": [
+                {
+                    "info": "Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases."
+                },
+                {
+                    "info": "Obesity: A disorder involving excessive body fat that increases the risk of health problems."
+                }
+            ],
+            "history": [
+                {
+                    "bot_response": "I understand you're experiencing chest pain. It's important to get medical attention right away.  **Call 911 or go to the nearest emergency room immediately.** Chest pain can be a sign of a serious medical condition like a heart attack.  \n\n**Do not attempt to self-diagnose or treat chest pain.**  It's crucial to seek professional medical help.",
+                    "user_input": "I have chest pain"
+                },
+                {
+                    "bot_response": "I understand you're asking about weight, but it's crucial to focus on your chest pain right now. **Chest pain can be a symptom of a serious medical condition like a heart attack.**  \n\n**Please prioritize your health and seek immediate medical attention.** Call 911 or go to the nearest emergency room immediately.  \n\nDo not attempt to self-diagnose or treat your symptoms. A doctor needs to evaluate you to determine the cause of your chest pain and provide the appropriate care.",
+                    "user_input": "what about weight"
+                }
+            ]
+        }
+    }
+}
+
+
+Only issue is that the out put is weird than yesterdays code logic fixed whicg was perfect. when context structure is changed.

@@ -101,7 +101,6 @@ def generate_response_with_gemini(prompt):
         print(f"Error generating response: {e}")  # Debug print for error
         return f"Error: {e}"
 
-
 def get_relevant_context(user_input, context_history):
     follow_up_keywords = ["what about", "and", "also", "more", "else", "further"]
 
@@ -140,7 +139,6 @@ def get_response(user_input, context_history, threshold=0.4):
 
     return response, context_history
 
-
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
     user_input = request.json.get("user_input")
@@ -159,7 +157,6 @@ def chatbot():
     print(f"Response: {response}")  # Debug print for response
 
     return jsonify({"response": response})
-
 
 @app.route('/context_history', methods=['GET'])
 def get_context_history():

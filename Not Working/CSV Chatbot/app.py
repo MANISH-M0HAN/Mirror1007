@@ -4,6 +4,10 @@ import pandas as pd
 import torch
 import faiss
 from transformers import AutoTokenizer, AutoModel
+import os
+
+# Set the environment variable to allow duplicate OpenMP libraries
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 app = Flask(__name__)
 CORS(app)

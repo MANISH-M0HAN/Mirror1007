@@ -25,8 +25,8 @@ embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 
 # Configure Gemini API
-genai.configure()  # Configure without passing the key directly here
-gemini_model = genai.GenerativeModel('gemini-1.5-flash', api_key=api_key)  # Pass the key here instead
+genai.configure( api_key=api_key)  # Configure without passing the key directly here
+gemini_model = genai.GenerativeModel('gemini-1.5-flash')  # Pass the key here instead
 
 # Load the CSV file into a DataFrame
 csv_file = 'heart_health_triggers.csv'  # Replace with the path to your CSV file

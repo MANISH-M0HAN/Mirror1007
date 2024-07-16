@@ -17,7 +17,7 @@ api_key = os.getenv('GENERATIVE_AI_API_KEY')
 
 # Initialize the Flask app
 app = Flask(__name__)
-app.secret_key = 'randomtext'  # Replace with a random secret key for session management
+app.secret_key = os.getenv('secret_key')
 CORS(app)
 
 # Initialize models and spellchecker
@@ -170,4 +170,4 @@ def verify_session():
     return jsonify({"session_data": session_data})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

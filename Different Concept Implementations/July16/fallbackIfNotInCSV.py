@@ -1,21 +1,23 @@
 import os
 import google.generativeai as genai
+import pandas as pd
+import numpy as np
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from spellchecker import SpellChecker
-import pandas as pd
-import numpy as np
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
 
+# Access environment variables
+api_key = os.getenv('GENERATIVE_AI_API_KEY')
+
 # Initialize the Flask app
 app = Flask(__name__)
 app.secret_key = os.getenv('secret_key')
-api_key = os.getenv('GENERATIVE_AI_API_KEY')
 CORS(app)
 
 # Initialize models and spellchecker
@@ -23,8 +25,8 @@ embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 
 # Configure Gemini API
-genai.configure(api_key=api_key)
-gemini_model = genai.GenerativeModel('gemini-1.5-flash')
+genai.configure(api_key=api_key)  # Configure without passing the key directly here
+gemini_model = genai.GenerativeModel('gemini-1.5-flash')  # Pass the key here instead
 
 # Load the CSV file into a DataFrame
 csv_file = 'heart_health_triggers.csv'  # Replace with the path to your CSV file
@@ -88,23 +90,6 @@ def find_best_context(query, threshold=0.4):
     
     return best_match_response
 
-# def generate_response_with_gemini(prompt):
-#     try:
-#         response = gemini_model.generate_content(prompt)
-#         print(f"Gemini API Response: {response}")  # Debug print to check the response
-
-#         if response and hasattr(response, 'result'):
-#             candidates = response.result.candidates
-#             for candidate in candidates:
-#                 # Extract text only if safety ratings are negligible
-#                 if all(rating.probability == "NEGLIGIBLE" for rating in candidate.safety_ratings):
-#                     if hasattr(candidate, 'content') and candidate.content.parts:
-#                         return candidate.content.parts[0].text.strip()
-        
-#         return "I'm sorry, but I couldn't generate a response. Please try rephrasing your question."
-#     except Exception as e:
-#         print(f"Error generating response: {e}")  # Debug print for error
-#         return f"Error: {e}"
 def generate_response_with_gemini(prompt):
     try:
         response = gemini_model.generate_content(prompt)  # Limit response length to 150 words
@@ -138,17 +123,12 @@ def get_response(user_input, context_history, threshold=0.4):
     context = find_best_context(user_input, threshold)
     if context:
         context_history['context'].append({"info": context})
-    context_history['history'].append({"user_input": user_input, "bot_response": ""})
+        context_history['history'].append({"user_input": user_input, "bot_response": context})
+        return context, context_history
 
-    relevant_context = get_relevant_context(user_input, context_history)
-    prompt = f"User asked: {user_input}\nContext: {relevant_context}\nPlease provide a concise response within 150 words."
-    response = generate_response_with_gemini(prompt)
-
-    context_history['history'][-1]['bot_response'] = response
-    if len(context_history['history']) > 10:  # Limit context history to 10 exchanges
-        context_history['history'] = context_history['history'][-10:]
-
-    return response, context_history
+    fallback_response = "I'm sorry, I can't help with that question. Please ask something related to heart health."
+    context_history['history'].append({"user_input": user_input, "bot_response": fallback_response})
+    return fallback_response, context_history
 
 @app.route('/chatbot', methods=['POST'])
 def chatbot():

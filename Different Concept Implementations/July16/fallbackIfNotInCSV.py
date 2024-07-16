@@ -25,8 +25,8 @@ embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 
 # Configure Gemini API
-genai.configure(api_key=api_key)  # Configure without passing the key directly here
-gemini_model = genai.GenerativeModel('gemini-1.5-flash')  # Pass the key here instead
+genai.configure(api_key=api_key)
+gemini_model = genai.GenerativeModel('gemini-1.5-flash')
 
 # Load the CSV file into a DataFrame
 csv_file = 'heart_health_triggers.csv'  # Replace with the path to your CSV file
@@ -92,7 +92,7 @@ def find_best_context(query, threshold=0.4):
 
 def generate_response_with_gemini(prompt):
     try:
-        response = gemini_model.generate_content(prompt)  # Limit response length to 150 words
+        response = gemini_model.generate_content(prompt)
         return response.text.strip()
     except Exception as e:
         return f"Error: {e}"
@@ -123,8 +123,17 @@ def get_response(user_input, context_history, threshold=0.4):
     context = find_best_context(user_input, threshold)
     if context:
         context_history['context'].append({"info": context})
-        context_history['history'].append({"user_input": user_input, "bot_response": context})
-        return context, context_history
+        context_history['history'].append({"user_input": user_input, "bot_response": ""})
+
+        relevant_context = get_relevant_context(user_input, context_history)
+        prompt = f"User asked: {user_input}\nContext: {relevant_context}\nPlease provide a concise response within 150 words."
+        response = generate_response_with_gemini(prompt)
+
+        context_history['history'][-1]['bot_response'] = response
+        if len(context_history['history']) > 10:  # Limit context history to 10 exchanges
+            context_history['history'] = context_history['history'][-10:]
+
+        return response, context_history
 
     fallback_response = "I'm sorry, I can't help with that question. Please ask something related to heart health."
     context_history['history'].append({"user_input": user_input, "bot_response": fallback_response})

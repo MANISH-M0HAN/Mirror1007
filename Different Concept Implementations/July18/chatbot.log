@@ -1,0 +1,12 @@
+2024-07-18 12:05:15,044 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-18 12:05:15,044 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-18 12:05:15,045 - INFO -  * Restarting with stat
+2024-07-18 12:05:26,050 - WARNING -  * Debugger is active!
+2024-07-18 12:05:26,085 - INFO -  * Debugger PIN: 660-535-223
+2024-07-18 12:05:39,125 - INFO - User input: Hi
+2024-07-18 12:05:39,125 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-18 12:05:39,127 - INFO - 127.0.0.1 - - [18/Jul/2024 12:05:39] "POST /chatbot HTTP/1.1" 200 -
+2024-07-18 12:05:54,653 - INFO - User input: Hi, I have chest pain and seems to be overweight
+2024-07-18 12:05:56,905 - INFO - Response: I understand you're concerned about chest pain and your weight. It's important to remember that chest pain can be a sign of serious medical issues.  It's crucial to **seek medical attention immediately** by calling your doctor or going to the nearest emergency room.  While being overweight can contribute to heart health issues, it's best to let a medical professional assess your situation and provide the best course of action.  Please prioritize your health and get help right away.
+2024-07-18 12:05:56,909 - INFO - 127.0.0.1 - - [18/Jul/2024 12:05:56] "POST /chatbot HTTP/1.1" 200 -

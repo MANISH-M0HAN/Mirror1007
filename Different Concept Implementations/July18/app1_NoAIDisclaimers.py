@@ -59,9 +59,28 @@ for idx in range(len(df)):
     })
 
 def correct_spelling(text):
-    corrected_words = [spellchecker.correction(word) for word in text.split()]
+    print("Before correction:", text)
+    corrected_words = [
+        spellchecker.correction(word) if spellchecker.correction(word) else word
+        for word in text.split()
+    ]
+    print("Corrected words:", corrected_words)
     corrected_text = ' '.join(corrected_words)
+    print("After correction:", corrected_text)
     return corrected_text
+
+
+#Below is correct spelling method from june 26 0906tryagain.py
+# def correct_spelling(text):
+#     corrected_words = []
+#     for word in text.split():
+#         correction = spellchecker.correction(word)
+#         if correction and correction != word:
+#             corrected_words.append(correction)
+#         else:
+#             corrected_words.append(word)
+#     corrected_text = " ".join(corrected_words)
+#     return corrected_text
 
 def find_best_context(query, threshold=0.4):
     query = correct_spelling(query)
@@ -125,7 +144,8 @@ def get_response(user_input, context_history, threshold=0.4):
         context_history['history'].append({"user_input": user_input, "bot_response": ""})
 
         relevant_context = get_relevant_context(user_input, context_history)
-        prompt = f"User asked: {user_input}\nContext: {relevant_context}\nMatched response: {context}\nPlease enhance and provide a concise, friendly, and helpful response within 150 words."
+        prompt = f"User asked: {user_input}\nContext: {relevant_context}\nMatched response: {context}\nPlease enhance and provide a concise, friendly, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic."
+        print(prompt)
         response = generate_response_with_gemini(prompt)
 
         context_history['history'][-1]['bot_response'] = response

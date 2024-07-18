@@ -6,9 +6,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from spellchecker import SpellChecker
 import pandas as pd
-import numpy as np
 from dotenv import load_dotenv
-import language_tool_python
 import logging
 
 # Set the TOKENIZERS_PARALLELISM environment variable to avoid deadlock warning
@@ -26,7 +24,6 @@ CORS(app)
 # Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
-grammar_tool = language_tool_python.LanguageTool('en-US')
 
 # Configure Gemini API
 genai.configure(api_key=api_key)
@@ -62,44 +59,15 @@ for idx in range(len(df)):
     })
 
 def correct_spelling(text):
-    print("In Correct_Spelling")
-    print(text)
-    # if not text:
-    #     logging.error("No text provided for spelling correction.")
-    #     return text
-
-    corrected_text = spellchecker.correction(text)
-    print(corrected_text)
-    logging.info(f"Original text: {text}, Corrected text: {corrected_text}")
+    corrected_words = [
+        spellchecker.correction(word) if spellchecker.correction(word) else word
+        for word in text.split()
+    ]
+    corrected_text = ' '.join(corrected_words)
     return corrected_text
 
-def correct_grammar(text):
-    print(text)
-    # if not text:
-    #     logging.error("No text provided for grammar correction.")
-    #     return text
-
-    try:
-        matches = grammar_tool.check(text)
-        corrected_text = language_tool_python.utils.correct(text, matches)
-        logging.info(f"Original text: {text}, Grammar corrected text: {corrected_text}")
-        return corrected_text
-    except language_tool_python.utils.LanguageToolError as e:
-        logging.error(f"Grammar correction failed: {e}")
-        return text
-
 def find_best_context(query, threshold=0.4):
-    if not query:
-        logging.error("No query provided for context finding.")
-        return None
-
     query = correct_spelling(query)
-    query = correct_grammar(query)
-
-    if not query:
-        logging.error("Query is None after spelling and grammar correction.")
-        return None
-
     query_embedding = embedding_model.encode([query.lower()])
     
     best_match_score = 0
@@ -122,16 +90,13 @@ def find_best_context(query, threshold=0.4):
     return best_match_response
 
 def generate_response_with_gemini(prompt):
-    if not prompt:
-        logging.error("No prompt provided for Gemini response generation.")
-        return "Error: No prompt provided."
-
     try:
-        response = gemini_model.generate_content(prompt, max_length=150)
-        if response and response['choices']:
-            return response['choices'][0]['text'].strip()
+        response = gemini_model.generate_content(prompt)
+        if response and hasattr(response, 'text'):
+            response = response.text.strip()
         else:
-            return "I'm sorry, but I couldn't generate a response. Please try rephrasing your question."
+            response = "I'm sorry, but I couldn't generate a response. Please try rephrasing your question."
+        return response
     except Exception as e:
         logging.error(f"Error generating response with Gemini: {e}")
         return f"Error: {e}"
@@ -151,36 +116,35 @@ def get_relevant_context(user_input, context_history):
     return relevant_context
 
 def get_response(user_input, context_history, threshold=0.4):
-    if not user_input:
-        return "Sorry, I didn't receive any input. Could you please repeat that?", context_history
-
-    logging.info(f"Original user input: {user_input}")
-    user_input = correct_grammar(correct_spelling(user_input))
-	
-    if not user_input:
-        return "Sorry, there was an issue processing your input. Could you please repeat that?", context_history
-
-    logging.info(f"Corrected user input: {user_input}")
-
+    user_input = correct_spelling(user_input)
+    
     greetings = ["hello", "hi", "hey"]
 
     if any(user_input.lower() == greeting for greeting in greetings):
         return "Hello! How can I assist you with your heart health questions today?", context_history
 
-    context = find_best_context(user_input, threshold)
-    if context:
-        context_history['context'].append({"info": context})
-    context_history['history'].append({"user_input": user_input, "bot_response": ""})
+    context_response = find_best_context(user_input, threshold)
+    if context_response:
+        context_history['context'].append({"info": context_response})
+        context_history['history'].append({"user_input": user_input, "bot_response": ""})
 
-    relevant_context = get_relevant_context(user_input, context_history)
-    prompt = f"User asked: {user_input}\nContext: {relevant_context}\nPlease provide a concise response within 150 words."
-    response = generate_response_with_gemini(prompt)
+        relevant_context = get_relevant_context(user_input, context_history)
+        prompt = (f"User asked: {user_input}\nContext: {relevant_context}\nMatched response: {context_response}\n"
+                  "Please enhance and provide a concise, friendly, and helpful response within 150 words. "
+                  "Also avoid any AI Disclaimers in the message so that it does not sound robotic.")
+        logging.info(f"Prompt for Gemini API: {prompt}")
+        response = generate_response_with_gemini(prompt)
 
-    context_history['history'][-1]['bot_response'] = response
-    if len(context_history['history']) > 10:  # Limit context history to 10 exchanges
-        context_history['history'] = context_history['history'][-10:]
+        context_history['history'][-1]['bot_response'] = response
+        if len(context_history['history']) > 10:  # Limit context history to 10 exchanges
+            context_history['history'] = context_history['history'][-10:]
 
-    return response, context_history
+        return response, context_history
+
+    # Fallback response when no match is found in the CSV
+    fallback_response = "I'm sorry, I can't help with that question. Please ask something related to heart health."
+    context_history['history'].append({"user_input": user_input, "bot_response": fallback_response})
+    return fallback_response, context_history
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a',
@@ -189,26 +153,20 @@ logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a',
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
     try:
-        # Ensure the request has JSON data
         if not request.is_json:
             return jsonify({"error": "Invalid input"}), 400
         
-        # Parse the JSON data
         data = request.get_json()
-        
-        # Extract the user_input and context_history
         user_input = data.get('user_input')
         if 'context_history' not in session:
             session['context_history'] = {"context": [], "history": []}
         context_history = session['context_history']
         
-        # Ensure user_input is not None
         if user_input is None:
             return jsonify({"error": "Missing 'user_input' parameter"}), 400
         
         logging.info(f"User input: {user_input}")
 
-        # Process the response
         response, context_history = get_response(user_input, context_history)
         session['context_history'] = context_history
 

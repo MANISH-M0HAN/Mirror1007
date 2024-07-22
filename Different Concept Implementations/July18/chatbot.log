@@ -413,3 +413,31 @@ Please enhance and provide a concise, friendly, and helpful response within 150 
 2024-07-18 17:01:53,308 - INFO - User input: インドをしっていますか
 2024-07-18 17:01:53,628 - INFO - Response: 申し訳ありませんが、その質問にはお答えできません。心臓の健康に関する質問をお願いします。
 2024-07-18 17:01:53,629 - INFO - 127.0.0.1 - - [18/Jul/2024 17:01:53] "POST /chatbot HTTP/1.1" 200 -
+2024-07-19 14:22:25,629 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-19 14:22:25,630 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-19 14:22:25,631 - INFO -  * Restarting with stat
+2024-07-19 14:22:42,993 - WARNING -  * Debugger is active!
+2024-07-19 14:22:43,016 - INFO -  * Debugger PIN: 660-535-223
+2024-07-19 14:22:43,143 - INFO - User input: I have chestttt paiinnnnn
+2024-07-19 14:22:44,009 - INFO - Response: I'm sorry, I can't help with that question. Please ask something related to heart health.
+2024-07-19 14:22:44,009 - INFO - 127.0.0.1 - - [19/Jul/2024 14:22:44] "POST /chatbot HTTP/1.1" 200 -
+2024-07-19 14:22:57,731 - INFO - User input: I have chestttt painn
+2024-07-19 14:23:02,786 - INFO - Response: I understand you're experiencing pain in your chest.  It's important to get this checked out by a medical professional.  There could be a variety of reasons for the pain, and a doctor can help determine the cause and recommend the best treatment. 
+
+In the meantime, try to avoid activities that worsen the pain.  If you're experiencing shortness of breath or other concerning symptoms, seek immediate medical attention.  Wishing you a speedy recovery!
+2024-07-19 14:23:02,788 - INFO - 127.0.0.1 - - [19/Jul/2024 14:23:02] "POST /chatbot HTTP/1.1" 200 -
+2024-07-19 14:23:10,130 - INFO - User input: I have chesttttt painn
+2024-07-19 14:23:12,476 - INFO - Response: Oh no, I'm so sorry to hear you're having chest pain.  That's definitely something to take seriously.  It's important to get medical attention right away. 
+
+**Please call your doctor or go to the nearest emergency room immediately.**  They can help determine the cause of the pain and provide the appropriate treatment. 
+
+In the meantime, try to stay calm and relax.  Let me know if there's anything else I can help you with.
+2024-07-19 14:23:12,477 - INFO - 127.0.0.1 - - [19/Jul/2024 14:23:12] "POST /chatbot HTTP/1.1" 200 -
+2024-07-19 14:23:17,561 - INFO - User input: I have chesttttt painnnnn
+2024-07-19 14:23:20,296 - INFO - Response: Oh no, I'm so sorry to hear that you're experiencing chest pain! It's important to take this seriously.  
+
+**Please call 911 or your local emergency number immediately.**  Chest pain can be a sign of a serious medical condition, and it's crucial to get help right away.  
+
+In the meantime, try to stay calm and rest. I hope you feel better soon.
+2024-07-19 14:23:20,297 - INFO - 127.0.0.1 - - [19/Jul/2024 14:23:20] "POST /chatbot HTTP/1.1" 200 -

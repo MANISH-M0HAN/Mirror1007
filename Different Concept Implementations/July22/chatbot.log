@@ -1,0 +1,33 @@
+2024-07-22 13:53:10,720 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-22 13:53:10,721 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-22 13:53:10,721 - INFO -  * Restarting with stat
+2024-07-22 13:53:21,316 - WARNING -  * Debugger is active!
+2024-07-22 13:53:21,337 - INFO -  * Debugger PIN: 660-535-223
+2024-07-22 13:53:30,380 - ERROR - Exception: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2024-07-22 13:53:30,381 - INFO - 127.0.0.1 - - [22/Jul/2024 13:53:30] "[35m[1mPOST /chatbot HTTP/1.1[0m" 500 -
+2024-07-22 13:54:00,521 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-22 13:54:00,522 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-22 13:54:00,522 - INFO -  * Restarting with stat
+2024-07-22 13:54:10,483 - WARNING -  * Debugger is active!
+2024-07-22 13:54:10,502 - INFO -  * Debugger PIN: 660-535-223
+2024-07-22 14:53:44,375 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July22/app2_try.py', reloading
+2024-07-22 14:53:45,167 - INFO -  * Restarting with stat
+2024-07-22 14:53:55,599 - WARNING -  * Debugger is active!
+2024-07-22 14:53:55,622 - INFO -  * Debugger PIN: 660-535-223
+2024-07-22 16:49:18,665 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-22 16:49:18,665 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-22 16:49:18,666 - INFO -  * Restarting with stat
+2024-07-22 16:49:28,474 - WARNING -  * Debugger is active!
+2024-07-22 16:49:28,511 - INFO -  * Debugger PIN: 660-535-223
+2024-07-22 16:49:36,671 - INFO - User input: I have chest pain
+2024-07-22 16:49:36,886 - INFO - Prompt for Gemini API: User asked: I have chest pain
+Context: User: I have chest pain Bot: 
+Matched response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+Please enhance and provide a concise, friendly, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-22 16:49:39,040 - INFO - Response: Oh no, I'm sorry to hear you're experiencing chest pain. It's important to take this seriously.  It could be something minor, but it's always best to err on the side of caution. 
+
+I'm an AI and can't provide medical advice, so **please call your doctor or go to the nearest emergency room right away.**  They can assess your situation and give you the best possible care.
+2024-07-22 16:49:39,043 - INFO - 127.0.0.1 - - [22/Jul/2024 16:49:39] "POST /chatbot HTTP/1.1" 200 -

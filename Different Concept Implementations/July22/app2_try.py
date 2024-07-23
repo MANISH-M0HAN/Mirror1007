@@ -17,6 +17,12 @@ load_dotenv()
 
 # Initialize the Flask app
 app = Flask(__name__)
+
+# Flask secure sessions
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_KEY_PREFIX'] = 'chatbot_'
 app.secret_key = os.getenv('SECRET_KEY')
 api_key = os.getenv('GENERATIVE_AI_API_KEY')
 CORS(app)
@@ -121,7 +127,9 @@ def get_response(user_input, context_history, threshold=0.4):
     greetings = ["hello", "hi", "hey"]
 
     if any(user_input.lower() == greeting for greeting in greetings):
-        return "Hello! How can I assist you with your heart health questions today?", context_history
+        response = "Hello! How can I assist you with your heart health questions today?"
+        log_interaction(user_input, response)
+        return response, context_history
 
     context_response = find_best_context(user_input, threshold)
     if context_response:
@@ -139,12 +147,18 @@ def get_response(user_input, context_history, threshold=0.4):
         if len(context_history['history']) > 10:  # Limit context history to 10 exchanges
             context_history['history'] = context_history['history'][-10:]
 
+        log_interaction(user_input, response)
         return response, context_history
 
     # Fallback response when no match is found in the CSV
     fallback_response = "I'm sorry, I can't help with that question. Please ask something related to heart health."
     context_history['history'].append({"user_input": user_input, "bot_response": fallback_response})
+    log_interaction(user_input, fallback_response)
     return fallback_response, context_history
+
+def log_interaction(user_input, response):
+    with open('interactions.log', 'a') as log_file:
+        log_file.write(f"User Input: {user_input}\nBot Response: {response}\n\n")
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a',

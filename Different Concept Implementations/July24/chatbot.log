@@ -1,0 +1,58 @@
+2024-07-24 16:23:29,667 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-24 16:23:29,668 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 16:23:29,668 - INFO -  * Restarting with stat
+2024-07-24 16:23:39,673 - WARNING -  * Debugger is active!
+2024-07-24 16:23:39,695 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 16:23:52,719 - INFO - User input: Hi
+2024-07-24 16:23:52,720 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-24 16:23:52,722 - INFO - 127.0.0.1 - - [24/Jul/2024 16:23:52] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 16:23:56,554 - INFO - User input: India
+2024-07-24 16:23:56,863 - INFO - Response: I'm sorry, I can't help with that question. Please ask something related to heart health.
+2024-07-24 16:23:56,864 - INFO - 127.0.0.1 - - [24/Jul/2024 16:23:56] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 16:24:05,040 - INFO - User input: Chest pain
+2024-07-24 16:24:05,191 - INFO - Prompt for Gemini API: User asked: Chest pain
+Context: User: Chest pain Bot: 
+Matched response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+Please enhance and provide a concise, friendly, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 16:24:06,620 - INFO - Response: I understand you're experiencing chest pain, and that can be very concerning. It's important to get checked out by a doctor as soon as possible.  
+
+Chest pain can be a symptom of many different things, some serious, some not. Only a medical professional can determine the cause and recommend the right treatment. 
+
+Please don't hesitate to call your doctor or go to the nearest emergency room.  It's always better to be safe than sorry.
+2024-07-24 16:24:06,621 - INFO - 127.0.0.1 - - [24/Jul/2024 16:24:06] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 16:24:26,329 - INFO - User input: D you listen to music
+2024-07-24 16:24:26,502 - INFO - Prompt for Gemini API: User asked: D you listen to music
+Context: User: D you listen to music Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance and provide a concise, friendly, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 16:24:27,307 - INFO - Response: Of course!  I love listening to music. It helps me relax and focus.  What kind of music do you like?  Maybe we can find some common ground.  What can I help you with today? 😊
+2024-07-24 16:24:27,309 - INFO - 127.0.0.1 - - [24/Jul/2024 16:24:27] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 16:28:31,219 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July24/app2.py', reloading
+2024-07-24 16:28:31,796 - INFO -  * Restarting with stat
+2024-07-24 16:28:52,073 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-24 16:28:52,073 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 16:28:52,074 - INFO -  * Restarting with stat
+2024-07-24 16:29:00,903 - WARNING -  * Debugger is active!
+2024-07-24 16:29:00,925 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 16:31:42,424 - INFO - User input: Hi
+2024-07-24 16:31:42,426 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-24 16:31:42,428 - INFO - 127.0.0.1 - - [24/Jul/2024 16:31:42] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 16:31:45,758 - INFO - User input: India
+2024-07-24 16:31:46,052 - INFO - Response: I'm sorry, I can't help with that question. Please ask something related to heart health.
+2024-07-24 16:31:46,052 - INFO - 127.0.0.1 - - [24/Jul/2024 16:31:46] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 16:34:12,691 - INFO - User input: D you listen to music
+2024-07-24 16:34:13,039 - INFO - Prompt for Gemini API: User asked: D you listen to music
+Context: User: D you listen to music Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 16:34:14,453 - INFO - Response: Yes, I do! I listen to a variety of music.  What kind of music do you like?
+2024-07-24 16:34:14,455 - INFO - 127.0.0.1 - - [24/Jul/2024 16:34:14] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 16:34:29,935 - INFO - User input: Chest pain
+2024-07-24 16:34:30,235 - INFO - Prompt for Gemini API: User asked: Chest pain
+Context: User: Chest pain Bot: 
+Matched response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 16:34:31,207 - INFO - Response: Chest pain can be a symptom of many things, including cardiovascular disease.  Cardiovascular disease is a group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+2024-07-24 16:34:31,209 - INFO - 127.0.0.1 - - [24/Jul/2024 16:34:31] "POST /chatbot HTTP/1.1" 200 -

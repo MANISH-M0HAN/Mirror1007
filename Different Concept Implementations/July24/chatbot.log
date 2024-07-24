@@ -56,3 +56,139 @@ Matched response: Cardiovascular Disease: A group of heart or blood vessel disor
 Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
 2024-07-24 16:34:31,207 - INFO - Response: Chest pain can be a symptom of many things, including cardiovascular disease.  Cardiovascular disease is a group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
 2024-07-24 16:34:31,209 - INFO - 127.0.0.1 - - [24/Jul/2024 16:34:31] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:04:16,591 - INFO - 127.0.0.1 - - [24/Jul/2024 17:04:16] "[33mPOST /clear_context_history HTTP/1.1[0m" 404 -
+2024-07-24 17:04:28,336 - INFO - User input: WHat music do you like
+2024-07-24 17:04:28,631 - INFO - Prompt for Gemini API: User asked: WHat music do you like
+Context: User: WHat music do you like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:04:30,019 - INFO - Response: I enjoy listening to a variety of music. What kind of music do you like?
+2024-07-24 17:04:30,021 - INFO - 127.0.0.1 - - [24/Jul/2024 17:04:30] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:06:47,571 - INFO - User input: WHat music do you like
+2024-07-24 17:06:47,944 - INFO - Prompt for Gemini API: User asked: WHat music do you like
+Context: User: WHat music do you like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:06:48,669 - INFO - Response: I enjoy listening to a wide range of music!  What kind of music do you like?
+2024-07-24 17:06:48,669 - INFO - 127.0.0.1 - - [24/Jul/2024 17:06:48] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:06:54,424 - INFO - User input: WHat music do you like
+2024-07-24 17:06:54,608 - INFO - Prompt for Gemini API: User asked: WHat music do you like
+Context: User: WHat music do you like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:06:55,325 - INFO - Response: I enjoy listening to a wide range of music! Is there anything else I can help you with?
+2024-07-24 17:06:55,327 - INFO - 127.0.0.1 - - [24/Jul/2024 17:06:55] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:07:07,652 - INFO - User input: WHat music do you like
+2024-07-24 17:07:07,796 - INFO - Prompt for Gemini API: User asked: WHat music do you like
+Context: User: WHat music do you like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:07:08,446 - INFO - Response: I enjoy listening to a variety of music! What kind of music do you like?
+2024-07-24 17:07:08,447 - INFO - 127.0.0.1 - - [24/Jul/2024 17:07:08] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:09:21,211 - INFO - User input: D you listen to music
+2024-07-24 17:09:21,469 - INFO - Prompt for Gemini API: User asked: D you listen to music
+Context: User: D you listen to music Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:09:22,189 - INFO - Response: Yes, I do! I enjoy listening to many different kinds of music. What kind of music do you like?
+2024-07-24 17:09:22,190 - INFO - 127.0.0.1 - - [24/Jul/2024 17:09:22] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:09:24,983 - INFO - User input: D you listen to music
+2024-07-24 17:09:25,136 - INFO - Prompt for Gemini API: User asked: D you listen to music
+Context: User: D you listen to music Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:09:25,787 - INFO - Response: Yes, I do! I enjoy listening to a variety of music. What kind of music do you like?
+2024-07-24 17:09:25,787 - INFO - 127.0.0.1 - - [24/Jul/2024 17:09:25] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:09:55,166 - INFO - User input: I love to listen to Kpop
+2024-07-24 17:09:55,444 - INFO - Prompt for Gemini API: User asked: I love to listen to pop
+Context: User: I love to listen to pop Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:09:56,165 - INFO - Response: That's great! Pop music is fantastic.  What are some of your favorite pop artists or songs?
+2024-07-24 17:09:56,166 - INFO - 127.0.0.1 - - [24/Jul/2024 17:09:56] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:10:07,299 - INFO - User input: india
+2024-07-24 17:10:07,490 - INFO - Response: I'm sorry, I can't help with that question. Please ask something related to heart health.
+2024-07-24 17:10:07,491 - INFO - 127.0.0.1 - - [24/Jul/2024 17:10:07] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:10:13,523 - INFO - User input: Nicki Minaj
+2024-07-24 17:10:13,643 - INFO - Response: I'm sorry, I can't help with that question. Please ask something related to heart health.
+2024-07-24 17:10:13,644 - INFO - 127.0.0.1 - - [24/Jul/2024 17:10:13] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:11:20,058 - INFO - User input: Pop Music
+2024-07-24 17:11:20,304 - INFO - Prompt for Gemini API: User asked: Pop Music
+Context: User: Pop Music Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:11:20,905 - INFO - Response: "Pop Music" is a great genre!  What can I help you with?
+2024-07-24 17:11:20,917 - INFO - 127.0.0.1 - - [24/Jul/2024 17:11:20] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:11:26,508 - INFO - User input: Pop Music Nicki
+2024-07-24 17:11:26,668 - INFO - Prompt for Gemini API: User asked: Pop Music nick
+Context: User: Pop Music nick Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:11:27,609 - INFO - Response: I enjoy a variety of music! How can I help with your health needs?
+2024-07-24 17:11:27,610 - INFO - 127.0.0.1 - - [24/Jul/2024 17:11:27] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:23:42,182 - INFO - User input: what is Menopause
+2024-07-24 17:23:42,451 - INFO - Prompt for Gemini API: User asked: what is Menopause
+Context: User: what is Menopause Bot: 
+Matched response: Menopause: The end of your menstruating years, officially reached one year after your last period.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:23:43,900 - INFO - Response: Menopause is the end of your menstrual cycle, officially marked one year after your last period.
+2024-07-24 17:23:43,903 - INFO - 127.0.0.1 - - [24/Jul/2024 17:23:43] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:24:26,346 - INFO - User input: and further about it
+2024-07-24 17:24:26,567 - INFO - Prompt for Gemini API: User asked: and further about it
+Context: User: and further about it Bot: 
+Matched response: Hello! How can I assist you with your heart health questions today?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:24:27,317 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-24 17:24:27,318 - INFO - 127.0.0.1 - - [24/Jul/2024 17:24:27] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:24:41,893 - INFO - User input: what is Menopause
+2024-07-24 17:24:42,016 - INFO - Prompt for Gemini API: User asked: what is Menopause
+Context: User: what is Menopause Bot: 
+Matched response: Menopause: The end of your menstruating years, officially reached one year after your last period.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:24:42,779 - INFO - Response: Menopause is the end of a woman's menstrual cycle. It is officially considered to have occurred one year after her last period.
+2024-07-24 17:24:42,780 - INFO - 127.0.0.1 - - [24/Jul/2024 17:24:42] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:25:05,691 - INFO - User input: what about
+2024-07-24 17:25:05,895 - INFO - Prompt for Gemini API: User asked: what about
+Context: User: what about Bot: 
+Matched response: Hello! How can I assist you with your heart health questions today?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:25:06,742 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-24 17:25:06,743 - INFO - 127.0.0.1 - - [24/Jul/2024 17:25:06] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:25:51,585 - INFO - 127.0.0.1 - - [24/Jul/2024 17:25:51] "[33mPOST /verify-session HTTP/1.1[0m" 404 -
+2024-07-24 17:26:04,149 - INFO - 127.0.0.1 - - [24/Jul/2024 17:26:04] "[33mPOST /verify_session HTTP/1.1[0m" 404 -
+2024-07-24 17:26:14,762 - INFO - 127.0.0.1 - - [24/Jul/2024 17:26:14] "[33mGET /verify_session HTTP/1.1[0m" 404 -
+2024-07-24 17:27:37,933 - INFO - 127.0.0.1 - - [24/Jul/2024 17:27:37] "[33mGET /verify_session HTTP/1.1[0m" 404 -
+2024-07-24 17:28:37,226 - INFO - 127.0.0.1 - - [24/Jul/2024 17:28:37] "[31m[1mPOST /session HTTP/1.1[0m" 405 -
+2024-07-24 17:28:44,530 - INFO - 127.0.0.1 - - [24/Jul/2024 17:28:44] "GET /session HTTP/1.1" 200 -
+2024-07-24 17:29:00,420 - INFO - 127.0.0.1 - - [24/Jul/2024 17:29:00] "GET /session HTTP/1.1" 200 -
+2024-07-24 17:29:37,054 - INFO - User input: WHat is menopause
+2024-07-24 17:29:37,427 - INFO - Prompt for Gemini API: User asked: WHat is menopause
+Context: User: WHat is menopause Bot: 
+Matched response: Menopause: The end of your menstruating years, officially reached one year after your last period.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:29:38,781 - INFO - Response: Menopause is the end of your menstrual cycle, officially marked one year after your last period.
+2024-07-24 17:29:38,783 - INFO - 127.0.0.1 - - [24/Jul/2024 17:29:38] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:29:52,065 - INFO - User input: WHat about
+2024-07-24 17:29:52,265 - INFO - Prompt for Gemini API: User asked: WHat about
+Context: User: WHat is menopause Bot: Menopause is the end of your menstrual cycle, officially marked one year after your last period. User: WHat about Bot: 
+Matched response: Hello! How can I assist you with your heart health questions today?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:29:53,158 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-24 17:29:53,159 - INFO - 127.0.0.1 - - [24/Jul/2024 17:29:53] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:30:00,183 - INFO - 127.0.0.1 - - [24/Jul/2024 17:30:00] "[33mPOST /clear_context_history HTTP/1.1[0m" 404 -
+2024-07-24 17:30:25,450 - INFO - 127.0.0.1 - - [24/Jul/2024 17:30:25] "GET /session HTTP/1.1" 200 -
+2024-07-24 17:30:52,008 - INFO - 127.0.0.1 - - [24/Jul/2024 17:30:52] "GET /session HTTP/1.1" 200 -
+2024-07-24 17:31:06,094 - INFO - User input: What is menopause
+2024-07-24 17:31:06,396 - INFO - Prompt for Gemini API: User asked: What is menopause
+Context: User: What is menopause Bot: 
+Matched response: Menopause: The end of your menstruating years, officially reached one year after your last period.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:31:07,094 - INFO - Response: Menopause is the end of your menstrual cycle. It's officially considered to have started one year after your last period.
+2024-07-24 17:31:07,095 - INFO - 127.0.0.1 - - [24/Jul/2024 17:31:07] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 17:31:18,014 - INFO - User input: and what about it
+2024-07-24 17:31:18,163 - INFO - Prompt for Gemini API: User asked: and what about it
+Context: User: What is menopause Bot: Menopause is the end of your menstrual cycle. It's officially considered to have started one year after your last period. User: and what about it Bot: 
+Matched response: Hello! How can I assist you with your heart health questions today?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-24 17:31:19,047 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-24 17:31:19,048 - INFO - 127.0.0.1 - - [24/Jul/2024 17:31:19] "POST /chatbot HTTP/1.1" 200 -

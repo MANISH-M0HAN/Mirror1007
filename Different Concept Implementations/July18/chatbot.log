@@ -441,3 +441,216 @@ In the meantime, try to stay calm and relax.  Let me know if there's anything el
 
 In the meantime, try to stay calm and rest. I hope you feel better soon.
 2024-07-19 14:23:20,297 - INFO - 127.0.0.1 - - [19/Jul/2024 14:23:20] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:30:16,169 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-24 13:30:16,170 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 13:30:16,171 - INFO -  * Restarting with stat
+2024-07-24 13:30:24,003 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-24 13:30:24,003 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 13:30:24,003 - INFO -  * Restarting with stat
+2024-07-24 13:30:28,950 - WARNING -  * Debugger is active!
+2024-07-24 13:30:28,969 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:30:44,199 - INFO - User input: FBook
+2024-07-24 13:30:44,496 - INFO - Prompt for Gemini API: User asked: book
+Context: User: book Bot: 
+Matched response: Hello! How can I assist you with your heart health questions today?
+Please enhance and provide a concise, friendly, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 13:30:46,272 - INFO - Response: "Book" can mean a lot of things!  📚 
+
+Are you looking to:
+
+* **Find a book to read?**  Tell me about your favorite genres or authors, and I can suggest something great.
+* **Book a flight or hotel?**  I can help with that too!  Just let me know your destination and dates. 
+* **Learn about books?**  I'm happy to share interesting facts about book history or writing.
+
+Let me know what you're thinking! 😊
+2024-07-24 13:30:46,276 - INFO - 127.0.0.1 - - [24/Jul/2024 13:30:46] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:31:18,471 - INFO - User input: WHat music u like
+2024-07-24 13:31:18,791 - INFO - Prompt for Gemini API: User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance and provide a concise, friendly, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 13:31:19,801 - INFO - Response: I'm a big fan of music!  It's hard to pick just one genre, but I enjoy everything from classic rock to upbeat pop. What about you? What kind of music do you like?  Maybe we can find some common ground!  😊
+2024-07-24 13:31:19,808 - INFO - 127.0.0.1 - - [24/Jul/2024 13:31:19] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:33:01,369 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:33:01,783 - INFO -  * Restarting with stat
+2024-07-24 13:33:07,090 - WARNING -  * Debugger is active!
+2024-07-24 13:33:07,106 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:33:11,928 - INFO - User input: WHat music u like
+2024-07-24 13:33:12,157 - INFO - Prompt for Gemini API: User query: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance the Matched reponse for the User query and provide a concise, helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 13:33:13,866 - INFO - Response: As an AI, I don't have personal preferences like humans do. However, I can access and process information about music!  What kind of music are you interested in?  I can tell you about popular artists, genres, or even suggest some new music based on what you like.
+2024-07-24 13:33:13,869 - INFO - 127.0.0.1 - - [24/Jul/2024 13:33:13] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:33:53,361 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:33:53,774 - INFO -  * Restarting with stat
+2024-07-24 13:34:04,960 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-24 13:34:04,961 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 13:34:04,961 - INFO -  * Restarting with stat
+2024-07-24 13:34:09,484 - WARNING -  * Debugger is active!
+2024-07-24 13:34:09,499 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:34:09,518 - INFO - User input: WHat music u like
+2024-07-24 13:34:09,605 - INFO - Prompt for Gemini API: User query: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance the 'Matched reponse' for the 'User query' and provide a concise, helpful response within 150 words. Avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 13:34:11,369 - INFO - Response: As an AI, I don't have personal preferences like liking music.  But I can access and process information about music!  What kind of music are you interested in?  I can help you find new artists, discover interesting facts about music genres, or even find the perfect song for your mood.
+2024-07-24 13:34:11,371 - INFO - 127.0.0.1 - - [24/Jul/2024 13:34:11] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:34:48,564 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:34:48,963 - INFO -  * Restarting with stat
+2024-07-24 13:34:53,902 - WARNING -  * Debugger is active!
+2024-07-24 13:34:53,926 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:35:08,314 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:35:08,685 - INFO -  * Restarting with stat
+2024-07-24 13:35:13,717 - WARNING -  * Debugger is active!
+2024-07-24 13:35:13,733 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:35:25,568 - INFO - User input: WHat music u like
+2024-07-24 13:35:25,825 - INFO - Prompt for Gemini API: User query: WHat music u like
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance the 'Matched reponse' for the 'User query' and provide a concise, helpful response within 150 words. 
+2024-07-24 13:35:27,195 - INFO - Response: As a large language model, I don't have personal preferences like liking music. However, I can access and process information about all kinds of music! 
+
+What kind of music are you interested in?  
+
+Do you want to:
+* **Discover new artists or genres?**
+* **Find music based on a specific mood or activity?**
+* **Get recommendations based on your favorite songs?** 
+
+Let me know, and I can help you find some awesome music!
+2024-07-24 13:35:27,199 - INFO - 127.0.0.1 - - [24/Jul/2024 13:35:27] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:35:39,415 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:35:39,830 - INFO -  * Restarting with stat
+2024-07-24 13:35:44,703 - WARNING -  * Debugger is active!
+2024-07-24 13:35:44,721 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:36:07,129 - INFO - User input: WHat music u like
+2024-07-24 13:36:07,372 - INFO - Prompt for Gemini API: User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance and provide a concise, friendly, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 13:36:09,077 - INFO - Response: That's a great question!  I don't have personal preferences like humans do, but I can access and process information about millions of songs. What kind of music are YOU into?  Maybe I can help you find some new tunes to listen to! 🎶
+2024-07-24 13:36:09,081 - INFO - 127.0.0.1 - - [24/Jul/2024 13:36:09] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:36:22,846 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:36:23,236 - INFO -  * Restarting with stat
+2024-07-24 13:36:32,776 - WARNING -  * Debugger is active!
+2024-07-24 13:36:32,798 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:36:32,825 - INFO - User input: WHat music u like
+2024-07-24 13:36:32,919 - INFO - Prompt for Gemini API: User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance and provide a concise, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+2024-07-24 13:36:33,963 - INFO - Response: As an AI, I don't have personal preferences like humans do.  I can't enjoy music in the same way. However, I can access and process information about a wide range of musical genres and artists. What kind of music are you interested in? I can help you find new artists, explore different genres, or even suggest some playlists based on your current favorites!
+2024-07-24 13:36:33,964 - INFO - 127.0.0.1 - - [24/Jul/2024 13:36:33] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:36:57,477 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:36:57,918 - INFO -  * Restarting with stat
+2024-07-24 13:37:25,256 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-24 13:37:25,257 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-24 13:37:25,258 - INFO -  * Restarting with stat
+2024-07-24 13:37:35,006 - WARNING -  * Debugger is active!
+2024-07-24 13:37:35,026 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:37:35,047 - INFO - User input: WHat music u like
+2024-07-24 13:37:35,145 - INFO - Prompt for Gemini API: Please enhance and provide a concise, and helpful response within 150 words. Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+User asked: {user_input}
+Context: {relevant_context}
+Matched response: {context_response}
+
+2024-07-24 13:37:36,411 - INFO - Response: Please provide me with the following information:
+
+* **User Input:** What question did the user ask?
+* **Relevant Context:** What information is relevant to the user's question?
+* **Context Response:** What is the initial response generated based on the context?
+
+Once I have this information, I can help enhance the response and provide a concise and helpful reply within 150 words.
+2024-07-24 13:37:36,415 - INFO - 127.0.0.1 - - [24/Jul/2024 13:37:36] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:38:33,795 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:38:34,221 - INFO -  * Restarting with stat
+2024-07-24 13:38:44,026 - WARNING -  * Debugger is active!
+2024-07-24 13:38:44,047 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:38:58,117 - INFO - User input: WHat music u like
+2024-07-24 13:38:58,281 - INFO - Prompt for Gemini API: Please enhance and provide a concise, and helpful response within 150 words.
+Also avoid any AI Disclaimers in the message so that it does not sound robotic.
+User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:38:59,787 - INFO - Response: I love exploring different genres!  From soulful jazz to upbeat pop, there's something for every mood.  What kind of music do you enjoy? 😊
+2024-07-24 13:38:59,790 - INFO - 127.0.0.1 - - [24/Jul/2024 13:38:59] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:39:25,266 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:39:25,673 - INFO -  * Restarting with stat
+2024-07-24 13:39:35,271 - WARNING -  * Debugger is active!
+2024-07-24 13:39:35,293 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:39:44,583 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:39:45,061 - INFO -  * Restarting with stat
+2024-07-24 13:39:54,924 - WARNING -  * Debugger is active!
+2024-07-24 13:39:54,948 - INFO -  * Debugger PIN: 660-535-223
+2024-07-24 13:39:54,970 - INFO - User input: WHat music u like
+2024-07-24 13:39:55,066 - INFO - Prompt for Gemini API: Please only enhance the following Matched Response and provide a concise, and helpful response within 150 words text only.
+Also avoid any AI Disclaimer, in the message so that it does not sound robotic.
+User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:39:56,618 - INFO - Response: As an AI, I don't have personal preferences like music. But I can tell you about many different genres and artists. What kind of music are you interested in?
+2024-07-24 13:39:56,620 - INFO - 127.0.0.1 - - [24/Jul/2024 13:39:56] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:40:00,915 - INFO - User input: WHat music u like
+2024-07-24 13:40:01,064 - INFO - Prompt for Gemini API: Please only enhance the following Matched Response and provide a concise, and helpful response within 150 words text only.
+Also avoid any AI Disclaimer, in the message so that it does not sound robotic.
+User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:40:02,051 - INFO - Response: As an AI, I don't have personal preferences like music taste. But I can help you find music you might like!  What kind of music are you into?  Tell me about your favorite artists or genres, and I can suggest some new tunes to check out.
+2024-07-24 13:40:02,053 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:02] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:40:02,859 - INFO - User input: WHat music u like
+2024-07-24 13:40:02,981 - INFO - Prompt for Gemini API: Please only enhance the following Matched Response and provide a concise, and helpful response within 150 words text only.
+Also avoid any AI Disclaimer, in the message so that it does not sound robotic.
+User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:40:03,811 - INFO - Response: As an AI, I don't have personal preferences like music. I'm here to help you with your health needs. What can I do for you?
+2024-07-24 13:40:03,813 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:03] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:40:05,365 - INFO - User input: WHat music u like
+2024-07-24 13:40:05,477 - INFO - Prompt for Gemini API: Please only enhance the following Matched Response and provide a concise, and helpful response within 150 words text only.
+Also avoid any AI Disclaimer, in the message so that it does not sound robotic.
+User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:40:06,038 - INFO - Response: I enjoy listening to many different genres of music, from classical to pop! What kind of music do you like? 😊
+2024-07-24 13:40:06,039 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:06] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:40:08,883 - INFO - User input: WHat music u like
+2024-07-24 13:40:09,013 - INFO - Prompt for Gemini API: Please only enhance the following Matched Response and provide a concise, and helpful response within 150 words text only.
+Also avoid any AI Disclaimer, in the message so that it does not sound robotic.
+User asked: WHat music u like
+Context: User: WHat music u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:40:09,723 - INFO - Response: As an AI, I don't have personal preferences like music taste. But I can help you find music you might enjoy! What kind of music are you into?
+2024-07-24 13:40:09,724 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:09] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:40:32,406 - INFO - User input: WHat music do you like
+2024-07-24 13:40:32,585 - INFO - Prompt for Gemini API: Please only enhance the following Matched Response and provide a concise, and helpful response within 150 words text only.
+Also avoid any AI Disclaimer, in the message so that it does not sound robotic.
+User asked: WHat music do you like
+Context: User: WHat music do you like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:40:33,342 - INFO - Response: As an AI, I don't have personal preferences like music taste.  I'm here to help you with your health needs.  What can I do for you today?
+2024-07-24 13:40:33,356 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:33] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:40:39,676 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:39] "GET /verify_session HTTP/1.1" 200 -
+2024-07-24 13:40:52,134 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:52] "POST /clear_context_history HTTP/1.1" 200 -
+2024-07-24 13:40:56,943 - INFO - User input: WHat music do you like
+2024-07-24 13:40:57,175 - INFO - Prompt for Gemini API: Please only enhance the following Matched Response and provide a concise, and helpful response within 150 words text only.
+Also avoid any AI Disclaimer, in the message so that it does not sound robotic.
+User asked: WHat music do you like
+Context: User: WHat music do you like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+
+2024-07-24 13:40:58,081 - INFO - Response: I'm a language model, so I don't have personal preferences like music taste.  But I can help you find music you might enjoy.  What kind of music are you interested in?
+2024-07-24 13:40:58,082 - INFO - 127.0.0.1 - - [24/Jul/2024 13:40:58] "POST /chatbot HTTP/1.1" 200 -
+2024-07-24 13:41:11,290 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/July18/app2_useContextAsFoundation.py', reloading
+2024-07-24 13:41:11,751 - INFO -  * Restarting with stat

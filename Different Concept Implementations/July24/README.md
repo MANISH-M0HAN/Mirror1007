@@ -1,1 +1,2 @@
 app2 is not doing the context history match, when a question is asked without any link it is not responding to the sent request
+So if the follow up question is lacking context it is not matching the context from history and then replying yet.

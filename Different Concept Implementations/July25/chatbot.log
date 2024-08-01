@@ -74,3 +74,65 @@ Please enhance slightly, making the text more coherent and user-friendly. Avoid 
 2024-07-25 13:51:19,179 - ERROR - Error generating response with Gemini: Invalid operation: The `response.text` quick accessor requires the response to contain a valid `Part`, but none were returned. Please check the `candidate.safety_ratings` to determine if the response was blocked.
 2024-07-25 13:51:19,179 - INFO - Response: Vaginal corona: Also known as the hymen, consists of thin folds of mucous tissue located 1–2 centimeters just inside the vaginal opening. Every corona looks different and differs in size, color, and shape. It is slightly pink, almost transparent, and may resemble the petals of a flower, a jigsaw piece, or a half-moon. In the vast majority of cases, it is elastic and stretchy.
 2024-07-25 13:51:19,181 - INFO - 127.0.0.1 - - [25/Jul/2024 13:51:19] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:03:28,337 - INFO - User input: Hi
+2024-07-25 15:03:28,338 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-25 15:03:28,339 - INFO - 127.0.0.1 - - [25/Jul/2024 15:03:28] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:03:43,140 - INFO - User input: India is big
+2024-07-25 15:03:43,610 - INFO - Response: I'm sorry, I can't help with that question. Please ask something related to heart health.
+2024-07-25 15:03:43,610 - INFO - 127.0.0.1 - - [25/Jul/2024 15:03:43] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:04:15,968 - INFO - 127.0.0.1 - - [25/Jul/2024 15:04:15] "POST /start-survey HTTP/1.1" 200 -
+2024-07-25 15:04:28,871 - INFO - User input: 25
+2024-07-25 15:04:28,871 - INFO - Response: Thank you! Now, What is your gender?
+2024-07-25 15:04:28,872 - INFO - 127.0.0.1 - - [25/Jul/2024 15:04:28] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:04:33,531 - INFO - User input: male
+2024-07-25 15:04:33,532 - INFO - Response: Thank you! Now, How would you rate your heart health on a scale of 1 to 10?
+2024-07-25 15:04:33,535 - INFO - 127.0.0.1 - - [25/Jul/2024 15:04:33] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:04:40,242 - INFO - User input: 10
+2024-07-25 15:04:40,242 - INFO - Response: Thank you! Now, Do you have any history of heart disease in your family?
+2024-07-25 15:04:40,242 - INFO - 127.0.0.1 - - [25/Jul/2024 15:04:40] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:04:47,615 - INFO - User input: No
+2024-07-25 15:04:47,616 - INFO - Response: Thank you! Now, How often do you exercise in a week?
+2024-07-25 15:04:47,616 - INFO - 127.0.0.1 - - [25/Jul/2024 15:04:47] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:04:52,686 - INFO - User input: Never
+2024-07-25 15:04:52,686 - INFO - Survey completed with responses: ['25', 'male', '10', 'No', 'Never']
+2024-07-25 15:04:52,686 - INFO - Response: Thank you for completing the survey! Your responses have been recorded.
+2024-07-25 15:04:52,687 - INFO - 127.0.0.1 - - [25/Jul/2024 15:04:52] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:05:00,402 - INFO - User input: Heart is big
+2024-07-25 15:05:00,596 - INFO - Prompt for Gemini API: User asked: Heart is big
+Context: User: Heart is big Bot: 
+Matched response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-25 15:05:02,267 - INFO - Response: "Heart is big" can have many meanings.  Are you talking about a feeling of love and compassion?  Or perhaps you're concerned about your heart health?  Could you please tell me more?
+2024-07-25 15:05:02,271 - INFO - 127.0.0.1 - - [25/Jul/2024 15:05:02] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:05:16,147 - INFO - User input: Do you like music
+2024-07-25 15:05:16,377 - INFO - Prompt for Gemini API: User asked: Do you like music
+Context: User: Do you like music Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-25 15:05:16,986 - INFO - Response: I do! I enjoy listening to a variety of music. What kind of music do you like?
+2024-07-25 15:05:16,989 - INFO - 127.0.0.1 - - [25/Jul/2024 15:05:16] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:05:28,946 - INFO - User input: Who u like 
+2024-07-25 15:05:29,099 - INFO - Prompt for Gemini API: User asked: Who u like
+Context: User: Who u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-25 15:05:29,958 - INFO - Response: I'm a fan of many different types of music!  What can I do for you today?
+2024-07-25 15:05:29,959 - INFO - 127.0.0.1 - - [25/Jul/2024 15:05:29] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:05:40,111 - INFO - 127.0.0.1 - - [25/Jul/2024 15:05:40] "GET /session HTTP/1.1" 200 -
+2024-07-25 15:35:11,747 - INFO - User input: Who u like 
+2024-07-25 15:35:12,093 - INFO - Prompt for Gemini API: User asked: Who u like
+Context: User: Who u like Bot: 
+Matched response: I enjoy a variety of music! How can I help with your health needs?
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-07-25 15:35:12,902 - INFO - Response: I love listening to music!  Is there anything I can help you with related to your health?
+2024-07-25 15:35:12,903 - INFO - 127.0.0.1 - - [25/Jul/2024 15:35:12] "POST /chatbot HTTP/1.1" 200 -
+2024-07-25 15:35:50,147 - INFO - 127.0.0.1 - - [25/Jul/2024 15:35:50] "GET /session HTTP/1.1" 200 -
+2024-07-25 17:28:24,106 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-25 17:28:24,109 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-25 17:28:24,110 - INFO -  * Restarting with stat
+2024-07-25 17:28:33,669 - WARNING -  * Debugger is active!
+2024-07-25 17:28:33,690 - INFO -  * Debugger PIN: 660-535-223
+2024-07-25 17:28:36,905 - INFO - User input: Hi
+2024-07-25 17:28:36,906 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-07-25 17:28:36,908 - INFO - 127.0.0.1 - - [25/Jul/2024 17:28:36] "POST /chatbot HTTP/1.1" 200 -

@@ -1,0 +1,50 @@
+// script.js
+
+// Function to toggle chatbot visibility
+function toggleChatbot() {
+    const modal = document.getElementById('chatbot-modal');
+    modal.classList.toggle('hidden');
+}
+
+// Function to send message and handle bot response
+function sendMessage(event) {
+    if (event.key === 'Enter') {
+        const input = document.getElementById('chatbot-input');
+        const message = input.value.trim();
+        if (message !== '') {
+            addMessage('user', message);
+            input.value = '';
+            fetchResponse(message);
+        }
+    }
+}
+
+// Function to add message to chat
+function addMessage(sender, text) {
+    const messages = document.getElementById('chatbot-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', sender);
+    messageDiv.textContent = text;
+    messages.appendChild(messageDiv);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+// Function to fetch bot response from backend
+function fetchResponse(userInput) {
+    fetch('http://127.0.0.1:5000/chatbot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user_input: userInput })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const botResponse = data.response;
+        addMessage('bot', botResponse);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        addMessage('bot', 'Sorry, something went wrong. Please try again.');
+    });
+}

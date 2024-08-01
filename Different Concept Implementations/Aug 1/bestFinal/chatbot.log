@@ -16,3 +16,414 @@
 2024-08-01 11:17:28,278 - INFO - 127.0.0.1 - - [01/Aug/2024 11:17:28] "POST /chatbot HTTP/1.1" 200 -
 2024-08-01 11:17:33,767 - INFO - 127.0.0.1 - - [01/Aug/2024 11:17:33] "OPTIONS /chatbot HTTP/1.1" 200 -
 2024-08-01 11:17:33,771 - INFO - 127.0.0.1 - - [01/Aug/2024 11:17:33] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:36:13,957 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 11:36:13,957 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 11:36:13,957 - INFO -  * Restarting with stat
+2024-08-01 11:36:23,748 - WARNING -  * Debugger is active!
+2024-08-01 11:36:23,768 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 11:36:59,474 - INFO - 127.0.0.1 - - [01/Aug/2024 11:36:59] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 11:36:59,478 - INFO - 127.0.0.1 - - [01/Aug/2024 11:36:59] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:37:10,247 - INFO - 127.0.0.1 - - [01/Aug/2024 11:37:10] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 11:37:10,250 - INFO - 127.0.0.1 - - [01/Aug/2024 11:37:10] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:37:27,359 - INFO - 127.0.0.1 - - [01/Aug/2024 11:37:27] "GET /session HTTP/1.1" 200 -
+2024-08-01 11:37:36,004 - INFO - User input: I lobves India
+2024-08-01 11:37:36,438 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 11:37:36,439 - INFO - 127.0.0.1 - - [01/Aug/2024 11:37:36] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:37:58,065 - INFO - 127.0.0.1 - - [01/Aug/2024 11:37:58] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 11:37:58,069 - INFO - 127.0.0.1 - - [01/Aug/2024 11:37:58] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:38:23,160 - INFO - 127.0.0.1 - - [01/Aug/2024 11:38:23] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 11:38:23,162 - INFO - 127.0.0.1 - - [01/Aug/2024 11:38:23] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:39:11,123 - INFO - 127.0.0.1 - - [01/Aug/2024 11:39:11] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 11:39:11,127 - INFO - 127.0.0.1 - - [01/Aug/2024 11:39:11] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:47:50,777 - INFO - 127.0.0.1 - - [01/Aug/2024 11:47:50] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 11:47:50,781 - INFO - 127.0.0.1 - - [01/Aug/2024 11:47:50] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:47:58,636 - INFO - 127.0.0.1 - - [01/Aug/2024 11:47:58] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 11:47:58,644 - INFO - 127.0.0.1 - - [01/Aug/2024 11:47:58] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 11:48:32,631 - INFO - User input: I lobves India
+2024-08-01 11:48:33,033 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 11:48:33,033 - INFO - 127.0.0.1 - - [01/Aug/2024 11:48:33] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:38:39,144 - INFO - 127.0.0.1 - - [01/Aug/2024 12:38:39] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:38:39,151 - INFO - 127.0.0.1 - - [01/Aug/2024 12:38:39] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:38:43,473 - INFO - 127.0.0.1 - - [01/Aug/2024 12:38:43] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:38:48,236 - INFO - 127.0.0.1 - - [01/Aug/2024 12:38:48] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:38:48,242 - INFO - 127.0.0.1 - - [01/Aug/2024 12:38:48] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:45:12,363 - INFO - 127.0.0.1 - - [01/Aug/2024 12:45:12] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:45:12,368 - INFO - 127.0.0.1 - - [01/Aug/2024 12:45:12] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:45:46,188 - INFO - 127.0.0.1 - - [01/Aug/2024 12:45:46] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:45:46,193 - INFO - 127.0.0.1 - - [01/Aug/2024 12:45:46] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:50:26,863 - INFO - 127.0.0.1 - - [01/Aug/2024 12:50:26] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:50:26,868 - INFO - 127.0.0.1 - - [01/Aug/2024 12:50:26] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:50:43,126 - INFO - 127.0.0.1 - - [01/Aug/2024 12:50:43] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:50:43,130 - INFO - 127.0.0.1 - - [01/Aug/2024 12:50:43] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:52:21,853 - INFO - 127.0.0.1 - - [01/Aug/2024 12:52:21] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:52:21,855 - INFO - 127.0.0.1 - - [01/Aug/2024 12:52:21] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:52:30,954 - INFO - 127.0.0.1 - - [01/Aug/2024 12:52:30] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 12:52:30,956 - INFO - 127.0.0.1 - - [01/Aug/2024 12:52:30] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 12:53:16,689 - INFO - 127.0.0.1 - - [01/Aug/2024 12:53:16] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 12:53:23,262 - INFO - 127.0.0.1 - - [01/Aug/2024 12:53:23] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 12:53:23,263 - INFO - 127.0.0.1 - - [01/Aug/2024 12:53:23] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:02:51,026 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 13:02:51,027 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 13:02:51,027 - INFO -  * Restarting with stat
+2024-08-01 13:03:00,705 - WARNING -  * Debugger is active!
+2024-08-01 13:03:00,725 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:03:33,139 - INFO - 127.0.0.1 - - [01/Aug/2024 13:03:33] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:03:42,697 - INFO - 127.0.0.1 - - [01/Aug/2024 13:03:42] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:04:07,276 - INFO - 127.0.0.1 - - [01/Aug/2024 13:04:07] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:04:12,151 - INFO - 127.0.0.1 - - [01/Aug/2024 13:04:12] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:04:24,337 - INFO - 127.0.0.1 - - [01/Aug/2024 13:04:24] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:05:11,274 - INFO - 127.0.0.1 - - [01/Aug/2024 13:05:11] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:05:23,033 - INFO - 127.0.0.1 - - [01/Aug/2024 13:05:23] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:05:48,249 - INFO - 127.0.0.1 - - [01/Aug/2024 13:05:48] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:06:13,337 - INFO - 127.0.0.1 - - [01/Aug/2024 13:06:13] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:07:13,549 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 13:07:13,549 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 13:07:13,549 - INFO -  * Restarting with stat
+2024-08-01 13:07:23,512 - WARNING -  * Debugger is active!
+2024-08-01 13:07:23,531 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:07:31,550 - INFO - 127.0.0.1 - - [01/Aug/2024 13:07:31] "[33mOPTIONS /get-response HTTP/1.1[0m" 404 -
+2024-08-01 13:09:26,165 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCORSandCheckSession.py', reloading
+2024-08-01 13:09:26,666 - INFO -  * Restarting with stat
+2024-08-01 13:09:37,004 - WARNING -  * Debugger is active!
+2024-08-01 13:09:37,018 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:10:23,623 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 13:10:23,623 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 13:10:23,624 - INFO -  * Restarting with stat
+2024-08-01 13:10:33,829 - WARNING -  * Debugger is active!
+2024-08-01 13:10:33,849 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:10:39,011 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app3.py', reloading
+2024-08-01 13:10:39,483 - INFO -  * Restarting with stat
+2024-08-01 13:10:49,957 - WARNING -  * Debugger is active!
+2024-08-01 13:10:49,971 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:11:38,299 - INFO - 127.0.0.1 - - [01/Aug/2024 13:11:38] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 13:11:38,305 - INFO - 127.0.0.1 - - [01/Aug/2024 13:11:38] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:11:51,911 - INFO - 127.0.0.1 - - [01/Aug/2024 13:11:51] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 13:11:51,915 - INFO - 127.0.0.1 - - [01/Aug/2024 13:11:51] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:14:52,197 - INFO - User input: I have chest pain
+2024-08-01 13:14:52,570 - INFO - Response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+2024-08-01 13:14:52,571 - INFO - 127.0.0.1 - - [01/Aug/2024 13:14:52] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:18:33,216 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 13:18:33,217 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 13:18:33,218 - INFO -  * Restarting with stat
+2024-08-01 13:18:43,157 - WARNING -  * Debugger is active!
+2024-08-01 13:18:43,179 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:18:54,827 - INFO - 127.0.0.1 - - [01/Aug/2024 13:18:54] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 13:18:54,832 - INFO - 127.0.0.1 - - [01/Aug/2024 13:18:54] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:19:13,644 - INFO - 127.0.0.1 - - [01/Aug/2024 13:19:13] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 13:19:13,650 - INFO - 127.0.0.1 - - [01/Aug/2024 13:19:13] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:44:34,411 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2EditedForTest.py', reloading
+2024-08-01 13:44:34,820 - INFO -  * Restarting with stat
+2024-08-01 13:44:44,592 - WARNING -  * Debugger is active!
+2024-08-01 13:44:44,617 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:45:26,832 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2EditedForTest.py', reloading
+2024-08-01 13:45:27,262 - INFO -  * Restarting with stat
+2024-08-01 13:45:37,158 - WARNING -  * Debugger is active!
+2024-08-01 13:45:37,176 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:54:32,669 - INFO - User input: I have chest pain
+2024-08-01 13:54:33,062 - INFO - Response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+2024-08-01 13:54:33,063 - INFO - 127.0.0.1 - - [01/Aug/2024 13:54:33] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:58:17,514 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 13:58:17,514 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 13:58:17,515 - INFO -  * Restarting with stat
+2024-08-01 13:58:27,232 - WARNING -  * Debugger is active!
+2024-08-01 13:58:27,251 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 13:59:05,455 - INFO - 127.0.0.1 - - [01/Aug/2024 13:59:05] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 13:59:05,459 - INFO - 127.0.0.1 - - [01/Aug/2024 13:59:05] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:59:13,101 - INFO - 127.0.0.1 - - [01/Aug/2024 13:59:13] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 13:59:13,104 - INFO - 127.0.0.1 - - [01/Aug/2024 13:59:13] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 13:59:21,703 - INFO - 127.0.0.1 - - [01/Aug/2024 13:59:21] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 13:59:21,706 - INFO - 127.0.0.1 - - [01/Aug/2024 13:59:21] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:04:31,914 - INFO - 127.0.0.1 - - [01/Aug/2024 14:04:31] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:04:31,918 - INFO - 127.0.0.1 - - [01/Aug/2024 14:04:31] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:04:35,028 - INFO - 127.0.0.1 - - [01/Aug/2024 14:04:35] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:04:46,194 - INFO - 127.0.0.1 - - [01/Aug/2024 14:04:46] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:04:46,202 - INFO - 127.0.0.1 - - [01/Aug/2024 14:04:46] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:39,033 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:39] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:39,035 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:39] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:39,041 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:39] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:39,042 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:39] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:40,403 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:40] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:40,405 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:40] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:41,364 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:41] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:07:41,369 - INFO - 127.0.0.1 - - [01/Aug/2024 14:07:41] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:09:32,562 - INFO - 127.0.0.1 - - [01/Aug/2024 14:09:32] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:09:32,566 - INFO - 127.0.0.1 - - [01/Aug/2024 14:09:32] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:09:49,487 - INFO - 127.0.0.1 - - [01/Aug/2024 14:09:49] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:09:49,490 - INFO - 127.0.0.1 - - [01/Aug/2024 14:09:49] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:25:24,361 - INFO - 127.0.0.1 - - [01/Aug/2024 14:25:24] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:25:24,373 - INFO - 127.0.0.1 - - [01/Aug/2024 14:25:24] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:25:29,370 - INFO - 127.0.0.1 - - [01/Aug/2024 14:25:29] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:25:37,459 - INFO - 127.0.0.1 - - [01/Aug/2024 14:25:37] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:25:37,464 - INFO - 127.0.0.1 - - [01/Aug/2024 14:25:37] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:26:43,810 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:26:44,556 - INFO -  * Restarting with stat
+2024-08-01 14:27:00,445 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 14:27:00,446 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 14:27:00,446 - INFO -  * Restarting with stat
+2024-08-01 14:27:09,770 - WARNING -  * Debugger is active!
+2024-08-01 14:27:09,789 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:27:10,466 - INFO - 127.0.0.1 - - [01/Aug/2024 14:27:10] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:27:15,248 - INFO - User input: I have chest pain
+2024-08-01 14:27:15,385 - INFO - Response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+2024-08-01 14:27:15,386 - INFO - 127.0.0.1 - - [01/Aug/2024 14:27:15] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:27:16,961 - INFO - User input: I have chest pain
+2024-08-01 14:27:17,088 - INFO - Response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+2024-08-01 14:27:17,088 - INFO - 127.0.0.1 - - [01/Aug/2024 14:27:17] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:27:27,270 - INFO - User input: I loveIndia
+2024-08-01 14:27:27,713 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:27:27,714 - INFO - 127.0.0.1 - - [01/Aug/2024 14:27:27] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:27:48,991 - INFO - User input: I cheest
+2024-08-01 14:27:49,252 - INFO - Response: Chemotherapy: A type of cancer treatment procedure that uses one or more anti-cancer drugs as part of a standardized chemotherapy regimen.
+2024-08-01 14:27:49,253 - INFO - 127.0.0.1 - - [01/Aug/2024 14:27:49] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:28:14,205 - INFO - User input: My big cheest
+2024-08-01 14:28:14,384 - INFO - Response: Chemotherapy: A type of cancer treatment procedure that uses one or more anti-cancer drugs as part of a standardized chemotherapy regimen.
+2024-08-01 14:28:14,384 - INFO - 127.0.0.1 - - [01/Aug/2024 14:28:14] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:29:55,810 - INFO - User input: I have test
+2024-08-01 14:29:56,131 - INFO - Response: Screening Test: A preventative measure used to detect a potential health problem or disease in someone that doesn’t yet have signs or symptoms.
+2024-08-01 14:29:56,134 - INFO - 127.0.0.1 - - [01/Aug/2024 14:29:56] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:30:07,530 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:30:08,068 - INFO -  * Restarting with stat
+2024-08-01 14:30:17,771 - WARNING -  * Debugger is active!
+2024-08-01 14:30:17,789 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:30:18,893 - INFO - User input: I have test
+2024-08-01 14:30:18,980 - INFO - Response: Screening Test: A preventative measure used to detect a potential health problem or disease in someone that doesn’t yet have signs or symptoms.
+2024-08-01 14:30:18,981 - INFO - 127.0.0.1 - - [01/Aug/2024 14:30:18] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:30:20,529 - INFO - User input: I have test
+2024-08-01 14:30:20,661 - INFO - Response: Screening Test: A preventative measure used to detect a potential health problem or disease in someone that doesn’t yet have signs or symptoms.
+2024-08-01 14:30:20,662 - INFO - 127.0.0.1 - - [01/Aug/2024 14:30:20] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:30:31,647 - INFO - User input: I have an exam
+2024-08-01 14:30:31,885 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:30:31,885 - INFO - 127.0.0.1 - - [01/Aug/2024 14:30:31] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:01,449 - INFO - User input: I have an std exam
+2024-08-01 14:34:01,885 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:34:01,886 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:01] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:08,730 - INFO - User input: I have an amonia exam
+2024-08-01 14:34:08,969 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:34:08,969 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:08] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:13,923 - INFO - User input: amonia exam
+2024-08-01 14:34:14,150 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:34:14,151 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:14] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:19,847 - INFO - User input: cholesterol exam
+2024-08-01 14:34:19,984 - INFO - Response: Lipid panel/Lipid profile test: A type of blood test used to measure the abnormalities in lipids, or in other words, the concentration of cholesterol and fats in our blood.
+2024-08-01 14:34:19,984 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:19] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:28,349 - INFO - User input: cholesterol hi
+2024-08-01 14:34:28,487 - INFO - Response: Lipid panel/Lipid profile test: A type of blood test used to measure the abnormalities in lipids, or in other words, the concentration of cholesterol and fats in our blood.
+2024-08-01 14:34:28,487 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:28] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:32,230 - INFO - User input: cholesterol high
+2024-08-01 14:34:32,364 - INFO - Response: Lipid panel/Lipid profile test: A type of blood test used to measure the abnormalities in lipids, or in other words, the concentration of cholesterol and fats in our blood.
+2024-08-01 14:34:32,364 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:32] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:41,695 - INFO - User input: high cholesterol
+2024-08-01 14:34:41,839 - INFO - Response: Lipid panel/Lipid profile test: A type of blood test used to measure the abnormalities in lipids, or in other words, the concentration of cholesterol and fats in our blood.
+2024-08-01 14:34:41,839 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:41] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:47,066 - INFO - User input: high blood
+2024-08-01 14:34:47,197 - INFO - Response: Hypertension: Also known as High blood pressure, is a condition in which the force of the blood against the artery walls is too high.
+2024-08-01 14:34:47,197 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:47] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:53,250 - INFO - User input: blood high
+2024-08-01 14:34:53,370 - INFO - Response: Hypertension: Also known as High blood pressure, is a condition in which the force of the blood against the artery walls is too high.
+2024-08-01 14:34:53,370 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:53] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:34:59,361 - INFO - User input: blood
+2024-08-01 14:34:59,568 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:34:59,569 - INFO - 127.0.0.1 - - [01/Aug/2024 14:34:59] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:35:03,766 - INFO - User input: high
+2024-08-01 14:35:03,971 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:35:03,972 - INFO - 127.0.0.1 - - [01/Aug/2024 14:35:03] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:35:15,764 - INFO - User input: high school told us not to drop any blood
+2024-08-01 14:35:15,986 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:35:15,987 - INFO - 127.0.0.1 - - [01/Aug/2024 14:35:15] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:35:22,332 - INFO - User input: high school told  blood
+2024-08-01 14:35:22,548 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:35:22,548 - INFO - 127.0.0.1 - - [01/Aug/2024 14:35:22] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:35:26,515 - INFO - User input: high school  blood
+2024-08-01 14:35:26,714 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:35:26,715 - INFO - 127.0.0.1 - - [01/Aug/2024 14:35:26] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:35:31,036 - INFO - User input: high  blood
+2024-08-01 14:35:31,155 - INFO - Response: Hypertension: Also known as High blood pressure, is a condition in which the force of the blood against the artery walls is too high.
+2024-08-01 14:35:31,155 - INFO - 127.0.0.1 - - [01/Aug/2024 14:35:31] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:35:36,637 - INFO - User input: high sh blood
+2024-08-01 14:35:36,851 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:35:36,852 - INFO - 127.0.0.1 - - [01/Aug/2024 14:35:36] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:36:02,851 - INFO - User input: d
+2024-08-01 14:36:03,146 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:36:03,146 - INFO - 127.0.0.1 - - [01/Aug/2024 14:36:03] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:36:18,018 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:36:18,463 - INFO -  * Restarting with stat
+2024-08-01 14:36:28,570 - WARNING -  * Debugger is active!
+2024-08-01 14:36:28,591 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:36:28,632 - INFO - User input: high school  blood
+2024-08-01 14:36:28,734 - INFO - Response: Hypertension: Also known as High blood pressure, is a condition in which the force of the blood against the artery walls is too high.
+2024-08-01 14:36:28,734 - INFO - 127.0.0.1 - - [01/Aug/2024 14:36:28] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:36:42,120 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:36:42,513 - INFO -  * Restarting with stat
+2024-08-01 14:36:52,392 - WARNING -  * Debugger is active!
+2024-08-01 14:36:52,414 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:36:52,436 - INFO - User input: high school  blood
+2024-08-01 14:36:52,613 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:36:52,613 - INFO - 127.0.0.1 - - [01/Aug/2024 14:36:52] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:37:39,004 - INFO - User input: high school  blood
+2024-08-01 14:37:39,340 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:37:39,340 - INFO - 127.0.0.1 - - [01/Aug/2024 14:37:39] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:37:50,941 - INFO - User input: hi
+2024-08-01 14:37:51,239 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 14:37:51,240 - INFO - 127.0.0.1 - - [01/Aug/2024 14:37:51] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:49:25,144 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 14:49:25,145 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 14:49:25,145 - INFO -  * Restarting with stat
+2024-08-01 14:49:34,712 - WARNING -  * Debugger is active!
+2024-08-01 14:49:34,734 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:50:18,085 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:50:18,625 - INFO -  * Restarting with stat
+2024-08-01 14:50:28,507 - WARNING -  * Debugger is active!
+2024-08-01 14:50:28,523 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:51:00,505 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:51:00,910 - INFO -  * Restarting with stat
+2024-08-01 14:51:10,723 - WARNING -  * Debugger is active!
+2024-08-01 14:51:10,745 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:51:30,482 - INFO - 127.0.0.1 - - [01/Aug/2024 14:51:30] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:51:58,171 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:51:58,616 - INFO -  * Restarting with stat
+2024-08-01 14:52:08,428 - WARNING -  * Debugger is active!
+2024-08-01 14:52:08,447 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:52:08,472 - INFO - 127.0.0.1 - - [01/Aug/2024 14:52:08] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 14:52:22,918 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:52:23,330 - INFO -  * Restarting with stat
+2024-08-01 14:52:32,954 - WARNING -  * Debugger is active!
+2024-08-01 14:52:32,972 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:52:57,712 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:52:58,174 - INFO -  * Restarting with stat
+2024-08-01 14:53:17,533 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5500
+2024-08-01 14:53:17,533 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 14:53:17,534 - INFO -  * Restarting with stat
+2024-08-01 14:53:26,760 - WARNING -  * Debugger is active!
+2024-08-01 14:53:26,781 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:53:26,804 - INFO - 127.0.0.1 - - [01/Aug/2024 14:53:26] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html/ws HTTP/1.1[0m" 404 -
+2024-08-01 14:53:26,806 - INFO - 127.0.0.1 - - [01/Aug/2024 14:53:26] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html/ws HTTP/1.1[0m" 404 -
+2024-08-01 14:53:34,178 - INFO - 127.0.0.1 - - [01/Aug/2024 14:53:34] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:53:46,174 - INFO - User input: I have chest pain
+2024-08-01 14:53:46,440 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:53:46,441 - INFO - 127.0.0.1 - - [01/Aug/2024 14:53:46] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:53:52,985 - INFO - User input: Chest pain
+2024-08-01 14:53:53,230 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:53:53,230 - INFO - 127.0.0.1 - - [01/Aug/2024 14:53:53] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:54:25,852 - INFO - User input: My chest is paining a lot
+2024-08-01 14:54:26,308 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:54:26,309 - INFO - 127.0.0.1 - - [01/Aug/2024 14:54:26] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:54:34,904 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:54:35,315 - INFO -  * Restarting with stat
+2024-08-01 14:54:44,739 - WARNING -  * Debugger is active!
+2024-08-01 14:54:44,762 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:54:58,473 - INFO - User input: I have chest pain
+2024-08-01 14:54:58,619 - INFO - Response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+2024-08-01 14:54:58,625 - INFO - 127.0.0.1 - - [01/Aug/2024 14:54:58] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:55:06,483 - INFO - User input: do u like music
+2024-08-01 14:55:06,664 - INFO - Response: I enjoy a variety of music! How can I help with your health needs?
+2024-08-01 14:55:06,664 - INFO - 127.0.0.1 - - [01/Aug/2024 14:55:06] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:55:13,148 - INFO - User input: Good morning
+2024-08-01 14:55:13,289 - INFO - Response: Good morning! How can I help you today?
+2024-08-01 14:55:13,289 - INFO - 127.0.0.1 - - [01/Aug/2024 14:55:13] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:55:17,929 - INFO - User input: I am big
+2024-08-01 14:55:18,074 - INFO - Response: Macrosomia: A term used to describe a newborn larger than the average size of 8 pounds, 13 ounces (4,000 grams), regardless of his or her gestational age.
+2024-08-01 14:55:18,074 - INFO - 127.0.0.1 - - [01/Aug/2024 14:55:18] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:55:28,091 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 14:55:28,597 - INFO -  * Restarting with stat
+2024-08-01 14:55:38,092 - WARNING -  * Debugger is active!
+2024-08-01 14:55:38,108 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 14:55:39,061 - INFO - User input: I am big
+2024-08-01 14:55:39,273 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:55:39,274 - INFO - 127.0.0.1 - - [01/Aug/2024 14:55:39] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:55:48,185 - INFO - User input: My baby is born big
+2024-08-01 14:55:48,331 - INFO - Response: Macrosomia: A term used to describe a newborn larger than the average size of 8 pounds, 13 ounces (4,000 grams), regardless of his or her gestational age.
+2024-08-01 14:55:48,331 - INFO - 127.0.0.1 - - [01/Aug/2024 14:55:48] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:56:00,266 - INFO - User input: I feel pain in my chest
+2024-08-01 14:56:00,521 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:56:00,521 - INFO - 127.0.0.1 - - [01/Aug/2024 14:56:00] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:56:08,120 - INFO - User input: Chest is paining
+2024-08-01 14:56:08,361 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:56:08,362 - INFO - 127.0.0.1 - - [01/Aug/2024 14:56:08] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:56:39,812 - INFO - User input: i got an infection it seems to be fungal
+2024-08-01 14:56:40,106 - INFO - Response: Candidiasis: Candidiasis is a fungal infection caused by a yeast (a type of fungus) called Candida.
+2024-08-01 14:56:40,106 - INFO - 127.0.0.1 - - [01/Aug/2024 14:56:40] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:57:00,807 - INFO - User input: is it caused by fungus
+2024-08-01 14:57:01,047 - INFO - Response: Candidiasis: Candidiasis is a fungal infection caused by a yeast (a type of fungus) called Candida.
+2024-08-01 14:57:01,048 - INFO - 127.0.0.1 - - [01/Aug/2024 14:57:01] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:57:09,913 - INFO - User input: fungus caused infection
+2024-08-01 14:57:10,108 - INFO - Response: Candidiasis: Candidiasis is a fungal infection caused by a yeast (a type of fungus) called Candida.
+2024-08-01 14:57:10,108 - INFO - 127.0.0.1 - - [01/Aug/2024 14:57:10] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:57:17,464 - INFO - User input: what about it?
+2024-08-01 14:57:17,711 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 14:57:17,711 - INFO - 127.0.0.1 - - [01/Aug/2024 14:57:17] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:57:30,712 - INFO - User input: And
+2024-08-01 14:57:30,861 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 14:57:30,862 - INFO - 127.0.0.1 - - [01/Aug/2024 14:57:30] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 14:57:36,286 - INFO - User input: and fungus
+2024-08-01 14:57:36,447 - INFO - Response: Candidiasis: Candidiasis is a fungal infection caused by a yeast (a type of fungus) called Candida.
+2024-08-01 14:57:36,447 - INFO - 127.0.0.1 - - [01/Aug/2024 14:57:36] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:22:42,977 - INFO - 127.0.0.1 - - [01/Aug/2024 15:22:42] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html HTTP/1.1[0m" 404 -
+2024-08-01 15:22:59,073 - INFO - 127.0.0.1 - - [01/Aug/2024 15:22:59] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html HTTP/1.1[0m" 404 -
+2024-08-01 15:23:19,092 - INFO - 127.0.0.1 - - [01/Aug/2024 15:23:19] "[33mGET /Different%20Concept%20Implementations/July25/FlaskFrontend/index.html HTTP/1.1[0m" 404 -
+2024-08-01 15:23:30,744 - INFO - 127.0.0.1 - - [01/Aug/2024 15:23:30] "[33mGET / HTTP/1.1[0m" 404 -
+2024-08-01 15:24:07,916 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5500
+2024-08-01 15:24:07,918 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 15:24:07,918 - INFO -  * Restarting with stat
+2024-08-01 15:24:17,536 - WARNING -  * Debugger is active!
+2024-08-01 15:24:17,557 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 15:24:17,593 - INFO - 127.0.0.1 - - [01/Aug/2024 15:24:17] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html/ws HTTP/1.1[0m" 404 -
+2024-08-01 15:24:45,187 - INFO - 127.0.0.1 - - [01/Aug/2024 15:24:45] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:24:52,289 - INFO - User input: Inida
+2024-08-01 15:24:52,614 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 15:24:52,614 - INFO - 127.0.0.1 - - [01/Aug/2024 15:24:52] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:25:13,233 - INFO - User input: Hi i am women
+2024-08-01 15:25:13,488 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 15:25:13,489 - INFO - 127.0.0.1 - - [01/Aug/2024 15:25:13] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:25:18,611 - INFO - User input: Women
+2024-08-01 15:25:18,777 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 15:25:18,777 - INFO - 127.0.0.1 - - [01/Aug/2024 15:25:18] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:25:51,386 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 15:25:51,848 - INFO -  * Restarting with stat
+2024-08-01 15:26:01,569 - WARNING -  * Debugger is active!
+2024-08-01 15:26:01,588 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 15:26:01,612 - INFO - 127.0.0.1 - - [01/Aug/2024 15:26:01] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html HTTP/1.1[0m" 404 -
+2024-08-01 15:26:01,612 - INFO - 127.0.0.1 - - [01/Aug/2024 15:26:01] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html HTTP/1.1[0m" 404 -
+2024-08-01 15:26:42,770 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5500
+2024-08-01 15:26:42,771 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 15:26:42,771 - INFO -  * Restarting with stat
+2024-08-01 15:26:52,651 - WARNING -  * Debugger is active!
+2024-08-01 15:26:52,670 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 15:26:52,707 - INFO - 127.0.0.1 - - [01/Aug/2024 15:26:52] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index2.html/ws HTTP/1.1[0m" 404 -
+2024-08-01 15:27:01,104 - INFO - User input: Women
+2024-08-01 15:27:01,337 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 15:27:01,337 - INFO - 127.0.0.1 - - [01/Aug/2024 15:27:01] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:27:42,061 - INFO - User input: attraction women men
+2024-08-01 15:27:42,427 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 15:27:42,427 - INFO - 127.0.0.1 - - [01/Aug/2024 15:27:42] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:27:50,400 - INFO - User input: i liked a women she was pretty
+2024-08-01 15:27:50,693 - INFO - Prompt for Generative API: User asked: i liked a women she was pretty. Please provide a helpful response related to women's heart health.
+2024-08-01 15:27:50,694 - INFO - Response: This is a placeholder response generated for your question.
+2024-08-01 15:27:50,695 - INFO - 127.0.0.1 - - [01/Aug/2024 15:27:50] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:28:03,641 - INFO - User input: women women women
+2024-08-01 15:28:03,887 - INFO - Response: Estrogen: A hormone that helps develop and maintain both the reproductive system and female characteristics, such as breasts and pubic hair.
+2024-08-01 15:28:03,888 - INFO - 127.0.0.1 - - [01/Aug/2024 15:28:03] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:28:14,656 - INFO - User input: boy
+2024-08-01 15:28:14,838 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 15:28:14,838 - INFO - 127.0.0.1 - - [01/Aug/2024 15:28:14] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:28:57,898 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/bestFinal/app2UpdatedWithCheckSession.py', reloading
+2024-08-01 15:28:58,380 - INFO -  * Restarting with stat
+2024-08-01 15:29:08,479 - WARNING -  * Debugger is active!
+2024-08-01 15:29:08,508 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 15:29:34,278 - INFO - 127.0.0.1 - - [01/Aug/2024 15:29:34] "[33mGET /Different%20Concept%20Implementations/Aug%201/bestFinal/index.html HTTP/1.1[0m" 404 -
+2024-08-01 15:30:08,134 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 15:30:08,135 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 15:30:08,135 - INFO -  * Restarting with stat
+2024-08-01 15:30:17,632 - WARNING -  * Debugger is active!
+2024-08-01 15:30:17,653 - INFO -  * Debugger PIN: 660-535-223

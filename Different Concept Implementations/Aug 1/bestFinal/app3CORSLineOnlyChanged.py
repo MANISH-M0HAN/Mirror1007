@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')  # Use a secure method to handle secret keys
 
 # Initialize CORS with specific configuration
-cors = CORS(app, resources={r"/chatbot/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})  # Update to allow requests from your frontend
 
 # Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')

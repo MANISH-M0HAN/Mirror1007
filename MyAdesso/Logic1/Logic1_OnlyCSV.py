@@ -16,9 +16,7 @@ load_dotenv()
 
 # Initialize the Flask app
 app = Flask(__name__)
-app.secret_key = 'randomtext'  # Use a secure method to handle secret keys
-
-# Initialize CORS with specific configuration
+app.secret_key = 'rand'  # Use a secure method to handle secret keys
 CORS(app)
 
 # Initialize models and spellchecker
@@ -165,22 +163,18 @@ def chatbot():
     Uses session to maintain context history.
     """
     try:
-        # Check if session is new, send initial greeting
-        if 'context_history' not in session:
-            session['context_history'] = {"context": [], "history": []}
-            initial_greeting = "Hello! How can I assist you today?"
-            return jsonify({"response": initial_greeting})
-
         if not request.is_json:
             return jsonify({"error": "Invalid input"}), 400
-
+        
         data = request.get_json()
         user_input = data.get('user_input')
+        if 'context_history' not in session:
+            session['context_history'] = {"context": [], "history": []}
         context_history = session['context_history']
-
+        
         if user_input is None:
             return jsonify({"error": "Missing 'user_input' parameter"}), 400
-
+        
         logging.info(f"User input: {user_input}")
 
         response, context_history = get_response(user_input, context_history)
@@ -189,7 +183,7 @@ def chatbot():
         logging.info(f"Response: {response}")
 
         return jsonify({"response": response})
-
+    
     except Exception as e:
         logging.error(f"Error handling request: {e}")
         return jsonify({"error": "Internal server error"}), 500
@@ -203,4 +197,4 @@ def get_session():
     return jsonify({"session_data": session_data})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)

@@ -181,7 +181,7 @@ def get_response(user_input, context_history, threshold=0.7):
 # Setup logging
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
-@app.route('/chat', methods=['POST'])
+@app.route('/chatbot', methods=['POST'])
 def chat():
     """
     Main chat endpoint to handle user requests.

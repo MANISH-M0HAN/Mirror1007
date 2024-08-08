@@ -52,41 +52,55 @@ for idx in range(len(df)):
         "keywords_embeddings": keywords_embeddings[idx]
     })
 
+# Precompute embeddings for domain keywords
+domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
+domain_embeddings = embedding_model.encode(domain_keywords)
+
 def correct_spelling(text):
     """
     Corrects spelling errors in the given text using a spell checker.
     """
-    corrected_words = [
-        spellchecker.correction(word) if spellchecker.correction(word) else word
-        for word in text.split()
-    ]
-    corrected_text = ' '.join(corrected_words)
-    return corrected_text
+    # Correct only for longer texts or obvious typos
+    if len(text.split()) > 1:
+        corrected_words = [
+            spellchecker.correction(word) if spellchecker.correction(word) else word
+            for word in text.split()
+        ]
+        corrected_text = ' '.join(corrected_words)
+        return corrected_text
+    return text
 
-def find_best_context(query, threshold=0.4):
+def find_best_context(query, threshold=0.7):
     """
     Takes a query and returns the best matching context from the database based on cosine similarity.
     If no match is found above the threshold, it returns None.
     """
     query_embedding = embedding_model.encode([query.lower()])
-    
+
     best_match_score = 0
     best_match_response = None
-    
+
     for index, item_embeddings in enumerate(db_embeddings):
         trigger_score = cosine_similarity(query_embedding, [item_embeddings['trigger_embedding']]).flatten()[0]
         synonyms_scores = [cosine_similarity(query_embedding, [syn_emb]).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
         keywords_scores = [cosine_similarity(query_embedding, [kw_emb]).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
-        
+
         max_synonym_score = max(synonyms_scores) if synonyms_scores else 0
         max_keyword_score = max(keywords_scores) if keywords_scores else 0
-        
+
         max_score = max(trigger_score, max_synonym_score, max_keyword_score)
-        
+
+        # Logging the similarity scores for analysis (only log significant scores)
+        if max_score >= threshold * 0.5:
+            logging.info(f"Query: {query}, Trigger: {database[index]['trigger_word']}, Score: {max_score}")
+
         if max_score > best_match_score and max_score >= threshold:
             best_match_score = max_score
             best_match_response = database[index]['response']
-    
+
+    # Log the best match score and response
+    logging.info(f"Best Match Score: {best_match_score}, Best Match Response: {best_match_response}")
+
     return best_match_response
 
 def generate_response_with_placeholder(prompt):
@@ -97,13 +111,18 @@ def generate_response_with_placeholder(prompt):
     response = "This is a placeholder response generated for your question."
     return response
 
-def is_domain_relevant(query):
+def is_domain_relevant(query, threshold=0.4):
     """
-    Checks if the query contains keywords relevant to the domain (women's heart health).
+    Checks if the query is relevant to the domain using cosine similarity.
+    Returns True if any similarity score with domain keywords is above the threshold.
     """
-    domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
-    query_tokens = set(query.lower().split())
-    return any(keyword in query_tokens for keyword in domain_keywords)
+    query_embedding = embedding_model.encode([query.lower()])
+    relevance_scores = [cosine_similarity(query_embedding, [dom_emb]).flatten()[0] for dom_emb in domain_embeddings]
+
+    # Log the domain relevance scores
+    logging.info(f"Domain Relevance Scores for '{query}': {relevance_scores}")
+
+    return any(score >= threshold for score in relevance_scores)
 
 def get_relevant_context(user_input, context_history):
     """
@@ -123,7 +142,7 @@ def get_relevant_context(user_input, context_history):
 
     return relevant_context
 
-def get_response(user_input, context_history, threshold=0.4):
+def get_response(user_input, context_history, threshold=0.7):
     """
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.
@@ -133,17 +152,19 @@ def get_response(user_input, context_history, threshold=0.4):
     if context_response:
         return context_response, context_history
 
-    # Correct spelling and try matching again
+    # Correct spelling and try matching again (skip correction for very short inputs)
     corrected_input = correct_spelling(user_input)
-    context_response = find_best_context(corrected_input, threshold)
-    if context_response:
-        return context_response, context_history
+    if corrected_input != user_input:
+        logging.info(f"Corrected Input: {corrected_input}")
+        context_response = find_best_context(corrected_input, threshold)
+        if context_response:
+            return context_response, context_history
 
     # Check for domain relevance
     if is_domain_relevant(corrected_input):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
-        
+
         # Send corrected input to the Generative API
         response = generate_response_with_placeholder(prompt)
         return response, context_history
@@ -153,48 +174,49 @@ def get_response(user_input, context_history, threshold=0.4):
     return fallback_response, context_history
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
 @app.route('/chatbot', methods=['POST'])
-def chatbot():
+def chat():
     """
-    Main endpoint for handling user input and returning the chatbot response.
-    Uses session to maintain context history.
+    Main chat endpoint to handle user requests.
+    Accepts user input and returns the chatbot's response.
     """
     try:
-        if not request.is_json:
-            return jsonify({"error": "Invalid input"}), 400
+        user_input = request.json.get("user_input", "").strip()
         
-        data = request.get_json()
-        user_input = data.get('user_input')
-        if 'context_history' not in session:
-            session['context_history'] = {"context": [], "history": []}
-        context_history = session['context_history']
-        
-        if user_input is None:
-            return jsonify({"error": "Missing 'user_input' parameter"}), 400
-        
-        logging.info(f"User input: {user_input}")
+        # Retrieve or initialize context history
+        context_history = session.get('context_history', {'history': []})
 
-        response, context_history = get_response(user_input, context_history)
-        session['context_history'] = context_history
+        if not user_input:
+            return jsonify({"error": "Missing user input"}), 400
 
-        logging.info(f"Response: {response}")
+        # Get response and updated context history
+        response, updated_context_history = get_response(user_input, context_history)
 
-        return jsonify({"response": response})
-    
+        # Append the new interaction to the history
+        updated_context_history['history'].append({
+            "user_input": user_input,
+            "bot_response": response
+        })
+
+        # Update the session with new context history
+        session['context_history'] = updated_context_history
+
+        return jsonify({"response": response}), 200
+
     except Exception as e:
-        logging.error(f"Error handling request: {e}")
-        return jsonify({"error": "Internal server error"}), 500
+        logging.error(f"Error occurred: {str(e)}")
+        return jsonify({"error": "An error occurred"}), 500
 
 @app.route('/session', methods=['GET'])
-def get_session():
+def view_session():
     """
-    Endpoint to retrieve session data, useful for debugging and ensuring context is being maintained.
+    Endpoint to view current session details.
+    Provides stored context history including queries, responses, and similarity scores.
     """
-    session_data = {key: value for key, value in session.items()}
-    return jsonify({"session_data": session_data})
+    context_history = session.get('context_history', {'history': []})
+    return jsonify(context_history), 200
 
-if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=5000, debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

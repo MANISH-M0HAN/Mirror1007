@@ -1,7 +1,0 @@
-pytesseract
-Pillow
-transformers
-torch
-nltk
-gensim
-certifi

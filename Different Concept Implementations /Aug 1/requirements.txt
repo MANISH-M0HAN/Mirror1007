@@ -1,9 +1,0 @@
-Flask
-Flask-Cors
-sentence-transformers
-scikit-learn
-pyspellchecker
-pandas
-numpy
-google-generativeai
-python-dotenv

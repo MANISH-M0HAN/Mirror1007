@@ -1,0 +1,149 @@
+2024-08-01 09:51:14,320 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 09:51:14,320 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 09:51:14,321 - INFO -  * Restarting with stat
+2024-08-01 09:51:24,939 - WARNING -  * Debugger is active!
+2024-08-01 09:51:25,001 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 09:51:42,149 - ERROR - Error handling request: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2024-08-01 09:51:42,151 - INFO - 127.0.0.1 - - [01/Aug/2024 09:51:42] "[35m[1mPOST /chatbot HTTP/1.1[0m" 500 -
+2024-08-01 09:53:00,498 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 09:53:00,498 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 09:53:00,499 - INFO -  * Restarting with stat
+2024-08-01 09:53:10,035 - WARNING -  * Debugger is active!
+2024-08-01 09:53:10,051 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 09:53:20,383 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/app1.py', reloading
+2024-08-01 09:53:20,797 - INFO -  * Restarting with stat
+2024-08-01 09:53:30,669 - WARNING -  * Debugger is active!
+2024-08-01 09:53:30,687 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 09:53:30,728 - INFO - User input: Hi
+2024-08-01 09:53:30,729 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 09:53:30,730 - INFO - 127.0.0.1 - - [01/Aug/2024 09:53:30] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:53:39,843 - INFO - User input: I have chest pain
+2024-08-01 09:53:40,056 - INFO - Prompt for Generative API: User asked: I have chest pain
+Context: User: I have chest pain Bot: 
+Matched response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-08-01 09:53:40,057 - INFO - Response: This is a placeholder response generated for your question.
+2024-08-01 09:53:40,057 - INFO - 127.0.0.1 - - [01/Aug/2024 09:53:40] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:53:47,997 - INFO - User input: I have heart pain
+2024-08-01 09:53:48,209 - INFO - Prompt for Generative API: User asked: I have heart pain
+Context: User: I have heart pain Bot: 
+Matched response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-08-01 09:53:48,209 - INFO - Response: This is a placeholder response generated for your question.
+2024-08-01 09:53:48,210 - INFO - 127.0.0.1 - - [01/Aug/2024 09:53:48] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:54:00,874 - INFO - User input: high
+2024-08-01 09:54:01,021 - INFO - Prompt for Generative API: User asked: high
+Context: User: high Bot: 
+Matched response: Hypertension: Also known as High blood pressure, is a condition in which the force of the blood against the artery walls is too high.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-08-01 09:54:01,021 - INFO - Response: This is a placeholder response generated for your question.
+2024-08-01 09:54:01,022 - INFO - 127.0.0.1 - - [01/Aug/2024 09:54:01] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:54:13,738 - INFO - User input: amniotic fluid
+2024-08-01 09:54:14,038 - INFO - Prompt for Generative API: User asked: amniotic fluid
+Context: User: amniotic fluid Bot: 
+Matched response: Amniotic fluid: The protective fluid contained inside the amniotic sac that supports fetus growth and nutrition transfer between the fetus and the mother.
+Please enhance slightly, making the text more coherent and user-friendly. Avoid using any emojis or AI disclaimers, and ensure the response stays very close to the provided context.
+2024-08-01 09:54:14,039 - INFO - Response: This is a placeholder response generated for your question.
+2024-08-01 09:54:14,039 - INFO - 127.0.0.1 - - [01/Aug/2024 09:54:14] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 10:04:30,935 - INFO - 127.0.0.1 - - [01/Aug/2024 10:04:30] "GET /session HTTP/1.1" 200 -
+2024-08-01 10:10:43,824 - INFO -  * Detected change in '/Users/kishandahiya/Desktop/June2Sep_AI_References/Different Concept Implementations/Aug 1/app2.py', reloading
+2024-08-01 10:10:44,428 - INFO -  * Restarting with stat
+2024-08-01 10:10:59,689 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 10:10:59,689 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 10:10:59,689 - INFO -  * Restarting with stat
+2024-08-01 10:11:10,490 - WARNING -  * Debugger is active!
+2024-08-01 10:11:10,512 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 10:11:31,135 - INFO - User input: Hi
+2024-08-01 10:11:31,337 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 10:11:31,338 - INFO - 127.0.0.1 - - [01/Aug/2024 10:11:31] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 10:12:12,416 - INFO - User input: Good morning
+2024-08-01 10:12:12,775 - INFO - Response: Good morning! How can I help you today?
+2024-08-01 10:12:12,777 - INFO - 127.0.0.1 - - [01/Aug/2024 10:12:12] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 10:12:21,650 - INFO - User input: I have chest pain
+2024-08-01 10:12:21,857 - INFO - Response: Cardiovascular Disease: A group of heart or blood vessel disorders that include high blood pressure, heart attack, stroke, heart failure, and other heart diseases.
+2024-08-01 10:12:21,858 - INFO - 127.0.0.1 - - [01/Aug/2024 10:12:21] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 10:12:39,615 - INFO - User input: I have a big boy who lobves India
+2024-08-01 10:12:39,760 - INFO - Response: Macrosomia: A term used to describe a newborn larger than the average size of 8 pounds, 13 ounces (4,000 grams), regardless of his or her gestational age.
+2024-08-01 10:12:39,760 - INFO - 127.0.0.1 - - [01/Aug/2024 10:12:39] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 10:13:36,474 - INFO - User input: I lobves India
+2024-08-01 10:13:36,815 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 10:13:36,815 - INFO - 127.0.0.1 - - [01/Aug/2024 10:13:36] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 15:31:12,962 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 15:31:12,963 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 15:31:12,964 - INFO -  * Restarting with stat
+2024-08-01 15:31:22,231 - WARNING -  * Debugger is active!
+2024-08-01 15:31:22,251 - INFO -  * Debugger PIN: 660-535-223
+2024-08-01 08:37:58,739 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 08:37:58,740 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 08:37:58,742 - INFO -  * Restarting with stat
+2024-08-01 08:38:25,706 - WARNING -  * Debugger is active!
+2024-08-01 08:38:25,711 - INFO -  * Debugger PIN: 133-297-930
+2024-08-01 08:38:25,749 - INFO - User input: women
+2024-08-01 08:38:25,944 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 08:38:25,945 - INFO - 127.0.0.1 - - [01/Aug/2024 08:38:25] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:38:34,512 - INFO - User input: hi
+2024-08-01 08:38:34,711 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 08:38:34,711 - INFO - 127.0.0.1 - - [01/Aug/2024 08:38:34] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:38:43,165 - INFO - User input: i am manish
+2024-08-01 08:38:43,584 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 08:38:43,585 - INFO - 127.0.0.1 - - [01/Aug/2024 08:38:43] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:38:51,196 - INFO - User input: i am women
+2024-08-01 08:38:51,383 - INFO - Response: Estrogen: A hormone that helps develop and maintain both the reproductive system and female characteristics, such as breasts and pubic hair.
+2024-08-01 08:38:51,383 - INFO - 127.0.0.1 - - [01/Aug/2024 08:38:51] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:39:13,400 - INFO - User input: i love women but i dont know why i love them is it bad or good
+2024-08-01 08:39:13,763 - INFO - Prompt for Generative API: User asked: i love women but i don't know why i love them is it bad or good. Please provide a helpful response related to women's heart health.
+2024-08-01 08:39:13,763 - INFO - Response: This is a placeholder response generated for your question.
+2024-08-01 08:39:13,764 - INFO - 127.0.0.1 - - [01/Aug/2024 08:39:13] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:39:34,555 - INFO - User input: i love women
+2024-08-01 08:39:34,757 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 08:39:34,757 - INFO - 127.0.0.1 - - [01/Aug/2024 08:39:34] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:50:15,713 - INFO - 127.0.0.1 - - [01/Aug/2024 08:50:15] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 08:50:15,716 - INFO - User input: hi
+2024-08-01 08:50:15,953 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 08:50:15,954 - INFO - 127.0.0.1 - - [01/Aug/2024 08:50:15] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:50:20,608 - INFO - User input: manish
+2024-08-01 08:50:20,954 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 08:50:20,955 - INFO - 127.0.0.1 - - [01/Aug/2024 08:50:20] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:51:37,042 - INFO - 127.0.0.1 - - [01/Aug/2024 08:51:37] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 08:51:37,056 - INFO - User input: women
+2024-08-01 08:51:37,425 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 08:51:37,426 - INFO - 127.0.0.1 - - [01/Aug/2024 08:51:37] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 08:54:18,651 - INFO - 127.0.0.1 - - [01/Aug/2024 08:54:18] "OPTIONS /chatbot HTTP/1.1" 200 -
+2024-08-01 08:54:18,657 - INFO - User input: i am a women, but i also like women why do you think i like women
+2024-08-01 08:54:19,049 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 08:54:19,050 - INFO - 127.0.0.1 - - [01/Aug/2024 08:54:19] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:12:29,585 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 09:12:29,585 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 09:12:29,586 - INFO -  * Restarting with stat
+2024-08-01 09:12:51,992 - WARNING -  * Debugger is active!
+2024-08-01 09:12:51,995 - INFO -  * Debugger PIN: 133-297-930
+2024-08-01 09:12:52,016 - INFO - User input: hi
+2024-08-01 09:12:52,186 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 09:12:52,186 - INFO - 127.0.0.1 - - [01/Aug/2024 09:12:52] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:13:07,579 - INFO - User input: manish
+2024-08-01 09:13:07,949 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 09:13:07,950 - INFO - 127.0.0.1 - - [01/Aug/2024 09:13:07] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:13:16,143 - INFO - User input: women
+2024-08-01 09:13:16,337 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 09:13:16,337 - INFO - 127.0.0.1 - - [01/Aug/2024 09:13:16] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:15:38,266 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-01 09:15:38,267 - INFO - [33mPress CTRL+C to quit[0m
+2024-08-01 09:15:38,267 - INFO -  * Restarting with stat
+2024-08-01 09:16:06,650 - WARNING -  * Debugger is active!
+2024-08-01 09:16:06,653 - INFO -  * Debugger PIN: 133-297-930
+2024-08-01 09:16:06,679 - INFO - User input: hi
+2024-08-01 09:16:06,880 - INFO - Response: Hello! How can I assist you with your heart health questions today?
+2024-08-01 09:16:06,881 - INFO - 127.0.0.1 - - [01/Aug/2024 09:16:06] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:16:13,192 - INFO - User input: manish
+2024-08-01 09:16:13,537 - INFO - Response: I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?
+2024-08-01 09:16:13,537 - INFO - 127.0.0.1 - - [01/Aug/2024 09:16:13] "POST /chatbot HTTP/1.1" 200 -
+2024-08-01 09:16:19,545 - INFO - User input: women
+2024-08-01 09:16:19,739 - INFO - Response: Bisexual: A sexual or romantic attraction towards more than one sex or gender.
+2024-08-01 09:16:19,739 - INFO - 127.0.0.1 - - [01/Aug/2024 09:16:19] "POST /chatbot HTTP/1.1" 200 -

@@ -1,0 +1,30 @@
+<!-- ./public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Investment Analysis</title>
+</head>
+<body>
+  <h1>Investment Analysis</h1>
+  <form id="survey-form">
+    <textarea id="responses" rows="10" cols="50" placeholder="Enter responses separated by newlines"></textarea><br>
+    <button type="button" onclick="submitForm()">Generate Report</button>
+  </form>
+  <div id="report"></div>
+  <script>
+    async function submitForm() {
+      const responses = document.getElementById('responses').value.split('\n');
+      const response = await fetch('/api/generate_report', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ responses })
+      });
+      const data = await response.json();
+      document.getElementById('report').innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

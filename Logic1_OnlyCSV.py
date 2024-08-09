@@ -70,38 +70,69 @@ def correct_spelling(text):
         return corrected_text
     return text
 
-def find_best_context(query, threshold=0.7):
+def find_best_context(query, threshold=0.5):
     """
     Takes a query and returns the best matching context from the database based on cosine similarity.
     If no match is found above the threshold, it returns None.
     """
+    # Encode the query
     query_embedding = embedding_model.encode([query.lower()])
 
+    # Initialize best match variables
     best_match_score = 0
     best_match_response = None
+    best_match_type = None  # To track whether the match is from trigger, synonym, or keyword
 
     for index, item_embeddings in enumerate(db_embeddings):
-        trigger_score = cosine_similarity(query_embedding, [item_embeddings['trigger_embedding']]).flatten()[0]
+        # Calculate cosine similarity scores
+        trigger_scores = [cosine_similarity(query_embedding, [syn_emb]).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
         synonyms_scores = [cosine_similarity(query_embedding, [syn_emb]).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
         keywords_scores = [cosine_similarity(query_embedding, [kw_emb]).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
 
+        # Determine maximum scores
+        max_trigger_score = max(trigger_scores) if synonyms_scores else 0
         max_synonym_score = max(synonyms_scores) if synonyms_scores else 0
         max_keyword_score = max(keywords_scores) if keywords_scores else 0
 
-        max_score = max(trigger_score, max_synonym_score, max_keyword_score)
+        # Find the maximum score among trigger, synonym, and keyword scores
+        max_score = max(max_trigger_score, max_synonym_score, max_keyword_score)
 
-        # Logging the similarity scores for analysis (only log significant scores)
-        if max_score >= threshold * 0.5:
-            logging.info(f"Query: {query}, Trigger: {database[index]['trigger_word']}, Score: {max_score}")
+        # Determine the type of match (trigger, synonym, keyword)
+        if max_score == max_trigger_score:
+            match_type = 'Trigger'
+        elif max_score == max_synonym_score:
+            match_type = 'Synonym'
+        elif max_score == max_keyword_score:
+            match_type = 'Keyword'
+        else:
+            continue
 
+        # Log each entry with a significant match
+        if max_score >= threshold-0.2:  # Log entries where the score is above 0.7
+            logging.info(
+                f"Query: '{query}',"
+                f"Scores - Trigger: {max_trigger_score:.4f}, Synonym: {max_synonym_score:.4f}, "
+                f"Keyword: {max_keyword_score:.4f}, Type: {match_type} "
+                f"Response: {database[index]['response']}"
+            )
+
+        # Update best match if a higher score is found
         if max_score > best_match_score and max_score >= threshold:
             best_match_score = max_score
             best_match_response = database[index]['response']
+            best_match_type = match_type
 
     # Log the best match score and response
-    logging.info(f"Best Match Score: {best_match_score}, Best Match Response: {best_match_response}")
+    if best_match_score >= threshold:
+        logging.info(
+            f"Query: '{query}', Best Match Score: {best_match_score:.4f}, "
+            f"Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
+        )
+    else:
+        logging.warning(f"No suitable match found for query: '{query}' with score above threshold: {threshold}")
 
     return best_match_response
+ 
 
 def generate_response_with_placeholder(prompt):
     """
@@ -147,11 +178,13 @@ def get_response(user_input, context_history, threshold=0.7):
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.
     """
+    logging.info(f"Direct Match")
     # Direct match with original input
     context_response = find_best_context(user_input, threshold)
     if context_response:
         return context_response, context_history
-
+    
+    logging.info(f"After Spell Correction")
     # Correct spelling and try matching again (skip correction for very short inputs)
     corrected_input = correct_spelling(user_input)
     if corrected_input != user_input:
@@ -159,7 +192,7 @@ def get_response(user_input, context_history, threshold=0.7):
         context_response = find_best_context(corrected_input, threshold)
         if context_response:
             return context_response, context_history
-
+    logging.info(f"Checking Domain relevance")
     # Check for domain relevance
     if is_domain_relevant(corrected_input):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."

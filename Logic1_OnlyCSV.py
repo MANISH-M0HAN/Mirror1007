@@ -24,7 +24,7 @@ embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 
 # Load the CSV file into a DataFrame
-csv_file = 'heart_health_triggers.csv'  # Replace with the path to your CSV file
+csv_file = 'test.csv'  # Replace with the path to your CSV file
 df = pd.read_csv(csv_file)
 df.fillna('', inplace=True)
 
@@ -85,20 +85,21 @@ def find_best_context(query, threshold=0.5):
 
     for index, item_embeddings in enumerate(db_embeddings):
         # Calculate cosine similarity scores
-        trigger_scores = [cosine_similarity(query_embedding, [syn_emb]).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
+        # trigger_scores = [cosine_similarity(query_embedding, [tri_emb]).flatten()[0] for tri_emb in item_embeddings['trigger_embeddings']]
+        trigger_scores = cosine_similarity(query_embedding, [item_embeddings['trigger_embedding']]).flatten()[0]
         synonyms_scores = [cosine_similarity(query_embedding, [syn_emb]).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
         keywords_scores = [cosine_similarity(query_embedding, [kw_emb]).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
 
         # Determine maximum scores
-        max_trigger_score = max(trigger_scores) if synonyms_scores else 0
+        # max_trigger_score = max(trigger_scores) if trigger_scores else 0
         max_synonym_score = max(synonyms_scores) if synonyms_scores else 0
         max_keyword_score = max(keywords_scores) if keywords_scores else 0
 
         # Find the maximum score among trigger, synonym, and keyword scores
-        max_score = max(max_trigger_score, max_synonym_score, max_keyword_score)
+        max_score = max(trigger_scores, max_synonym_score, max_keyword_score)
 
         # Determine the type of match (trigger, synonym, keyword)
-        if max_score == max_trigger_score:
+        if max_score == trigger_scores:
             match_type = 'Trigger'
         elif max_score == max_synonym_score:
             match_type = 'Synonym'
@@ -111,7 +112,7 @@ def find_best_context(query, threshold=0.5):
         if max_score >= threshold-0.2:  # Log entries where the score is above 0.7
             logging.info(
                 f"Query: '{query}',"
-                f"Scores - Trigger: {max_trigger_score:.4f}, Synonym: {max_synonym_score:.4f}, "
+                f"Scores - Trigger: {trigger_scores:.4f}, Synonym: {max_synonym_score:.4f}, "
                 f"Keyword: {max_keyword_score:.4f}, Type: {match_type} "
                 f"Response: {database[index]['response']}"
             )

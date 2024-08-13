@@ -20,3 +20,7 @@ trigger_word,synonyms,keywords,response
 "Myocarditis","heart inflammation","myocarditis,heart inflammation,infection","Myocarditis is an inflammation of the heart muscle that can affect your heart’s ability to pump blood and cause rapid or irregular heart rhythms."
 "Endocarditis","heart infection","endocarditis,heart infection,lining","Endocarditis is an infection of the inner lining of your heart chambers and valves."
 "Sudden Cardiac Arrest","cardiac arrest","sudden cardiac arrest,heart arrest,collapse","Sudden cardiac arrest is a condition in which the heart suddenly and unexpectedly stops beating, leading to loss of consciousness and lack of pulse."
+"Macrosomia","large newborn,oversized baby","newborn,size","Macrosomia: A term used to describe a newborn larger than the average size of 8 pounds, 13 ounces (4,000 grams)."
+"Low Birth Weight","small baby,underweight baby","birth weight,low weight","Low Birth Weight: A term used to describe an infant born weighing 5.5 pounds (2500 grams) or less."
+"Big Baby","oversized infant,large baby","baby,growth","Big Baby: A term that generally describes a baby that is larger than average at birth."
+"Fetal Growth Restriction","IUGR,growth restriction","fetus,growth","Fetal Growth Restriction: A condition where the baby doesn’t grow to the expected size during pregnancy."

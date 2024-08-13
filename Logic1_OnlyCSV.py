@@ -70,7 +70,7 @@ def correct_spelling(text):
         return corrected_text
     return text
 
-def find_best_context(query, threshold=0.5):
+def find_best_context(query, threshold):
     """
     Takes a query and returns the best matching context from the database based on cosine similarity.
     If no match is found above the threshold, it returns None.

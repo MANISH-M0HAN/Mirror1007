@@ -7,21 +7,12 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from spellchecker import SpellChecker
 from dotenv import load_dotenv
-import nltk
-from nltk.stem import WordNetLemmatizer
 
 # Set the TOKENIZERS_PARALLELISM environment variable to avoid deadlock warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Load environment variables from .env file
 load_dotenv()
-
-# Download necessary data for lemmatization (only required once)
-nltk.download('wordnet')
-nltk.download('omw-1.4')
-
-# Initialize the lemmatizer
-lemmatizer = WordNetLemmatizer()
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -33,7 +24,7 @@ embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 
 # Load the CSV file into a DataFrame
-csv_file = 'heart_health_triggers.csv' # Replace with the path to your CSV file
+csv_file = 'heart_health_triggers.csv'  # Replace with the path to your CSV file
 df = pd.read_csv(csv_file)
 df.fillna('', inplace=True)
 
@@ -79,14 +70,6 @@ def correct_spelling(text):
         return corrected_text
     return text
 
-def lemmatize_query(query):
-    """
-    Takes a query string and returns a lemmatized version of the query.
-    """
-    # Tokenize and lemmatize each word in the query
-    lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
-    return lemmatized_query
-
 def find_best_context(query, threshold):
     """
     Takes a query and returns the best matching context from the database based on an average of max cosine similarity scores.
@@ -110,23 +93,22 @@ def find_best_context(query, threshold):
         trigger_scores = [cosine_similarity(query_embedding, trg_emb.reshape(1, -1)).flatten()[0] for trg_emb in [item_embeddings['trigger_embedding']]]
         synonym_scores = [cosine_similarity(query_embedding, syn_emb.reshape(1, -1)).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
         keyword_scores = [cosine_similarity(query_embedding, kw_emb.reshape(1, -1)).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
-
-        # Capture the max scores for each category
-        max_trigger_score = max(trigger_scores) if trigger_scores else 0
-        max_synonym_score = max(synonym_scores) if synonym_scores else 0
-        max_keyword_score = max(keyword_scores) if keyword_scores else 0
-
-        # Calculate the average score using the sum of max scores
-        max_scores_sum = max_trigger_score + max_synonym_score + max_keyword_score
-        avg_score = max_scores_sum / 3  # Dividing by the number of categories
+        
+        # Combine all scores
+        all_scores = trigger_scores + synonym_scores + keyword_scores   
+        
+        # Calculate the average score
+        if all_scores:  # Ensure there are scores to average
+            avg_score = sum(all_scores) / len(all_scores)
+        else:
+            avg_score = 0
 
         # Log each entry with a significant match
-        if avg_score >= threshold - 0.2:  # Log entries where the score is close to the threshold
+        if avg_score >= threshold - 0.2:
             logging.info(
-                f"Query: '{query}', Avg Score: {avg_score:.4f}, Max Trigger: {max_trigger_score:.4f}, "
-                f"Max Synonym: {max_synonym_score:.4f}, Max Keyword: {max_keyword_score:.4f} "
-                f"Response: {database[index]['response']}"
+                f"Query: '{query}', Avg Score: {avg_score:.4f}, Scores: {all_scores}, Response: {database[index]['response']}"
             )
+    
 
         # Update best match if a higher score is found
         if avg_score > best_match_score and avg_score >= threshold:
@@ -185,7 +167,7 @@ def get_relevant_context(user_input, context_history):
 
     return relevant_context
 
-def get_response(user_input, context_history, threshold=0.5):
+def get_response(user_input, context_history, threshold=0.7):
     """
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.

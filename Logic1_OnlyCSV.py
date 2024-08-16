@@ -155,25 +155,7 @@ def is_domain_relevant(query, threshold=0.4):
 
     return any(score >= threshold for score in relevance_scores)
 
-def get_relevant_context(user_input, context_history):
-    """
-    Retrieves relevant context from the context history based on the user input.
-    Maintains coherence in conversation by using recent history.
-    """
-    follow_up_keywords = ["what about", "and", "also", "more", "else", "further"]
-
-    if any(keyword in user_input.lower() for keyword in follow_up_keywords) and len(context_history['history']) > 1:
-        relevant_context = " ".join(
-            [f"User: {h['user_input']} Bot: {h['bot_response']}" for h in context_history['history'][-2:]]
-        )
-    else:
-        relevant_context = " ".join(
-            [f"User: {h['user_input']} Bot: {h['bot_response']}" for h in context_history['history'][-1:]]
-        )
-
-    return relevant_context
-
-def get_response(user_input, context_history, threshold=0.7):
+def get_response(user_input, threshold=0.7):
     """
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.
@@ -182,7 +164,7 @@ def get_response(user_input, context_history, threshold=0.7):
     # Direct match with original input
     context_response = find_best_context(user_input, threshold)
     if context_response:
-        return context_response, context_history
+        return context_response
     
     logging.info(f"After Spell Correction")
     # Correct spelling and try matching again (skip correction for very short inputs)
@@ -191,7 +173,7 @@ def get_response(user_input, context_history, threshold=0.7):
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = find_best_context(corrected_input, threshold)
         if context_response:
-            return context_response, context_history
+            return context_response
     logging.info(f"Checking Domain relevance")
     # Check for domain relevance
     if is_domain_relevant(corrected_input):
@@ -200,56 +182,36 @@ def get_response(user_input, context_history, threshold=0.7):
 
         # Send corrected input to the Generative API
         response = generate_response_with_placeholder(prompt)
-        return response, context_history
+        return response
 
     # Fallback response for unrelated queries
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-    return fallback_response, context_history
+    return fallback_response 
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
 @app.route('/chatbot', methods=['POST'])
 def chat():
-    """
-    Main chat endpoint to handle user requests.
-    Accepts user input and returns the chatbot's response.
-    """
     try:
-        user_input = request.json.get("user_input", "").strip()
+        recieved_api_key = request.headers.get('X-API-KEY') 
+        expected_api_key= 'fpv74NMceEzy.5OsNsX43uhfa2GSGPPOB1/o2ABXg0mMwniAef02'
         
-        # Retrieve or initialize context history
-        context_history = session.get('context_history', {'history': []})
+        if recieved_api_key != expected_api_key:
+            return jsonify({"unauthorized_access":"invalid api key"}), 401
+
+        user_input = request.json.get("user_input", "").strip()
 
         if not user_input:
             return jsonify({"error": "Missing user input"}), 400
 
-        # Get response and updated context history
-        response, updated_context_history = get_response(user_input, context_history)
-
-        # Append the new interaction to the history
-        updated_context_history['history'].append({
-            "user_input": user_input,
-            "bot_response": response
-        })
-
-        # Update the session with new context history
-        session['context_history'] = updated_context_history
+        response= get_response(user_input)
 
         return jsonify({"response": response}), 200
 
-    except Exception as e:
-        logging.error(f"Error occurred: {str(e)}")
-        return jsonify({"error": "An error occurred"}), 500
-
-@app.route('/session', methods=['GET'])
-def view_session():
-    """
-    Endpoint to view current session details.
-    Provides stored context history including queries, responses, and similarity scores.
-    """
-    context_history = session.get('context_history', {'history': []})
-    return jsonify(context_history), 200
+    except Exception as exception:
+        logging.error(f"Error occurred: {str(exception)}")
+        return jsonify({"error": str(exception)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

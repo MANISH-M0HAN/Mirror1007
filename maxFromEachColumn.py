@@ -35,7 +35,10 @@ for index, row in df.iterrows():
         "trigger_word": row['trigger_word'],
         "synonyms": row['synonyms'].split(','),  # Assuming synonyms are comma-separated
         "keywords": row['keywords'].split(','),  # Assuming keywords are comma-separated
-        "response": row['response']
+        "What": row['What'],  # Response from 'What' column
+        "Why": row['Why'],    # Response from 'Why' column
+        "How": row['How'],    # Response from 'How' column
+        "Symptoms": row['Symptoms']  # Response from 'Symptoms' column
     }
     database.append(item)
 
@@ -43,6 +46,10 @@ for index, row in df.iterrows():
 trigger_embeddings = embedding_model.encode(df['trigger_word'].tolist(), batch_size=32)
 synonyms_embeddings = [embedding_model.encode(syn.split(','), batch_size=32) for syn in df['synonyms']]
 keywords_embeddings = [embedding_model.encode(kw.split(','), batch_size=32) for kw in df['keywords']]
+
+# Precompute embeddings for column names
+column_names = ['What', 'Why', 'How', 'Symptoms']
+column_embeddings = embedding_model.encode(column_names)
 
 db_embeddings = []
 for idx in range(len(df)):
@@ -60,7 +67,6 @@ def correct_spelling(text):
     """
     Corrects spelling errors in the given text using a spell checker.
     """
-    # Correct only for longer texts or obvious typos
     if len(text.split()) > 1:
         corrected_words = [
             spellchecker.correction(word) if spellchecker.correction(word) else word
@@ -70,17 +76,30 @@ def correct_spelling(text):
         return corrected_text
     return text
 
+<<<<<<< HEAD
+=======
+def lemmatize_query(query):
+    """
+    Takes a query string and returns a lemmatized version of the query.
+    """
+    lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
+    return lemmatized_query
+
+>>>>>>> 903684f (New CSV Logic)
 def find_best_context(query, threshold):
     """
     Takes a query and returns the best matching context from the database based on cosine similarity.
     If no match is found above the threshold, it returns None.
     """
+<<<<<<< HEAD
     # Encode the query
+=======
+>>>>>>> 903684f (New CSV Logic)
     query_embedding = embedding_model.encode([query.lower()])
 
-    # Initialize best match variables
     best_match_score = 0
     best_match_response = None
+<<<<<<< HEAD
     best_match_type = None  # To track whether the match is from trigger, synonym, or keyword
 
     for index, item_embeddings in enumerate(db_embeddings):
@@ -122,8 +141,34 @@ def find_best_context(query, threshold):
             best_match_score = max_score
             best_match_response = database[index]['response']
             best_match_type = match_type
+=======
+    best_match_type = None
 
-    # Log the best match score and response
+    for index, item_embeddings in enumerate(db_embeddings):
+        trigger_scores = [cosine_similarity(query_embedding, trg_emb.reshape(1, -1)).flatten()[0] for trg_emb in [item_embeddings['trigger_embedding']]]
+        synonym_scores = [cosine_similarity(query_embedding, syn_emb.reshape(1, -1)).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
+        keyword_scores = [cosine_similarity(query_embedding, kw_emb.reshape(1, -1)).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
+
+        max_trigger_score = max(trigger_scores) if trigger_scores else 0
+        max_synonym_score = max(synonym_scores) if synonym_scores else 0
+        max_keyword_score = max(keyword_scores) if keyword_scores else 0
+
+        max_scores_sum = max_trigger_score + max_synonym_score + max_keyword_score
+        avg_score = max_scores_sum / 3
+
+        if avg_score >= threshold - 0.2:
+            logging.info(
+                f"Query: '{query}', Avg Score: {avg_score:.4f}, Max Trigger: {max_trigger_score:.4f}, "
+                f"Max Synonym: {max_synonym_score:.4f}, Max Keyword: {max_keyword_score:.4f} "
+                f"Response: {database[index]}"
+            )
+
+        if avg_score > best_match_score and avg_score >= threshold:
+            best_match_score = avg_score
+            best_match_response = database[index]
+            best_match_type = "Avg Max Match"
+>>>>>>> 903684f (New CSV Logic)
+
     if best_match_score >= threshold:
         logging.info(
             f"Query: '{query}', Best Match Score: {best_match_score:.4f}, "
@@ -133,15 +178,19 @@ def find_best_context(query, threshold):
         logging.warning(f"No suitable match found for query: '{query}' with score above threshold: {threshold}")
 
     return best_match_response
- 
 
-def generate_response_with_placeholder(prompt):
+def match_column(query, best_match_response):
     """
-    Placeholder for the generative API response.
-    Replaces the actual API call with a fixed response for development purposes.
+    Matches the query with the column name embeddings and returns the appropriate response from the best match row.
     """
-    response = "This is a placeholder response generated for your question."
-    return response
+    query_embedding = embedding_model.encode([query.lower()])
+    column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
+
+    best_column_index = column_scores.argmax()
+    best_column_name = column_names[best_column_index]
+    logging.info(f"Best column match: {best_column_name} with score {column_scores[best_column_index]:.4f}")
+
+    return best_match_response[best_column_name]
 
 def is_domain_relevant(query, threshold=0.4):
     """
@@ -151,11 +200,11 @@ def is_domain_relevant(query, threshold=0.4):
     query_embedding = embedding_model.encode([query.lower()])
     relevance_scores = [cosine_similarity(query_embedding, [dom_emb]).flatten()[0] for dom_emb in domain_embeddings]
 
-    # Log the domain relevance scores
     logging.info(f"Domain Relevance Scores for '{query}': {relevance_scores}")
 
     return any(score >= threshold for score in relevance_scores)
 
+<<<<<<< HEAD
 def get_relevant_context(user_input, context_history):
     """
     Retrieves relevant context from the context history based on the user input.
@@ -175,35 +224,36 @@ def get_relevant_context(user_input, context_history):
     return relevant_context
 
 def get_response(user_input, context_history, threshold=0.7):
+=======
+def get_response(user_input, context_history, threshold=0.5):
+>>>>>>> 903684f (New CSV Logic)
     """
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.
     """
     logging.info(f"Direct Match")
-    # Direct match with original input
     context_response = find_best_context(user_input, threshold)
     if context_response:
-        return context_response, context_history
+        # Match user's query with the columns
+        column_response = match_column(user_input, context_response)
+        return column_response, context_history
     
     logging.info(f"After Spell Correction")
-    # Correct spelling and try matching again (skip correction for very short inputs)
     corrected_input = correct_spelling(user_input)
     if corrected_input != user_input:
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = find_best_context(corrected_input, threshold)
         if context_response:
-            return context_response, context_history
+            column_response = match_column(corrected_input, context_response)
+            return column_response, context_history
+
     logging.info(f"Checking Domain relevance")
-    # Check for domain relevance
     if is_domain_relevant(corrected_input):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
-
-        # Send corrected input to the Generative API
         response = generate_response_with_placeholder(prompt)
         return response, context_history
 
-    # Fallback response for unrelated queries
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     return fallback_response, context_history
 
@@ -219,22 +269,18 @@ def chat():
     try:
         user_input = request.json.get("user_input", "").strip()
         
-        # Retrieve or initialize context history
         context_history = session.get('context_history', {'history': []})
 
         if not user_input:
             return jsonify({"error": "Missing user input"}), 400
 
-        # Get response and updated context history
         response, updated_context_history = get_response(user_input, context_history)
 
-        # Append the new interaction to the history
         updated_context_history['history'].append({
             "user_input": user_input,
             "bot_response": response
         })
 
-        # Update the session with new context history
         session['context_history'] = updated_context_history
 
         return jsonify({"response": response}), 200

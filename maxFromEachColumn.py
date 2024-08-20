@@ -7,12 +7,21 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from spellchecker import SpellChecker
 from dotenv import load_dotenv
+import nltk
+from nltk.stem import WordNetLemmatizer
 
 # Set the TOKENIZERS_PARALLELISM environment variable to avoid deadlock warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Load environment variables from .env file
 load_dotenv()
+
+# Download necessary data for lemmatization (only required once)
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+# Initialize the lemmatizer
+lemmatizer = WordNetLemmatizer()
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -24,7 +33,7 @@ embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 
 # Load the CSV file into a DataFrame
-csv_file = 'test.csv'  # Replace with the path to your CSV file
+csv_file = 'heart_health_triggers.csv' # Replace with the path to your CSV file
 df = pd.read_csv(csv_file)
 df.fillna('', inplace=True)
 
@@ -63,6 +72,14 @@ for idx in range(len(df)):
 domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
 domain_embeddings = embedding_model.encode(domain_keywords)
 
+def generate_response_with_placeholder(prompt):
+    """
+    Placeholder for the generative API response.
+    Replaces the actual API call with a fixed response for development purposes.
+    """
+    response = "This is a placeholder response generated for your question."
+    return response
+
 def correct_spelling(text):
     """
     Corrects spelling errors in the given text using a spell checker.
@@ -76,8 +93,6 @@ def correct_spelling(text):
         return corrected_text
     return text
 
-<<<<<<< HEAD
-=======
 def lemmatize_query(query):
     """
     Takes a query string and returns a lemmatized version of the query.
@@ -85,68 +100,15 @@ def lemmatize_query(query):
     lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
     return lemmatized_query
 
->>>>>>> 903684f (New CSV Logic)
 def find_best_context(query, threshold):
     """
-<<<<<<< HEAD
-    Takes a query and returns the best matching context from the database based on cosine similarity.
-    If no match is found above the threshold, it returns None.
-=======
     Takes a query and returns the best matching context from the database based on direct matches with trigger, synonyms, or keywords.
     Uses average of max cosine similarity scores only if direct match is below a specified threshold.
->>>>>>> b302e0a (Made changes to the Logic, now almost perfect)
     """
-<<<<<<< HEAD
-    # Encode the query
-=======
->>>>>>> 903684f (New CSV Logic)
     query_embedding = embedding_model.encode([query.lower()])
 
     best_match_score = 0
     best_match_response = None
-<<<<<<< HEAD
-    best_match_type = None  # To track whether the match is from trigger, synonym, or keyword
-
-    for index, item_embeddings in enumerate(db_embeddings):
-        # Calculate cosine similarity scores
-        # trigger_scores = [cosine_similarity(query_embedding, [tri_emb]).flatten()[0] for tri_emb in item_embeddings['trigger_embeddings']]
-        trigger_scores = cosine_similarity(query_embedding, [item_embeddings['trigger_embedding']]).flatten()[0]
-        synonyms_scores = [cosine_similarity(query_embedding, [syn_emb]).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
-        keywords_scores = [cosine_similarity(query_embedding, [kw_emb]).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
-
-        # Determine maximum scores
-        # max_trigger_score = max(trigger_scores) if trigger_scores else 0
-        max_synonym_score = max(synonyms_scores) if synonyms_scores else 0
-        max_keyword_score = max(keywords_scores) if keywords_scores else 0
-
-        # Find the maximum score among trigger, synonym, and keyword scores
-        max_score = max(trigger_scores, max_synonym_score, max_keyword_score)
-
-        # Determine the type of match (trigger, synonym, keyword)
-        if max_score == trigger_scores:
-            match_type = 'Trigger'
-        elif max_score == max_synonym_score:
-            match_type = 'Synonym'
-        elif max_score == max_keyword_score:
-            match_type = 'Keyword'
-        else:
-            continue
-
-        # Log each entry with a significant match
-        if max_score >= threshold-0.2:  # Log entries where the score is above 0.7
-            logging.info(
-                f"Query: '{query}',"
-                f"Scores - Trigger: {trigger_scores:.4f}, Synonym: {max_synonym_score:.4f}, "
-                f"Keyword: {max_keyword_score:.4f}, Type: {match_type} "
-                f"Response: {database[index]['response']}"
-            )
-
-        # Update best match if a higher score is found
-        if max_score > best_match_score and max_score >= threshold:
-            best_match_score = max_score
-            best_match_response = database[index]['response']
-            best_match_type = match_type
-=======
     best_match_type = None
 
     for index, item_embeddings in enumerate(db_embeddings):
@@ -172,36 +134,57 @@ def find_best_context(query, threshold):
             best_match_score = avg_score
             best_match_response = database[index]
             best_match_type = "Avg Max Match"
->>>>>>> 903684f (New CSV Logic)
 
     if best_match_score >= threshold:
         logging.info(
             f"Query: '{query}', Best Match Score: {best_match_score:.4f}, "
             f"Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
         )
+        return best_match_response
     else:
         logging.warning(f"No suitable match found for query: '{query}' with score above threshold: {threshold}")
-
-    return best_match_response
+        return None
+    
 
 
 def match_column(query, best_match_response):
     """
-    Matches the query with the column name embeddings and returns the appropriate response from the best match row.
-    Enhances accuracy by looking for specific keywords in the query.
+    Matches the query with the intent words and column name embeddings to return the appropriate response 
+    from the best match row. Prioritizes intent word matching before falling back to cosine similarity.
     """
-    
     query_lower = query.lower()
-    query_lower = correct_spelling(query_lower) #Manish's function call for spell check should come here ~Myil
+    query_lower = correct_spelling(query_lower)  
     
-    if "what" in query_lower:
-        return best_match_response['What']
-    elif "why" in query_lower:
-        return best_match_response['Why']
-    elif "how" in query_lower:
-        return best_match_response['How']
-    elif "symptom" in query_lower or "sign" in query_lower:
-        return best_match_response['Symptoms']
+    intent_words = {
+        "Symptoms": [
+            "Symptoms", "Signs", "Indications", "Manifestations", 
+            "What are the symptoms", "What signs", "What does it feel like", 
+            "How does it manifest", "What are the warning signs", 
+            "What could indicate", "What happens when", "How does it show", 
+            "What’s the symptomatology"
+        ],
+        "Why": [
+            "Why", "For what reason", "How come", "causes", "What causes", "Why is it that", 
+            "Why do", "Why does", "Why should", "Explain why", "Give the reason", 
+            "What’s the purpose of", "What’s the point of", "Why do you think", 
+            "What’s the reason for"
+        ],
+        "How": [
+            "How", "In what way", "By what means", "How do", "How does", "How to", 
+            "How can", "How might", "How could", "Explain how", "Describe how", 
+            "In what manner", "In what method", "What steps", "What’s the procedure for"
+        ],
+        "What": [
+            "What", "Which", "Identify", "Define", "Explain", "Describe", "Clarify",
+            "Tell me about", "What is", "What are", "What's", "What exactly"
+        ]
+    }
+
+    for column, words in intent_words.items():
+        for word in words:
+            if word.lower() in query_lower:
+                logging.info(f"Intent word match found: '{word}' for column '{column}'")
+                return best_match_response[column]
 
     query_embedding = embedding_model.encode([query_lower])
     column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
@@ -224,33 +207,7 @@ def is_domain_relevant(query, threshold=0.4):
 
     return any(score >= threshold for score in relevance_scores)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-def get_relevant_context(user_input, context_history):
-    """
-    Retrieves relevant context from the context history based on the user input.
-    Maintains coherence in conversation by using recent history.
-    """
-    follow_up_keywords = ["what about", "and", "also", "more", "else", "further"]
-
-    if any(keyword in user_input.lower() for keyword in follow_up_keywords) and len(context_history['history']) > 1:
-        relevant_context = " ".join(
-            [f"User: {h['user_input']} Bot: {h['bot_response']}" for h in context_history['history'][-2:]]
-        )
-    else:
-        relevant_context = " ".join(
-            [f"User: {h['user_input']} Bot: {h['bot_response']}" for h in context_history['history'][-1:]]
-        )
-
-    return relevant_context
-
-def get_response(user_input, context_history, threshold=0.7):
-=======
-def get_response(user_input, context_history, threshold=0.5):
->>>>>>> 903684f (New CSV Logic)
-=======
 def get_response(user_input, context_history, threshold=0.3):
->>>>>>> b302e0a (Made changes to the Logic, now almost perfect)
     """
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.
@@ -280,7 +237,6 @@ def get_response(user_input, context_history, threshold=0.3):
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     return fallback_response, context_history
 
-# Setup logging
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
 @app.route('/chatbot', methods=['POST'])

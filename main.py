@@ -149,23 +149,12 @@ def find_best_context(query, threshold):
 
 def match_column(query, best_match_response):
     """
-    Matches the query with the column name embeddings and returns the appropriate response from the best match row.
-    Enhances accuracy by looking for specific keywords in the query.
+    Matches the query with the intent words and column name embeddings to return the appropriate response 
+    from the best match row. Prioritizes intent word matching before falling back to cosine similarity.
     """
-    
-<<<<<<< HEAD
     query_lower = query.lower()
-    query_lower = correct_spelling(query_lower) #Manish's function call for spell check should come here ~Myil
+    query_lower = correct_spelling(query_lower)  
     
-    if "what" in query_lower:
-        return best_match_response['What']
-    elif "why" in query_lower:
-        return best_match_response['Why']
-    elif "how" in query_lower:
-        return best_match_response['How']
-    elif "symptom" in query_lower or "sign" in query_lower:
-        return best_match_response['Symptoms']
-=======
     intent_words = {
         "Symptoms": [
             "Symptoms", "Signs", "Indications", "Manifestations", 
@@ -196,7 +185,6 @@ def match_column(query, best_match_response):
             if word.lower() in query_lower:
                 logging.info(f"Intent word match found: '{word}' for column '{column}'")
                 return best_match_response[column]
->>>>>>> f1fad7f (Added causes to the Why domain relavance)
 
     query_embedding = embedding_model.encode([query_lower])
     column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
@@ -219,7 +207,11 @@ def is_domain_relevant(query, threshold=0.4):
 
     return any(score >= threshold for score in relevance_scores)
 
+<<<<<<< HEAD:maxFromEachColumn.py
 def get_response(user_input, context_history, threshold=0.3):
+=======
+def get_response(user_input, threshold=0.7):
+>>>>>>> 1e1e7c1 ( authenticate user with api):Logic1_OnlyCSV.py
     """
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.
@@ -227,8 +219,12 @@ def get_response(user_input, context_history, threshold=0.3):
     logging.info(f"Direct Match")
     context_response = find_best_context(user_input, threshold)
     if context_response:
+<<<<<<< HEAD:maxFromEachColumn.py
         column_response = match_column(user_input, context_response)
         return column_response, context_history
+=======
+        return context_response
+>>>>>>> 1e1e7c1 ( authenticate user with api):Logic1_OnlyCSV.py
     
     logging.info(f"After Spell Correction")
     corrected_input = correct_spelling(user_input)
@@ -236,36 +232,44 @@ def get_response(user_input, context_history, threshold=0.3):
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = find_best_context(corrected_input, threshold)
         if context_response:
+<<<<<<< HEAD:maxFromEachColumn.py
             column_response = match_column(corrected_input, context_response)
             return column_response, context_history
 
+=======
+            return context_response
+>>>>>>> 1e1e7c1 ( authenticate user with api):Logic1_OnlyCSV.py
     logging.info(f"Checking Domain relevance")
     if is_domain_relevant(corrected_input):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
         response = generate_response_with_placeholder(prompt)
-        return response, context_history
+        return response
 
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-    return fallback_response, context_history
+    return fallback_response 
 
-# Setup logging
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
 @app.route('/chatbot', methods=['POST'])
 def chat():
-    """
-    Main chat endpoint to handle user requests.
-    Accepts user input and returns the chatbot's response.
-    """
     try:
-        user_input = request.json.get("user_input", "").strip()
+        recieved_api_key = request.headers.get('X-API-KEY') 
+        expected_api_key= 'fpv74NMceEzy.5OsNsX43uhfa2GSGPPOB1/o2ABXg0mMwniAef02'
         
+<<<<<<< HEAD:maxFromEachColumn.py
         context_history = session.get('context_history', {'history': []})
+=======
+        if recieved_api_key != expected_api_key:
+            return jsonify({"unauthorized_access":"invalid api key"}), 401
+
+        user_input = request.json.get("user_input", "").strip()
+>>>>>>> 1e1e7c1 ( authenticate user with api):Logic1_OnlyCSV.py
 
         if not user_input:
             return jsonify({"error": "Missing user input"}), 400
 
+<<<<<<< HEAD:maxFromEachColumn.py
         response, updated_context_history = get_response(user_input, context_history)
 
         updated_context_history['history'].append({
@@ -274,21 +278,15 @@ def chat():
         })
 
         session['context_history'] = updated_context_history
+=======
+        response= get_response(user_input)
+>>>>>>> 1e1e7c1 ( authenticate user with api):Logic1_OnlyCSV.py
 
         return jsonify({"response": response}), 200
 
-    except Exception as e:
-        logging.error(f"Error occurred: {str(e)}")
-        return jsonify({"error": "An error occurred"}), 500
-
-@app.route('/session', methods=['GET'])
-def view_session():
-    """
-    Endpoint to view current session details.
-    Provides stored context history including queries, responses, and similarity scores.
-    """
-    context_history = session.get('context_history', {'history': []})
-    return jsonify(context_history), 200
+    except Exception as exception:
+        logging.error(f"Error occurred: {str(exception)}")
+        return jsonify({"error": str(exception)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

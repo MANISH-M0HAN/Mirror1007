@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Test Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #chatbox {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #chatbox h2 {
+            margin: 0 0 20px 0;
+            text-align: center;
+        }
+        #messages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fafafa;
+        }
+        #messages p {
+            margin: 10px 0;
+        }
+        #userInput {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        #sendButton {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #sendButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="chatbox">
+        <h2>Chatbot Test Interface</h2>
+        <div id="messages">
+            <p><strong>Bot:</strong> Hello! How can I assist you today?</p>
+        </div>
+        <input type="text" id="userInput" placeholder="Type your message here...">
+        <button id="sendButton">Send</button>
+    </div>
+
+    <script>
+        document.getElementById('sendButton').addEventListener('click', function() {
+            const userInput = document.getElementById('userInput').value;
+
+            // Add user's message to the chat window
+            const userMessage = document.createElement('p');
+            userMessage.innerHTML = `<strong>You:</strong> ${userInput}`;
+            document.getElementById('messages').appendChild(userMessage);
+
+            // Send the user's message to the API
+            fetch('Please put api key here', {//please put API key here, Thank you
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer your-api-token-here'
+                },
+                body: JSON.stringify({ query: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Add the bot's response to the chat window
+                const botMessage = document.createElement('p');
+                botMessage.innerHTML = `<strong>Bot:</strong> ${data.response}`;
+                document.getElementById('messages').appendChild(botMessage);
+            })
+            .catch(error => {
+                // Handle any errors
+                const errorMessage = document.createElement('p');
+                errorMessage.innerHTML = `<strong>Error:</strong> ${error.message}`;
+                document.getElementById('messages').appendChild(errorMessage);
+            });
+
+            // Clear the input field
+            document.getElementById('userInput').value = '';
+        });
+    </script>
+
+</body>
+</html>

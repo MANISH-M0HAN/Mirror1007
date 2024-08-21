@@ -130,8 +130,6 @@ def find_best_context(query, threshold):
     else:
         logging.warning(f"No suitable match found for query: '{query}' with score above threshold: {threshold}")
         return None
-    
-
 
 def match_column(query, best_match_response):
     query_lower = query.lower()
@@ -189,7 +187,6 @@ def get_response(user_input, threshold=0.3):
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     return fallback_response 
 
-# Setup logging
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
 @app.route('/chatbot', methods=['POST'])

@@ -73,17 +73,10 @@ domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
 domain_embeddings = embedding_model.encode(domain_keywords)
 
 def generate_response_with_placeholder(prompt):
-    """
-    Placeholder for the generative API response.
-    Replaces the actual API call with a fixed response for development purposes.
-    """
     response = "This is a placeholder response generated for your question."
     return response
 
 def correct_spelling(text):
-    """
-    Corrects spelling errors in the given text using a spell checker.
-    """
     if len(text.split()) > 1:
         corrected_words = [
             spellchecker.correction(word) if spellchecker.correction(word) else word
@@ -94,17 +87,10 @@ def correct_spelling(text):
     return text
 
 def lemmatize_query(query):
-    """
-    Takes a query string and returns a lemmatized version of the query.
-    """
     lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
     return lemmatized_query
 
 def find_best_context(query, threshold):
-    """
-    Takes a query and returns the best matching context from the database based on direct matches with trigger, synonyms, or keywords.
-    Uses average of max cosine similarity scores only if direct match is below a specified threshold.
-    """
     query_embedding = embedding_model.encode([query.lower()])
 
     best_match_score = 0
@@ -148,11 +134,6 @@ def find_best_context(query, threshold):
 
 
 def match_column(query, best_match_response):
-    """
-    Matches the query with the column name embeddings and returns the appropriate response from the best match row.
-    Enhances accuracy by looking for specific keywords in the query.
-    """
-    
     query_lower = query.lower()
     query_lower = correct_spelling(query_lower) #Manish's function call for spell check should come here ~Myil
     
@@ -175,10 +156,6 @@ def match_column(query, best_match_response):
     return best_match_response[best_column_name]
 
 def is_domain_relevant(query, threshold=0.4):
-    """
-    Checks if the query is relevant to the domain using cosine similarity.
-    Returns True if any similarity score with domain keywords is above the threshold.
-    """
     query_embedding = embedding_model.encode([query.lower()])
     relevance_scores = [cosine_similarity(query_embedding, [dom_emb]).flatten()[0] for dom_emb in domain_embeddings]
 
@@ -187,10 +164,6 @@ def is_domain_relevant(query, threshold=0.4):
     return any(score >= threshold for score in relevance_scores)
 
 def get_response(user_input, threshold=0.3):
-    """
-    Handles the logic to decide whether to use a pre-defined response or generate one with the API.
-    Returns a response and updates the context history.
-    """
     logging.info(f"Direct Match")
     context_response = find_best_context(user_input, threshold)
     if context_response:

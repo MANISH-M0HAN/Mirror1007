@@ -88,8 +88,13 @@ def lemmatize_query(query):
 >>>>>>> 903684f (New CSV Logic)
 def find_best_context(query, threshold):
     """
+<<<<<<< HEAD
     Takes a query and returns the best matching context from the database based on cosine similarity.
     If no match is found above the threshold, it returns None.
+=======
+    Takes a query and returns the best matching context from the database based on direct matches with trigger, synonyms, or keywords.
+    Uses average of max cosine similarity scores only if direct match is below a specified threshold.
+>>>>>>> b302e0a (Made changes to the Logic, now almost perfect)
     """
 <<<<<<< HEAD
     # Encode the query
@@ -145,25 +150,25 @@ def find_best_context(query, threshold):
     best_match_type = None
 
     for index, item_embeddings in enumerate(db_embeddings):
-        trigger_scores = [cosine_similarity(query_embedding, trg_emb.reshape(1, -1)).flatten()[0] for trg_emb in [item_embeddings['trigger_embedding']]]
+        trigger_score = cosine_similarity(query_embedding, item_embeddings['trigger_embedding'].reshape(1, -1)).flatten()[0]
         synonym_scores = [cosine_similarity(query_embedding, syn_emb.reshape(1, -1)).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
         keyword_scores = [cosine_similarity(query_embedding, kw_emb.reshape(1, -1)).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
 
-        max_trigger_score = max(trigger_scores) if trigger_scores else 0
         max_synonym_score = max(synonym_scores) if synonym_scores else 0
         max_keyword_score = max(keyword_scores) if keyword_scores else 0
 
-        max_scores_sum = max_trigger_score + max_synonym_score + max_keyword_score
+        max_scores_sum = trigger_score + max_synonym_score + max_keyword_score
         avg_score = max_scores_sum / 3
 
-        if avg_score >= threshold - 0.2:
+        if trigger_score >= 0.65 or max_synonym_score >= 0.65 or max_keyword_score >= 0.65:
             logging.info(
-                f"Query: '{query}', Avg Score: {avg_score:.4f}, Max Trigger: {max_trigger_score:.4f}, "
-                f"Max Synonym: {max_synonym_score:.4f}, Max Keyword: {max_keyword_score:.4f} "
+                f"Strong direct match found. Query: '{query}', Trigger Score: {trigger_score:.4f}, "
+                f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
                 f"Response: {database[index]}"
             )
+            return database[index]
 
-        if avg_score > best_match_score and avg_score >= threshold:
+        if avg_score > best_match_score and trigger_score < 0.65 and max_synonym_score < 0.65 and max_keyword_score < 0.65:
             best_match_score = avg_score
             best_match_response = database[index]
             best_match_type = "Avg Max Match"
@@ -179,16 +184,31 @@ def find_best_context(query, threshold):
 
     return best_match_response
 
+
 def match_column(query, best_match_response):
     """
     Matches the query with the column name embeddings and returns the appropriate response from the best match row.
+    Enhances accuracy by looking for specific keywords in the query.
     """
-    query_embedding = embedding_model.encode([query.lower()])
+    
+    query_lower = query.lower()
+    query_lower = correct_spelling(query_lower) #Manish's function call for spell check should come here ~Myil
+    
+    if "what" in query_lower:
+        return best_match_response['What']
+    elif "why" in query_lower:
+        return best_match_response['Why']
+    elif "how" in query_lower:
+        return best_match_response['How']
+    elif "symptom" in query_lower or "sign" in query_lower:
+        return best_match_response['Symptoms']
+
+    query_embedding = embedding_model.encode([query_lower])
     column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
 
     best_column_index = column_scores.argmax()
     best_column_name = column_names[best_column_index]
-    logging.info(f"Best column match: {best_column_name} with score {column_scores[best_column_index]:.4f}")
+    logging.info(f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}")
 
     return best_match_response[best_column_name]
 
@@ -204,6 +224,7 @@ def is_domain_relevant(query, threshold=0.4):
 
     return any(score >= threshold for score in relevance_scores)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 def get_relevant_context(user_input, context_history):
     """
@@ -227,6 +248,9 @@ def get_response(user_input, context_history, threshold=0.7):
 =======
 def get_response(user_input, context_history, threshold=0.5):
 >>>>>>> 903684f (New CSV Logic)
+=======
+def get_response(user_input, context_history, threshold=0.3):
+>>>>>>> b302e0a (Made changes to the Logic, now almost perfect)
     """
     Handles the logic to decide whether to use a pre-defined response or generate one with the API.
     Returns a response and updates the context history.
@@ -234,7 +258,6 @@ def get_response(user_input, context_history, threshold=0.5):
     logging.info(f"Direct Match")
     context_response = find_best_context(user_input, threshold)
     if context_response:
-        # Match user's query with the columns
         column_response = match_column(user_input, context_response)
         return column_response, context_history
     

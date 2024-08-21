@@ -149,42 +149,21 @@ def find_best_context(query, threshold):
 
 def match_column(query, best_match_response):
     """
-    Matches the query with the intent words and column name embeddings to return the appropriate response 
-    from the best match row. Prioritizes intent word matching before falling back to cosine similarity.
+    Matches the query with the column name embeddings and returns the appropriate response from the best match row.
+    Enhances accuracy by looking for specific keywords in the query.
     """
-    query_lower = query.lower()
-    query_lower = correct_spelling(query_lower)  
     
-    intent_words = {
-        "Symptoms": [
-            "Symptoms", "Signs", "Indications", "Manifestations", 
-            "What are the symptoms", "What signs", "What does it feel like", 
-            "How does it manifest", "What are the warning signs", 
-            "What could indicate", "What happens when", "How does it show", 
-            "What’s the symptomatology"
-        ],
-        "Why": [
-            "Why", "For what reason", "How come", "causes", "What causes", "Why is it that", 
-            "Why do", "Why does", "Why should", "Explain why", "Give the reason", 
-            "What’s the purpose of", "What’s the point of", "Why do you think", 
-            "What’s the reason for"
-        ],
-        "How": [
-            "How", "In what way", "By what means", "How do", "How does", "How to", 
-            "How can", "How might", "How could", "Explain how", "Describe how", 
-            "In what manner", "In what method", "What steps", "What’s the procedure for"
-        ],
-        "What": [
-            "What", "Which", "Identify", "Define", "Explain", "Describe", "Clarify",
-            "Tell me about", "What is", "What are", "What's", "What exactly"
-        ]
-    }
-
-    for column, words in intent_words.items():
-        for word in words:
-            if word.lower() in query_lower:
-                logging.info(f"Intent word match found: '{word}' for column '{column}'")
-                return best_match_response[column]
+    query_lower = query.lower()
+    query_lower = correct_spelling(query_lower) #Manish's function call for spell check should come here ~Myil
+    
+    if "what" in query_lower:
+        return best_match_response['What']
+    elif "why" in query_lower:
+        return best_match_response['Why']
+    elif "how" in query_lower:
+        return best_match_response['How']
+    elif "symptom" in query_lower or "sign" in query_lower:
+        return best_match_response['Symptoms']
 
     query_embedding = embedding_model.encode([query_lower])
     column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
@@ -237,10 +216,7 @@ def get_response(user_input, context_history, threshold=0.3):
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     return fallback_response, context_history
 
-<<<<<<< HEAD
-=======
 # Setup logging
->>>>>>> 792f5ca (Now model doesn't answer for unmatched words)
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
 @app.route('/chatbot', methods=['POST'])

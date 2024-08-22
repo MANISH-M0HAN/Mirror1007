@@ -94,8 +94,11 @@ def find_best_context(query, threshold):
     query_embedding = embedding_model.encode([query.lower()])
 
     best_match_score = 0
+    best_max_match_score = 0
     best_match_response = None
+    best_max_match_response = None
     best_match_type = None
+    best_max_match_type = None
 
     for index, item_embeddings in enumerate(db_embeddings):
         trigger_score = cosine_similarity(query_embedding, item_embeddings['trigger_embedding'].reshape(1, -1)).flatten()[0]
@@ -114,19 +117,34 @@ def find_best_context(query, threshold):
                 f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
                 f"Response: {database[index]}"
             )
-            return database[index]
-
+            best_max_match_score = max(trigger_score, max_synonym_score, max_keyword_score)
+            best_max_match_response = database[index]
+            best_max_match_type = "Max Match"
+        
         if avg_score > best_match_score and trigger_score < 0.65 and max_synonym_score < 0.65 and max_keyword_score < 0.65:
+            logging.info(
+                f"Strong direct match found. Query: '{query}', Trigger Score: {trigger_score:.4f}, "
+                f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
+                f"Response: {database[index]}"
+            )
             best_match_score = avg_score
             best_match_response = database[index]
             best_match_type = "Avg Max Match"
-
-    if best_match_score >= threshold:
+            
+    if best_match_score >= threshold and best_max_match_score < best_match_score:
         logging.info(
             f"Query: '{query}', Best Match Score: {best_match_score:.4f}, "
             f"Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
         )
         return best_match_response
+    
+    elif best_max_match_score > best_match_score:
+        logging.info(
+            f"Query: '{query}', Max Match Score: {best_max_match_score:.4f}, "
+            f"Best Match Response: '{best_max_match_response}', Match Type: {best_max_match_type}"
+        )
+        return best_max_match_response
+    
     else:
         logging.warning(f"No suitable match found for query: '{query}' with score above threshold: {threshold}")
         return None

@@ -151,9 +151,18 @@ def find_best_context(query, threshold):
 
 def match_columns(query, best_match_response):
     query_lower = query.lower()
-    query_lower = correct_spelling(query_lower) 
+    query_lower = correct_spelling(query_lower)
 
     intent_words = {
+        "What": [
+            "What", "Which", "Identify", "Define", "Explain", "Describe", "Clarify",
+            "Tell me about", "What is", "What are", "What's", "What exactly"
+        ],
+        "How": [
+            "How", "In what way", "By what means", "How do", "How does", "How to", 
+            "How can", "How might", "How could", "Explain how", "Describe how", 
+            "In what manner", "In what method", "What steps", "What’s the procedure for"
+        ],        
         "Symptoms": [
             "Symptoms", "Signs", "Indications", "Manifestations", 
             "What are the symptoms", "What signs", "What does it feel like", 
@@ -166,26 +175,26 @@ def match_columns(query, best_match_response):
             "Why is it that", "Why do", "Why does", "Why should", "Explain why", 
             "Give the reason", "What’s the purpose of", "What’s the point of", 
             "Why do you think", "What’s the reason for"
-        ],
-        "How": [
-            "How", "In what way", "By what means", "How do", "How does", "How to", 
-            "How can", "How might", "How could", "Explain how", "Describe how", 
-            "In what manner", "In what method", "What steps", "What’s the procedure for"
-        ],
-        "What": [
-            "What", "Which", "Identify", "Define", "Explain", "Describe", "Clarify",
-            "Tell me about", "What is", "What are", "What's", "What exactly"
         ]
     }
 
-    # Collect responses from matching columns
-    responses = []
+    # Collect matching columns and their first occurrence positions
+    matching_columns = []
     for column, keywords in intent_words.items():
-        if any(keyword.lower() in query_lower for keyword in keywords):
-            if best_match_response.get(column):
-                responses.append(best_match_response[column])
+        for keyword in keywords:
+            keyword_lower = keyword.lower()
+            position = query_lower.find(keyword_lower)
+            if position != -1 and best_match_response.get(column):
+                matching_columns.append((position, best_match_response[column]))
+                break  # Move to the next column once a match is found
 
-    # If responses from multiple columns are found, concatenate them
+    # Sort the matched columns by the position of their first occurrence in the query
+    matching_columns.sort(key=lambda x: x[0])
+
+    # Combine responses in the order of their appearance in the query
+    responses = [response for _, response in matching_columns]
+
+    # Return the combined response
     if responses:
         return " ".join(responses)
 
@@ -198,6 +207,7 @@ def match_columns(query, best_match_response):
     logging.info(f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}")
 
     return best_match_response.get(best_column_name, "")
+
 
 
 def is_domain_relevant(query, threshold=0.4):

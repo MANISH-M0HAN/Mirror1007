@@ -152,56 +152,6 @@ def find_best_context(query, threshold):
 def match_columns(query, best_match_response):
     query_lower = query.lower()
     query_lower = correct_spelling(query_lower) 
-    
-    
-    intent_words = {
-        "Symptoms": [
-            "Symptoms", "Signs", "Indications", "Manifestations", 
-            "What are the symptoms", "What signs", "What does it feel like", 
-            "How does it manifest", "What are the warning signs", 
-            "What could indicate", "What happens when", "How does it show", 
-            "What’s the symptomatology"
-        ],
-        "Why": [
-            "Why", "For what reason", "How come", "causes", "What causes", "Why is it that", 
-            "Why do", "Why does", "Why should", "Explain why", "Give the reason", 
-            "What’s the purpose of", "What’s the point of", "Why do you think", 
-            "What’s the reason for"
-        ],
-        "How": [
-            "How", "In what way", "By what means", "How do", "How does", "How to", 
-            "How can", "How might", "How could", "Explain how", "Describe how", 
-            "In what manner", "In what method", "What steps", "What’s the procedure for"
-        ],
-        "What": [
-            "What", "Which", "Identify", "Define", "Explain", "Describe", "Clarify",
-            "Tell me about", "What is", "What are", "What's", "What exactly"
-        ]
-    }
-
-    # Collect responses from matching columns
-    responses = []
-    for column, keywords in intent_words.items():
-        if any(keyword in query_lower for keyword in keywords):
-            if column in best_match_response:
-                responses.append(best_match_response[column])
-
-    # Combine responses from multiple columns without column names
-    if responses:
-        return " ".join(responses)
-
-    query_embedding = embedding_model.encode([query_lower])
-    column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
-
-    best_column_index = column_scores.argmax()
-    best_column_name = column_names[best_column_index]
-    logging.info(f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}")
-
-    #return best_match_response[best_column_name]
-
-def match_columns(query, best_match_response):
-    query_lower = query.lower()
-    query_lower = correct_spelling(query_lower) 
 
     intent_words = {
         "Symptoms": [

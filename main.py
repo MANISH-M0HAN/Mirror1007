@@ -17,8 +17,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 load_dotenv()
 
 # Download necessary data for lemmatization (only required once)
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+nltk.download("wordnet")
+nltk.download("omw-1.4")
 
 # Initialize the lemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -153,29 +153,85 @@ def match_columns(query, best_match_response):
     query_lower = query.lower()
     query_lower = correct_spelling(query_lower)
 
-    intent_words = {
-        "What": [
-            "What", "Which", "Identify", "Define", "Explain", "Describe", "Clarify",
-            "Tell me about", "What is", "What are", "What's", "What exactly"
-        ],
-        "How": [
-            "How", "In what way", "By what means", "How do", "How does", "How to", 
-            "How can", "How might", "How could", "Explain how", "Describe how", 
-            "In what manner", "In what method", "What steps", "What’s the procedure for"
-        ],        
+    intent_words = {       
         "Symptoms": [
-            "Symptoms", "Signs", "Indications", "Manifestations", 
-            "What are the symptoms", "What signs", "What does it feel like", 
-            "How does it manifest", "What are the warning signs", 
-            "What could indicate", "What happens when", "How does it show", 
-            "What’s the symptomatology"
+            "Symptoms",
+            "Signs",
+            "Indications",
+            "Manifestations",
+            "Warning",
+            "Clues",
+            "Evidence",
+            "Redflags",
+            "Markers",
+            "Presentations",
+            "Outcomes",
+            "Patterns",
+            "Phenomena",
+            "Traits",
+            "Occurrences",
         ],
         "Why": [
-            "Why", "For what reason", "How come", "causes", "What causes", 
-            "Why is it that", "Why do", "Why does", "Why should", "Explain why", 
-            "Give the reason", "What’s the purpose of", "What’s the point of", 
-            "Why do you think", "What’s the reason for"
-        ]
+            "Why",
+            "Causes",
+            "Reason",
+            "Purpose",
+            "Explain",
+            "Justification",
+            "Origin",
+            "Motive",
+            "Trigger",
+            "Rationale",
+            "Grounds",
+            "Basis",
+            "Excuse",
+            "Source",
+            "Factor",
+        ],
+        "How": [
+            "How",
+            "Method",
+            "Means",
+            "Procedure",
+            "Steps",
+            "Technique",
+            "Process",
+            "Way",
+            "Approach",
+            "Strategy",
+            "System",
+            "Manner",
+            "Framework",
+            "Form",
+            "Mode",
+            "Prevention",
+            "Avoidance",
+            "Safeguard",
+            "Protection",
+            "Mitigation",
+            "Reduction",
+            "Intervention",
+            "Defense",
+            "Deterrence",
+            "Shielding",
+        ],
+        "What": [
+            "What",
+            "Define",
+            "Identify",
+            "Describe",
+            "Clarify",
+            "Specify",
+            "Detail",
+            "Outline",
+            "State",
+            "Explain",
+            "Determine",
+            "Depict",
+            "Summarize",
+            "Designate",
+            "Distinguish",
+        ],
     }
 
     # Collect matching columns and their first occurrence positions

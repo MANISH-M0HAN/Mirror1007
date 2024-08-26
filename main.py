@@ -153,7 +153,24 @@ def match_columns(query, best_match_response):
     query_lower = query.lower()
     query_lower = correct_spelling(query_lower)
 
-    intent_words = {       
+    intent_words = {
+        "What": [
+            "What",
+            "Define",
+            "Identify",
+            "Describe",
+            "Clarify",
+            "Specify",
+            "Detail",
+            "Outline",
+            "State",
+            "Explain",
+            "Determine",
+            "Depict",
+            "Summarize",
+            "Designate",
+            "Distinguish",
+        ],
         "Symptoms": [
             "Symptoms",
             "Signs",
@@ -215,34 +232,34 @@ def match_columns(query, best_match_response):
             "Deterrence",
             "Shielding",
         ],
-        "What": [
-            "What",
-            "Define",
-            "Identify",
-            "Describe",
-            "Clarify",
-            "Specify",
-            "Detail",
-            "Outline",
-            "State",
-            "Explain",
-            "Determine",
-            "Depict",
-            "Summarize",
-            "Designate",
-            "Distinguish",
-        ],
     }
-
-    # Collect matching columns and their first occurrence positions
-    matching_columns = []
+    '''matching_columns = []
     for column, keywords in intent_words.items():
         for keyword in keywords:
             keyword_lower = keyword.lower()
             position = query_lower.find(keyword_lower)
             if position != -1 and best_match_response.get(column):
                 matching_columns.append((position, best_match_response[column]))
+                break  # Move to the next column once a match is found'''
+
+    # Collect matching columns and their first occurrence positions
+    matching_columns = []
+    match_found = False  # Variable to track if a match is found
+
+    for column, keywords in intent_words.items():
+        for keyword in keywords:
+            keyword_lower = keyword.lower()
+            position = query_lower.find(keyword_lower)
+            if position != -1 and best_match_response.get(column):
+                matching_columns.append((position, best_match_response[column]))
+                match_found = True  # Set match_found to True when a match is found
                 break  # Move to the next column once a match is found
+
+# If no match was found, add the response from the first column
+    if not match_found and intent_words:
+        first_column = next(iter(intent_words))  # Get the first column
+        if best_match_response.get(first_column):
+            matching_columns.append((0, best_match_response[first_column]))  # Add the first column's response
 
     # Sort the matched columns by the position of their first occurrence in the query
     matching_columns.sort(key=lambda x: x[0])
@@ -260,9 +277,12 @@ def match_columns(query, best_match_response):
 
     best_column_index = column_scores.argmax()
     best_column_name = column_names[best_column_index]
-    logging.info(f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}")
+    logging.info(
+        f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}"
+    )
 
     return best_match_response.get(best_column_name, "")
+
 
 
 

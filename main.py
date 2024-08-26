@@ -233,14 +233,6 @@ def match_columns(query, best_match_response):
             "Shielding",
         ],
     }
-    '''matching_columns = []
-    for column, keywords in intent_words.items():
-        for keyword in keywords:
-            keyword_lower = keyword.lower()
-            position = query_lower.find(keyword_lower)
-            if position != -1 and best_match_response.get(column):
-                matching_columns.append((position, best_match_response[column]))
-                break  # Move to the next column once a match is found'''
 
     # Collect matching columns and their first occurrence positions
     matching_columns = []

@@ -137,7 +137,7 @@ def match_columns(query, best_match_response):
     query_lower = correct_spelling(query_lower)
 
     # Dictionary of intent words with prioritized order
-    intent_words = {       
+    intent_words = {
         "What": [
             "What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State",
             "Explain", "Determine", "Depict", "Summarize", "Designate", "Distinguish", "Relate", "Relationship",
@@ -168,45 +168,32 @@ def match_columns(query, best_match_response):
                 matching_columns.append((position, column, best_match_response[column]))
                 break  # Move to the next column once a match is found
 
-    # Log matched columns for debugging
-    logging.info(f"Matched Columns: {matching_columns}")
-
     # Sort the matched columns by the position of their first occurrence in the query
     matching_columns.sort(key=lambda x: x[0])
 
-    # Separate responses into definitions and prevention measures
-    definitions = []
-    prevention = []
+    # Separate responses into definitions/relationships and prevention/management
+    definitions_relationships = []
+    prevention_management = []
     for _, column, response in matching_columns:
-        if column == "What":
-            definitions.append(response)
+        if column in ["What", "Why"]:
+            definitions_relationships.append(response)
         elif column == "How":
-            prevention.append(response)
+            prevention_management.append(response)
 
-    # Log categorized responses for debugging
-    logging.info(f"Definitions: {definitions}")
-    logging.info(f"Prevention: {prevention}")
+    # Combine responses with definitions/relationships first and prevention/management second
+    combined_responses = definitions_relationships + prevention_management
 
-    # Handle specific information about relationships between terms if multiple triggers are present
-    if "cholesterol" in query_lower and "tachycardia" in query_lower:
-        relationship_statement = "Cholesterol levels can affect heart health, including conditions like tachycardia. Managing cholesterol is crucial for heart health."
-    else:
-        relationship_statement = ""
-
-    # Combine responses with definitions first and prevention measures second
-    combined_responses = definitions
-    if relationship_statement:
-        combined_responses.append(relationship_statement)
-    combined_responses.extend(prevention)
+    # Generate a general statement about relationships if multiple key medical terms are detected in the query
+    terms_in_query = [term for term in ["cholesterol", "tachycardia", "angina", "arrhythmia","atherosclerosis"] if term in query_lower]
+    if len(terms_in_query) > 1:
+        relationship_statement = f"The relationship between {' and '.join(terms_in_query)} can have significant implications for heart health."
+        combined_responses.insert(1, relationship_statement)
 
     # Ensure we do not repeat the same response
     unique_responses = list(dict.fromkeys(combined_responses))
 
     # Return the combined response
     combined_response = " ".join(unique_responses)
-
-    # Log final response for debugging
-    logging.info(f"Combined Response: {combined_response}")
 
     return combined_response if combined_response else "I'm sorry, I couldn't find a relevant answer."
 

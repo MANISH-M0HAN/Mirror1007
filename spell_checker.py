@@ -6,7 +6,30 @@ import re
 
 # Common English words set
 common_english_words = {
-    # ... (your common words set here)
+    "fault", "a", "ass", "i", "about", "above", "across", "after", "again", "against", "all", "almost", "along", 
+    "think", "i am", "this", "amazing", "you", "are", "i think", "already", "also", "although", "always", 
+    "am", "among", "an", "and", "another", "any", "anyone", "anything", "anywhere", "are", "around", "as", 
+    "at", "away", "back", "be", "because", "been", "before", "being", "below", "between", "both", "but", 
+    "by", "can", "cannot", "could", "did", "do", "does", "doing", "down", "during", "each", "either", 
+    "enough", "especially", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", 
+    "few", "for", "from", "further", "get", "gets", "getting", "give", "go", "goes", "going", "gone", 
+    "got", "had", "has", "have", "having", "he", "her", "here", "hers", "herself", "him", "himself", 
+    "his", "how", "however", "i", "if", "in", "into", "is", "it", "its", "itself", "just", "keep", 
+    "keeps", "kind", "know", "knows", "knew", "known", "last", "later", "let", "lets", "like", "likely", 
+    "look", "looking", "looks", "lot", "lots", "made", "make", "makes", "many", "may", "me", "might", 
+    "mine", "more", "most", "much", "must", "my", "myself", "need", "needs", "never", "new", "next", 
+    "no", "not", "nothing", "now", "of", "off", "often", "oh", "on", "once", "one", "only", "onto", 
+    "or", "other", "others", "ought", "our", "ours", "ourselves", "out", "over", "own", "part", 
+    "perhaps", "quite", "rather", "really", "right", "said", "same", "saw", "say", "says", "see", 
+    "seem", "seemed", "seeming", "seems", "sees", "seen", "several", "shall", "she", "should", 
+    "since", "so", "some", "somebody", "someone", "something", "sometimes", "somewhere", "still", 
+    "such", "sure", "take", "takes", "taking", "tell", "than", "that", "the", "their", "theirs", 
+    "them", "themselves", "then", "there", "therefore", "these", "they", "thing", "things", "think", 
+    "thinks", "this", "those", "though", "thought", "thoughts", "through", "thus", "to", "together", 
+    "too", "took", "toward", "under", "until", "up", "upon", "us", "use", "used", "uses", "using", 
+    "very", "want", "wants", "was", "way", "we", "well", "went", "were", "what", "when", "where", 
+    "whether", "which", "while", "who", "whom", "whose", "why", "will", "with", "within", "without", 
+    "won't", "would", "yes", "yet", "you", "your", "yours", "yourself", "yourselves", "input", "read", "wake"
 }
 
 # Load Words from Multiple Columns

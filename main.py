@@ -106,7 +106,6 @@ def find_best_context(query, threshold):
     query_embedding = embedding_model.encode([query.lower()])
     # Strip the query and split it into a list of words
     query_words = query.strip().lower().split()
-
     best_match_score = 0
     best_max_match_score = 0
     best_match_response = []

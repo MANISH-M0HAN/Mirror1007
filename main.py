@@ -274,7 +274,8 @@ def match_columns(query, best_match_response):
     if not match_found and intent_words:
         first_column = next(iter(intent_words))  # Get the first column
         if best_match_response.get(first_column):
-            matching_columns.append((0, best_match_response[first_column]))  # Add the first column's response
+            default_response = best_match_response[first_column]
+            matching_columns.append((0, default_response + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."))  # Add default text to the response
 
     # Sort the matched columns by the position of their first occurrence in the query
     matching_columns.sort(key=lambda x: x[0])

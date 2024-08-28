@@ -92,13 +92,34 @@ def lemmatize_query(query):
 
 def find_best_context(query, threshold):
     query_embedding = embedding_model.encode([query.lower()])
-
+    # Strip the query and split it into a list of words
+    query_words = query.strip().lower().split()
+    
     best_match_score = 0
     best_max_match_score = 0
-    best_match_response = None
-    best_max_match_response = None
+    best_match_response = []
+    best_max_match_response = []
     best_match_type = None
     best_max_match_type = None
+    matches = []
+    
+    # Demo working area with generator for multiple matches
+    def match_generator():
+        for index, item_embeddings in enumerate(db_embeddings):
+            trigger_word = database[index]['trigger_word'].lower()
+            trigger_words = trigger_word.split()
+            common_words = set(trigger_words) & set(query_words)
+
+            if common_words:
+                yield database[index]
+                #print(f"Index: {index}, Trigger Words: {trigger_words}, Common Words: {common_words}")
+
+    # Collect all matches from the generator
+    matches = list(match_generator())
+    
+    # If there are matches,
+    if matches:
+        return matches
 
     for index, item_embeddings in enumerate(db_embeddings):
         trigger_score = cosine_similarity(query_embedding, item_embeddings['trigger_embedding'].reshape(1, -1)).flatten()[0]
@@ -118,7 +139,7 @@ def find_best_context(query, threshold):
                 f"Response: {database[index]}"
             )
             best_max_match_score = max(trigger_score, max_synonym_score, max_keyword_score)
-            best_max_match_response = database[index]
+            best_max_match_response.append(database[index])
             best_max_match_type = "Max Match"
         
         if avg_score > best_match_score and trigger_score < 0.65 and max_synonym_score < 0.65 and max_keyword_score < 0.65:
@@ -128,7 +149,7 @@ def find_best_context(query, threshold):
                 f"Response: {database[index]}"
             )
             best_match_score = avg_score
-            best_match_response = database[index]
+            best_match_response.append(database[index])
             best_match_type = "Avg Max Match"
             
     if best_match_score >= threshold and best_max_match_score < best_match_score:
@@ -136,6 +157,7 @@ def find_best_context(query, threshold):
             f"Query: '{query}', Best Match Score: {best_match_score:.4f}, "
             f"Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
         )
+        print("best match response")
         return best_match_response
     
     elif best_max_match_score > best_match_score:
@@ -143,6 +165,7 @@ def find_best_context(query, threshold):
             f"Query: '{query}', Max Match Score: {best_max_match_score:.4f}, "
             f"Best Match Response: '{best_max_match_response}', Match Type: {best_max_match_type}"
         )
+        print("max match")
         return best_max_match_response
     
     else:
@@ -251,8 +274,8 @@ def match_columns(query, best_match_response):
     if not match_found and intent_words:
         first_column = next(iter(intent_words))  # Get the first column
         if best_match_response.get(first_column):
-            default_response = best_match_response[first_column]
-            matching_columns.append((0, default_response + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."))  # Add default text to the response
+            matching_columns.append((0, best_match_response[first_column]))  # Add the first column's response
+
     # Sort the matched columns by the position of their first occurrence in the query
     matching_columns.sort(key=lambda x: x[0])
 
@@ -288,11 +311,19 @@ def is_domain_relevant(query, threshold=0.4):
 
 def get_response(user_input, threshold=0.3):
     logging.info(f"Direct Match")
-    context_response = find_best_context(user_input, threshold)
-    if context_response:
-        # Fetch data from relevant columns
-        column_response = match_columns(user_input, context_response)
-        return column_response
+    context_responses = find_best_context(user_input, threshold)
+    if context_responses:
+        combined_responses = []
+        
+        for context_response in context_responses:    
+            # Fetch data from relevant columns
+            column_response = match_columns(user_input, context_response)
+            if column_response:
+                combined_responses.append(column_response)
+                
+        # Combine all the column responses into a single response
+        final_response = " \n\n ".join(combined_responses)
+        return final_response
     
     logging.info(f"After Spell Correction")
     corrected_input = correct_spelling(user_input)

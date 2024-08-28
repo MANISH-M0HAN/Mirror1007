@@ -10,32 +10,24 @@ from dotenv import load_dotenv
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-# Set the TOKENIZERS_PARALLELISM environment variable to avoid deadlock warning
+# Set environment variables and initialize NLTK
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-# Load environment variables from .env file
 load_dotenv()
-
-# Download necessary data for lemmatization (only required once)
 nltk.download("wordnet")
 nltk.download("omw-1.4")
 
-# Initialize the lemmatizer
+# Initialize components
 lemmatizer = WordNetLemmatizer()
-
-# Initialize the Flask app
 app = Flask(__name__)
 app.secret_key = 'rand'  # Use a secure method to handle secret keys
 CORS(app)
-
-# Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 
-# Load the CSV file into a DataFrame
+
+# Load and the preprocess CSV data
 csv_file = 'heart_health_triggers.csv' # Replace with the path to your CSV file
-df = pd.read_csv(csv_file)
-df.fillna('', inplace=True)
+df = pd.read_csv(csv_file).fillna('')
 
 # Create a database list from the DataFrame
 database = []
@@ -73,18 +65,20 @@ domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
 domain_embeddings = embedding_model.encode(domain_keywords)
 
 def generate_response_with_placeholder(prompt):
-    response = "This is a placeholder response generated for your question."
-    return response
+    return "This is a placeholder response generated for your question."
 
 def correct_spelling(text):
-    if len(text.split()) > 1:
-        corrected_words = [
-            spellchecker.correction(word) if spellchecker.correction(word) else word
-            for word in text.split()
-        ]
-        corrected_text = ' '.join(corrected_words)
-        return corrected_text
-    return text
+    # Split the text into words
+    words = text.split()
+
+    # Correct spelling for each word
+    corrected_words = [spellchecker.correction(word) or word for word in words]
+
+    # Join the corrected words into a single string
+    corrected_text = ' '.join(corrected_words)
+
+    return corrected_text
+
 
 def lemmatize_query(query):
     lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])

@@ -347,9 +347,15 @@ logging.basicConfig(
 @app.route("/chatbot", methods=["POST"])
 def chat():
     try:
+<<<<<<< HEAD
         recieved_api_key = request.headers.get("X-API-KEY")
         expected_api_key = os.getenv("API_KEY")
 
+=======
+        recieved_api_key = request.headers.get('X-API-KEY') 
+        expected_api_key= os.getenv("API_KEY")
+        
+>>>>>>> 5fdcbb2 (.env is now working on wherever API is being checked)
         if recieved_api_key != expected_api_key:
             return jsonify({"unauthorized_access": "invalid api key"}), 401
 

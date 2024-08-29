@@ -2,31 +2,22 @@ import os
 import pandas as pd
 import logging
 from flask import Flask, request, jsonify, session
-from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from spellchecker import SpellChecker
 from dotenv import load_dotenv
 import nltk
 from nltk.stem import WordNetLemmatizer
+import os
 
-# Set the TOKENIZERS_PARALLELISM environment variable to avoid deadlock warning
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-# Load environment variables from .env file
-load_dotenv()
-
 # Download necessary data for lemmatization (only required once)
 nltk.download("wordnet")
 nltk.download("omw-1.4")
 
 # Initialize the lemmatizer
 lemmatizer = WordNetLemmatizer()
-
 # Initialize the Flask app
-app = Flask(__name__)
-app.secret_key = "rand"  # Use a secure method to handle secret keys
-CORS(app)
 
 # Initialize models and spellchecker
 embedding_model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
@@ -345,7 +336,11 @@ logging.basicConfig(
 )
 
 
+<<<<<<< HEAD:main.py
 @app.route("/chatbot", methods=["POST"])
+=======
+@chatbot.route('/chatbot', methods=['POST'])
+>>>>>>> 6a74047 (add  __pycache__ to git ignore):routes/chatbot.py
 def chat():
     try:
         recieved_api_key = request.headers.get("X-API-KEY")
@@ -368,5 +363,8 @@ def chat():
         return jsonify({"error": str(exception)}), 500
 
 
+<<<<<<< HEAD:main.py
 if __name__ == "__main__":
     app.run(debug=True)
+=======
+>>>>>>> 6a74047 (add  __pycache__ to git ignore):routes/chatbot.py

@@ -179,86 +179,25 @@ def match_columns(query, best_match_response):
     query_lower = correct_spelling(query_lower)
     best_match_response_flag = 0
 
-    intent_words = {
-        "What": [
-            "What",
-            "Define",
-            "Identify",
-            "Describe",
-            "Clarify",
-            "Specify",
-            "Detail",
-            "Outline",
-            "State",
-            "Explain",
-            "Determine",
-            "Depict",
-            "Summarize",
-            "Designate",
-            "Distinguish",
-        ],
-        "Symptoms": [
-            "Symptoms",
-            "Signs",
-            "Indications",
-            "Manifestations",
-            "Warning",
-            "Clues",
-            "Evidence",
-            "Redflags",
-            "Markers",
-            "Presentations",
-            "Outcomes",
-            "Patterns",
-            "Phenomena",
-            "Traits",
-            "Occurrences",
-        ],
-        "Why": [
-            "Why",
-            "Causes",
-            "Reason",
-            "Purpose",
-            "Explain",
-            "Justification",
-            "Origin",
-            "Motive",
-            "Trigger",
-            "Rationale",
-            "Grounds",
-            "Basis",
-            "Excuse",
-            "Source",
-            "Factor",
-        ],
-        "How": [
-            "How",
-            "Method",
-            "Means",
-            "Procedure",
-            "Steps",
-            "Technique",
-            "Process",
-            "Way",
-            "Approach",
-            "Strategy",
-            "System",
-            "Manner",
-            "Framework",
-            "Form",
-            "Mode",
-            "Prevention",
-            "Avoidance",
-            "Safeguard",
-            "Protection",
-            "Mitigation",
-            "Reduction",
-            "Intervention",
-            "Defense",
-            "Deterrence",
-            "Shielding",
-        ],
-    }
+intent_words = {
+    "What": [
+        "What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 
+        "Summarize", "Designate", "Distinguish"
+    ],
+    "Symptoms": [
+        "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", "Redflags", "Markers", "Presentations", 
+        "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences"
+    ],
+    "Why": [
+        "Why", "Causes", "Reason", "Purpose", "Explain", "Justification", "Origin", "Motive", "Trigger", "Rationale", "Grounds", "Basis", 
+        "Excuse", "Source", "Factor"
+    ],
+    "How": [
+        "How", "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", "Manner", 
+        "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", "Reduction", 
+        "Intervention", "Defense", "Deterrence", "Shielding"
+    ]
+}
 
     # Collect matching columns and their first occurrence positions
     matching_columns = []

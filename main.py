@@ -353,7 +353,7 @@ logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', fo
 def chat():
     try:
         recieved_api_key = request.headers.get('X-API-KEY') 
-        expected_api_key= 'fpv74NMceEzy.5OsNsX43uhfa2GSGPPOB1/o2ABXg0mMwniAef02'
+        expected_api_key= os.getenv("API_KEY")
         
         if recieved_api_key != expected_api_key:
             return jsonify({"unauthorized_access":"invalid api key"}), 401

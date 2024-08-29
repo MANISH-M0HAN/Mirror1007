@@ -72,6 +72,8 @@ for idx in range(len(df)):
 domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
 domain_embeddings = embedding_model.encode(domain_keywords)
 
+best_match_response_flag = 0
+
 def generate_response_with_placeholder(prompt):
     response = "This is a placeholder response generated for your question."
     return response
@@ -175,6 +177,7 @@ def find_best_context(query, threshold):
 def match_columns(query, best_match_response):
     query_lower = query.lower()
     query_lower = correct_spelling(query_lower)
+    best_match_response_flag = 0
 
     intent_words = {
         "What": [
@@ -275,7 +278,8 @@ def match_columns(query, best_match_response):
         first_column = next(iter(intent_words))  # Get the first column
         if best_match_response.get(first_column):
             default_response = best_match_response[first_column]
-            matching_columns.append((0, default_response + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."))  # Add default text to the response
+            best_match_response_flag = 1
+            matching_columns.append((0, default_response))
 
     # Sort the matched columns by the position of their first occurrence in the query
     matching_columns.sort(key=lambda x: x[0])
@@ -285,7 +289,7 @@ def match_columns(query, best_match_response):
 
     # Return the combined response
     if responses:
-        return " ".join(responses)
+        return " ".join(responses), best_match_response_flag
 
     # Fallback to the best matching column if no intent word is matched
     query_embedding = embedding_model.encode([query_lower])
@@ -297,7 +301,7 @@ def match_columns(query, best_match_response):
         f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}"
     )
 
-    return best_match_response.get(best_column_name, "")
+    return best_match_response.get(best_column_name, ""), best_match_response_flag
 
 
 
@@ -318,12 +322,14 @@ def get_response(user_input, threshold=0.3):
         
         for context_response in context_responses:    
             # Fetch data from relevant columns
-            column_response = match_columns(user_input, context_response)
+            column_response, best_match_response_flag = match_columns(user_input, context_response)
             if column_response:
                 combined_responses.append(column_response)
                 
         # Combine all the column responses into a single response
         final_response = " \n\n ".join(combined_responses)
+        if best_match_response_flag == 1:
+                final_response = final_response + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
         return final_response
     
     logging.info(f"After Spell Correction")
@@ -332,7 +338,9 @@ def get_response(user_input, threshold=0.3):
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = find_best_context(corrected_input, threshold)
         if context_response:
-            column_response = match_columns(corrected_input, context_response)
+            column_response, best_match_response_flag = match_columns(corrected_input, context_response)
+            if best_match_response_flag == 1:
+                column_response = column_response + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
             return column_response
 
     logging.info(f"Checking Domain relevance")

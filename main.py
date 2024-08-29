@@ -10,17 +10,25 @@ from dotenv import load_dotenv
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-# Set environment variables and initialize NLTK
+# Set the Tokenizers_parallelism enviroment variable to avoid deadlock warning 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+#Load enviromemnt variables from .env file
 load_dotenv()
+
+#Download necessary data for lemmatization (only required once)
 nltk.download("wordnet")
 nltk.download("omw-1.4")
 
-# Initialize components
+# Initialize the lemmatizer
 lemmatizer = WordNetLemmatizer()
+
+#Initialize the Flask app
 app = Flask(__name__)
 app.secret_key = 'rand'  # Use a secure method to handle secret keys
 CORS(app)
+
+#Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
 

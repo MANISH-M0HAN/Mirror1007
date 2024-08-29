@@ -36,6 +36,15 @@ common_english_words = {
     "reduce", "stress", "lumps", "stage", "extremely", "ill", "wear", "make", "sure", "get", "virus", "sex",
     "become", "massive", "patients", "required", "face", "tissue", "fat", "shortage", "blood", "eyes", "body",
     "issue", "tube", "testing", "baby", "small", "genes", "high"                
+
+    # Jennifer - Intent words
+    "What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 
+    "Summarize", "Designate", "Distinguish", "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", 
+    "Redflags", "Markers", "Presentations",  "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences","Why", "Causes", "Reason", 
+    "Purpose", "Explain", "Justification", "Origin", "Motive", "Trigger", "Rationale", "Grounds", "Basis", "Excuse", "Source", "Factor", 
+    "How", "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", "Manner", 
+    "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", "Reduction", "Intervention", 
+    "Defense", "Deterrence", "Shielding", "Do"
     }
 
 # Load Words from Multiple Columns

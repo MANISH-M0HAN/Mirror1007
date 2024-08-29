@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import logging
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, Blueprint
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from spellchecker import SpellChecker
@@ -14,6 +14,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Download necessary data for lemmatization (only required once)
 nltk.download("wordnet")
 nltk.download("omw-1.4")
+
+question_bot_bp = Blueprint('question_bot_bp', __name__) 
 
 # Initialize the lemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -336,12 +338,17 @@ logging.basicConfig(
 )
 
 
+<<<<<<< HEAD:routes/chatbot.py
 <<<<<<< HEAD:main.py
 @app.route("/chatbot", methods=["POST"])
 =======
 @chatbot.route('/chatbot', methods=['POST'])
 >>>>>>> 6a74047 (add  __pycache__ to git ignore):routes/chatbot.py
 def chat():
+=======
+@question_bot_bp.route('/question_chatbot', methods=['POST'])
+def question_chatbot():
+>>>>>>> 82a0ef2 (name chatbot as question bot and create a blueprint for resuability):routes/question_bot.py
     try:
         recieved_api_key = request.headers.get("X-API-KEY")
         expected_api_key = os.getenv("API_KEY")

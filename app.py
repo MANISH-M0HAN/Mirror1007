@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, Flask, request, jsonify, session
+from flask import Flask
 from routes import question_bot_bp
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"

@@ -259,6 +259,17 @@ def match_columns(query, best_match_response):
     return best_match_response.get(best_column_name, "")
 
 
+def correct_spelling(text):
+    if len(text.split()) > 1:
+        corrected_words = [
+            spellchecker.correction(word) if spellchecker.correction(word) else word
+            for word in text.split()
+        ]
+        corrected_text = ' '.join(corrected_words)
+        return corrected_text
+    return text
+
+
 
 def get_response(user_input, threshold=0.3):
     logging.info(f"Direct Match")

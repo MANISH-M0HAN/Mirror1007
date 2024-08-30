@@ -16,9 +16,6 @@ nltk.download("wordnet")
 nltk.download("omw-1.4")
 
 
-# Initialize the lemmatizer
-lemmatizer = WordNetLemmatizer()
-# Initialize the Flask app
 
 # Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
@@ -64,10 +61,6 @@ domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
 domain_embeddings = embedding_model.encode(domain_keywords)
 
 
-
-def lemmatize_query(query):
-    lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
-    return lemmatized_query
 
 def find_best_context(query, threshold):
     query_embedding = embedding_model.encode([query.lower()])

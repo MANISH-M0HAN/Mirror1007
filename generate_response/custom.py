@@ -10,8 +10,6 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 import os
 
-x=1
-
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Download necessary data for lemmatization (only required once)
 nltk.download("wordnet")
@@ -70,15 +68,6 @@ def generate_response_with_placeholder(prompt):
     response = "This is a placeholder response generated for your question."
     return response
 
-def correct_spelling(text):
-    if len(text.split()) > 1:
-        corrected_words = [
-            spellchecker.correction(word) if spellchecker.correction(word) else word
-            for word in text.split()
-        ]
-        corrected_text = ' '.join(corrected_words)
-        return corrected_text
-    return text
 
 def lemmatize_query(query):
     lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
@@ -270,15 +259,6 @@ def match_columns(query, best_match_response):
     return best_match_response.get(best_column_name, "")
 
 
-
-
-def is_domain_relevant(query, threshold=0.4):
-    query_embedding = embedding_model.encode([query.lower()])
-    relevance_scores = [cosine_similarity(query_embedding, [dom_emb]).flatten()[0] for dom_emb in domain_embeddings]
-
-    logging.info(f"Domain Relevance Scores for '{query}': {relevance_scores}")
-
-    return any(score >= threshold for score in relevance_scores)
 
 def get_response(user_input, threshold=0.3):
     logging.info(f"Direct Match")

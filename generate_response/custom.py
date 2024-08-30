@@ -4,11 +4,11 @@ import logging
 from flask import Flask, request, jsonify, session, Blueprint
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-from spellchecker import SpellChecker
 from dotenv import load_dotenv
 import nltk
 from nltk.stem import WordNetLemmatizer
 import os
+from utils import process_user_input
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Download necessary data for lemmatization (only required once)
@@ -22,7 +22,6 @@ lemmatizer = WordNetLemmatizer()
 
 # Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
-spellchecker = SpellChecker()
 
 # Load the CSV file into a DataFrame
 csv_file = 'heart_health_triggers.csv' # Replace with the path to your CSV file
@@ -64,9 +63,6 @@ for idx in range(len(df)):
 domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
 domain_embeddings = embedding_model.encode(domain_keywords)
 
-def generate_response_with_placeholder(prompt):
-    response = "This is a placeholder response generated for your question."
-    return response
 
 
 def lemmatize_query(query):
@@ -134,7 +130,7 @@ def find_best_context(query, threshold):
 
 def match_columns(query, best_match_response):
     query_lower = query.lower()
-    query_lower = correct_spelling(query_lower)
+    query_lower = process_user_input.correct_spelling(query_lower)
 
     intent_words = {
         "What": [
@@ -259,16 +255,6 @@ def match_columns(query, best_match_response):
     return best_match_response.get(best_column_name, "")
 
 
-def correct_spelling(text):
-    if len(text.split()) > 1:
-        corrected_words = [
-            spellchecker.correction(word) if spellchecker.correction(word) else word
-            for word in text.split()
-        ]
-        corrected_text = ' '.join(corrected_words)
-        return corrected_text
-    return text
-
 
 
 def get_response(user_input, threshold=0.3):
@@ -280,7 +266,7 @@ def get_response(user_input, threshold=0.3):
         return column_response
     
     logging.info(f"After Spell Correction")
-    corrected_input = correct_spelling(user_input)
+    corrected_input = process_user_input.correct_spelling(user_input)
     if corrected_input != user_input:
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = find_best_context(corrected_input, threshold)
@@ -292,7 +278,7 @@ def get_response(user_input, threshold=0.3):
     if is_domain_relevant(corrected_input):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
-        response = generate_response_with_placeholder(prompt)
+        response = default_messages.generate_response_with_placeholder(prompt)
         return response 
 
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"

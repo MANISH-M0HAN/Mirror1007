@@ -1,16 +1,7 @@
 import os
-import pandas as pd
 import logging
-from flask import Flask, request, jsonify, session, Blueprint
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-from spellchecker import SpellChecker
+from flask import request, jsonify, Blueprint
 from dotenv import load_dotenv
-import nltk
-from nltk.stem import WordNetLemmatizer
-import os
-import sys
-sys.path.append("..")
 from generate_response import get_response
 
 question_bot_bp = Blueprint('question_bot_bp', __name__) 

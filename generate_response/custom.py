@@ -13,7 +13,7 @@ def get_response(user_input, threshold=0.3):
 
         for context_response in context_responses:
             # Fetch data from relevant columns
-            column_response, best_match_response_flag = match_columns(
+            column_response, best_match_response_flag = analyse_dataframe.match_columns(
                 user_input, context_response
             )
             if column_response:
@@ -34,7 +34,7 @@ def get_response(user_input, threshold=0.3):
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = analyse_dataframe.find_best_context(corrected_input, threshold)
         if context_response:
-            column_response, best_match_response_flag = match_columns(
+            column_response, best_match_response_flag = analyse_dataframe.match_columns(
                 corrected_input, context_response
             )
             if best_match_response_flag == 1:

@@ -23,15 +23,14 @@ nltk.download("omw-1.4")
 # Initialize the lemmatizer
 lemmatizer = WordNetLemmatizer()
 
-#Initialize the Flask app
+# Initialize the Flask app
 app = Flask(__name__)
 app.secret_key = 'rand'  # Use a secure method to handle secret keys
 CORS(app)
 
-#Initialize models and spellchecker
+# Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 spellchecker = SpellChecker()
-
 
 # Load and the preprocess CSV data
 csv_file = 'heart_health_triggers.csv' # Replace with the path to your CSV file
@@ -89,157 +88,96 @@ def correct_spelling(text):
 
 
 def lemmatize_query(query):
-    lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
-    return lemmatized_query
+    return " ".join([lemmatizer.lemmatize(word) for word in query.split()])
+    
+#Calculate similarity scores for triggers, synonyms, and keywords.
+def calculate_similarity(query_embedding, item_embeddings):
+    trigger_score = cosine_similarity(query_embedding, item_embeddings['trigger_embedding'].reshape(1, -1)).flatten()[0]
+    synonym_scores = [cosine_similarity(query_embedding, syn_emb.reshape(1, -1)).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
+    keyword_scores = [cosine_similarity(query_embedding, kw_emb.reshape(1, -1)).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
+    return trigger_score, synonym_scores, keyword_scores
+
+ #Determine if a strong direct match or an average score match is found.
+def determine_match_type(trigger_score, max_synonym_score, max_keyword_score):
+   
+    if trigger_score >= 0.65 or max_synonym_score >= 0.65 or max_keyword_score >= 0.65:
+        return "Max Match"
+    return "Avg Max Match"
+
+#Log the matching information.
+def log_match_info(query, trigger_score, max_synonym_score, max_keyword_score, response, match_type):
+    
+    logging.info(
+        f"{match_type} found. Query: '{query}', Trigger Score: {trigger_score:.4f}, "
+        f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
+        f"Response: {response}"
+    )
 
 def find_best_context(query, threshold):
     query_embedding = embedding_model.encode([query.lower()])
-
-    best_match_score = 0
-    best_max_match_score = 0
-    best_match_response = None
-    best_max_match_response = None
-    best_match_type = None
-    best_max_match_type = None
-
-    for index, item_embeddings in enumerate(db_embeddings):
-        trigger_score = cosine_similarity(query_embedding, item_embeddings['trigger_embedding'].reshape(1, -1)).flatten()[0]
-        synonym_scores = [cosine_similarity(query_embedding, syn_emb.reshape(1, -1)).flatten()[0] for syn_emb in item_embeddings['synonyms_embeddings']]
-        keyword_scores = [cosine_similarity(query_embedding, kw_emb.reshape(1, -1)).flatten()[0] for kw_emb in item_embeddings['keywords_embeddings']]
-
-        max_synonym_score = max(synonym_scores) if synonym_scores else 0
-        max_keyword_score = max(keyword_scores) if keyword_scores else 0
-
-        max_scores_sum = trigger_score + max_synonym_score + max_keyword_score
-        avg_score = max_scores_sum / 3
-
-        if trigger_score >= 0.65 or max_synonym_score >= 0.65 or max_keyword_score >= 0.65:
-            logging.info(
-                f"Strong direct match found. Query: '{query}', Trigger Score: {trigger_score:.4f}, "
-                f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
-                f"Response: {database[index]}"
-            )
-            best_max_match_score = max(trigger_score, max_synonym_score, max_keyword_score)
-            best_max_match_response = database[index]
-            best_max_match_type = "Max Match"
-        
-        if avg_score > best_match_score and trigger_score < 0.65 and max_synonym_score < 0.65 and max_keyword_score < 0.65:
-            logging.info(
-                f"Strong direct match found. Query: '{query}', Trigger Score: {trigger_score:.4f}, "
-                f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
-                f"Response: {database[index]}"
-            )
-            best_match_score = avg_score
-            best_match_response = database[index]
-            best_match_type = "Avg Max Match"
-            
-    if best_match_score >= threshold and best_max_match_score < best_match_score:
-        logging.info(
-            f"Query: '{query}', Best Match Score: {best_match_score:.4f}, "
-            f"Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
-        )
-        return best_match_response
     
-    elif best_max_match_score > best_match_score:
+    best_score = 0
+    best_response = None
+    best_match_type = None
+    
+    max_score = 0
+    max_response = None
+    max_match_type = None
+    
+    for index, item_embeddings in enumerate(db_embeddings):
+        trigger_score, synonym_scores, keyword_scores = calculate_similarity(query_embedding, item_embeddings)
+        
+        max_synonym_score = max(synonym_scores, default=0)
+        max_keyword_score = max(keyword_scores, default=0)
+        avg_score = (trigger_score + max_synonym_score + max_keyword_score ) / 3
+        
+        match_type = determine_match_type(trigger_score, max_synonym_score, max_keyword_score)
+        
+        if match_type == "Max Match":
+            log_match_info(query, trigger_score, max_synonym_score, max_keyword_score, database[index], match_type)
+            max_score = max(trigger_score, max_synonym_score, max_keyword_score)
+            max_response = database[index]
+            max_match_type = match_type
+            
+        if avg_score > best_score and all(score < 0.65 for score in [trigger_score, max_synonym_score, max_keyword_score]):
+            log_match_info(query, trigger_score, max_synonym_score, max_keyword_score, database[index], match_type)
+            best_score = avg_score
+            best_response = database[index]
+            best_match_type = match_type
+    
+    if best_score >= threshold and max_score < best_score:
         logging.info(
-            f"Query: '{query}', Max Match Score: {best_max_match_score:.4f}, "
-            f"Best Match Response: '{best_max_match_response}', Match Type: {best_max_match_type}"
+            f"Query: '{query}', Best Match Score: {best_score:.4f}, "
+            f"Best Match Response: '{best_response}', Match Type: {best_match_type}"
         )
-        return best_max_match_response
+        return best_response
+    
+    elif max_score > best_score:
+        logging.info(
+            f"Query: '{query}', Max Match Score: {max_score:.4f}, "
+            f"Best Match Response: '{max_response}', Match Type: {max_match_type}"
+        )
+        return max_response
     
     else:
         logging.warning(f"No suitable match found for query: '{query}' with score above threshold: {threshold}")
         return None
 
 def match_columns(query, best_match_response):
-    query_lower = query.lower()
-    query_lower = correct_spelling(query_lower)
+    query_lower =  correct_spelling(query).lower()
 
     intent_words = {
-        "What": [
-            "What",
-            "Define",
-            "Identify",
-            "Describe",
-            "Clarify",
-            "Specify",
-            "Detail",
-            "Outline",
-            "State",
-            "Explain",
-            "Determine",
-            "Depict",
-            "Summarize",
-            "Designate",
-            "Distinguish",
-        ],
-        "Symptoms": [
-            "Symptoms",
-            "Signs",
-            "Indications",
-            "Manifestations",
-            "Warning",
-            "Clues",
-            "Evidence",
-            "Redflags",
-            "Markers",
-            "Presentations",
-            "Outcomes",
-            "Patterns",
-            "Phenomena",
-            "Traits",
-            "Occurrences",
-        ],
-        "Why": [
-            "Why",
-            "Causes",
-            "Reason",
-            "Purpose",
-            "Explain",
-            "Justification",
-            "Origin",
-            "Motive",
-            "Trigger",
-            "Rationale",
-            "Grounds",
-            "Basis",
-            "Excuse",
-            "Source",
-            "Factor",
-        ],
-        "How": [
-            "How",
-            "Method",
-            "Means",
-            "Procedure",
-            "Steps",
-            "Technique",
-            "Process",
-            "Way",
-            "Approach",
-            "Strategy",
-            "System",
-            "Manner",
-            "Framework",
-            "Form",
-            "Mode",
-            "Prevention",
-            "Avoidance",
-            "Safeguard",
-            "Protection",
-            "Mitigation",
-            "Reduction",
-            "Intervention",
-            "Defense",
-            "Deterrence",
-            "Shielding",
-        ],
+        "What": ["What","Define", "Identify","Describe","Clarify", "Specify","Detail", "Outline", "State", "Explain", "Determine","Depict", "Summarize","Designate", "Distinguish", ],
+        "Symptoms": ["Symptoms","Signs","Indications","Manifestations", "Warning", "Clues","Evidence", "Redflags","Markers","Presentations", "Outcomes", "Patterns","Phenomena", "Traits","Occurrences", ],
+        "Why": ["Why", "Causes", "Reason",  "Purpose", "Explain", "Justification", "Origin","Motive",  "Trigger", "Rationale","Grounds", "Basis", "Excuse", "Source", "Factor", ],
+        "How": [ "How", "Method", "Means","Procedure", "Steps", "Technique", "Process", "Way", "Approach","Strategy", "System", "Manner", "Framework", "Form", "Mode", "Prevention",  "Avoidance","Safeguard", "Protection", "Mitigation","Reduction", "Intervention", "Defense", "Deterrence", "Shielding", ],
     }
 
     # Collect matching columns and their first occurrence positions
     matching_columns = []
     match_found = False  # Variable to track if a match is found
 
+    #Check if the query contains any intent keywords
     for column, keywords in intent_words.items():
         for keyword in keywords:
             keyword_lower = keyword.lower()
@@ -268,12 +206,9 @@ def match_columns(query, best_match_response):
     # Fallback to the best matching column if no intent word is matched
     query_embedding = embedding_model.encode([query_lower])
     column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
-
     best_column_index = column_scores.argmax()
     best_column_name = column_names[best_column_index]
-    logging.info(
-        f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}"
-    )
+    logging.info( f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}" )
 
     return best_match_response.get(best_column_name, "")
 
@@ -290,6 +225,7 @@ def is_domain_relevant(query, threshold=0.4):
 
 def get_response(user_input, threshold=0.3):
     logging.info(f"Direct Match")
+   
     context_response = find_best_context(user_input, threshold)
     if context_response:
         # Fetch data from relevant columns
@@ -322,10 +258,10 @@ logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', fo
 @app.route('/chatbot', methods=['POST'])
 def chat():
     try:
-        recieved_api_key = request.headers.get('X-API-KEY') 
+        receieved_api_key = request.headers.get('X-API-KEY') 
         expected_api_key= 'fpv74NMceEzy.5OsNsX43uhfa2GSGPPOB1/o2ABXg0mMwniAef02'
         
-        if recieved_api_key != expected_api_key:
+        if receieved_api_key != expected_api_key:
             return jsonify({"unauthorized_access":"invalid api key"}), 401
 
         user_input = request.json.get("user_input", "").strip()

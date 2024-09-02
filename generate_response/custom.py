@@ -1,13 +1,4 @@
-import os
-import pandas as pd
 import logging
-from flask import Flask, request, jsonify, session, Blueprint
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-from dotenv import load_dotenv
-import nltk
-from nltk.stem import WordNetLemmatizer
-import os
 from utils import process_user_input
 from utils import load_prerequisites 
 from utils import analyse_dataframe
@@ -41,4 +32,5 @@ def get_response(user_input, threshold=0.3):
 
 
 
+logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 

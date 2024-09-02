@@ -1,3 +1,7 @@
+from utils.load_prerequisites import embedding_model, domain_embeddings
+from sklearn.metrics.pairwise import cosine_similarity
+import logging
+
 def is_domain_relevant(query, threshold=0.4):
     query_embedding = embedding_model.encode([query.lower()])
     relevance_scores = [cosine_similarity(query_embedding, [dom_emb]).flatten()[0] for dom_emb in domain_embeddings]

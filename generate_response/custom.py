@@ -2,6 +2,8 @@ import logging
 from utils import process_user_input
 from utils import load_prerequisites 
 from utils import analyse_dataframe
+from utils import domain_check
+from utils import default_messages
 
 def get_response(user_input, threshold=0.3):
     logging.info(f"Direct Match")
@@ -21,7 +23,7 @@ def get_response(user_input, threshold=0.3):
             return column_response
 
     logging.info(f"Checking Domain relevance")
-    if is_domain_relevant(corrected_input):
+    if domain_check.is_domain_relevant(corrected_input):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
         response = default_messages.generate_response_with_placeholder(prompt)

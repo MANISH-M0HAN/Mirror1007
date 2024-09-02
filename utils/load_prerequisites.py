@@ -1,16 +1,8 @@
-import nltk
-from nltk.stem import WordNetLemmatizer
 import os
 from sentence_transformers import SentenceTransformer
 import pandas as pd
 
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-# Download necessary data for lemmatization (only required once)
-nltk.download("wordnet")
-nltk.download("omw-1.4")
-
-print("-------------------------------------")
-# Initialize models and spellchecker
+#Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
 # Load the CSV file into a DataFrame

@@ -5,6 +5,8 @@ import pandas as pd
 #Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
+load_dotenv()
+
 # Load the CSV file into a DataFrame
 csv_file = 'heart_health_triggers.csv' # Replace with the path to your CSV file
 df = pd.read_csv(csv_file)

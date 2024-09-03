@@ -7,6 +7,7 @@ import requests
 load_dotenv()
 
 url = os.getenv("CHATBOT_URL")
+print(url)
 api_key = os.getenv("API_KEY")
 
 headers = {

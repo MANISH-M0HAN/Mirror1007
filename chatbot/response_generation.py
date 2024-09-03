@@ -1,106 +1,7 @@
-import os
-import pandas as pd
 import logging
-from flask import Flask, request, jsonify, session
-from flask_cors import CORS
-from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-from spellchecker import SpellChecker
-from dotenv import load_dotenv
-import nltk
-from nltk.stem import WordNetLemmatizer
-
-# Set the TOKENIZERS_PARALLELISM environment variable to avoid deadlock warning
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Download necessary data for lemmatization (only required once)
-nltk.download("wordnet")
-nltk.download("omw-1.4")
-
-# Initialize the lemmatizer
-lemmatizer = WordNetLemmatizer()
-
-# Initialize the Flask app
-app = Flask(__name__)
-app.secret_key = "rand"  # Use a secure method to handle secret keys
-CORS(app)
-
-# Initialize models and spellchecker
-embedding_model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
-spellchecker = SpellChecker()
-
-# Load the CSV file into a DataFrame
-csv_file = "heart_health_triggers.csv"  # Replace with the path to your CSV file
-df = pd.read_csv(csv_file)
-df.fillna("", inplace=True)
-
-# Create a database list from the DataFrame
-database = []
-for index, row in df.iterrows():
-    item = {
-        "trigger_word": row["trigger_word"],
-        "synonyms": row["synonyms"].split(","),  # Assuming synonyms are comma-separated
-        "keywords": row["keywords"].split(","),  # Assuming keywords are comma-separated
-        "What": row["What"],  # Response from 'What' column
-        "Why": row["Why"],  # Response from 'Why' column
-        "How": row["How"],  # Response from 'How' column
-        "Symptoms": row["Symptoms"],  # Response from 'Symptoms' column
-    }
-    database.append(item)
-
-# Precompute embeddings for each question-related field in batches
-trigger_embeddings = embedding_model.encode(df["trigger_word"].tolist(), batch_size=32)
-synonyms_embeddings = [
-    embedding_model.encode(syn.split(","), batch_size=32) for syn in df["synonyms"]
-]
-keywords_embeddings = [
-    embedding_model.encode(kw.split(","), batch_size=32) for kw in df["keywords"]
-]
-
-# Precompute embeddings for column names
-column_names = ["What", "Why", "How", "Symptoms"]
-column_embeddings = embedding_model.encode(column_names)
-
-db_embeddings = []
-for idx in range(len(df)):
-    db_embeddings.append(
-        {
-            "trigger_embedding": trigger_embeddings[idx],
-            "synonyms_embeddings": synonyms_embeddings[idx],
-            "keywords_embeddings": keywords_embeddings[idx],
-        }
-    )
-
-# Precompute embeddings for domain keywords
-domain_keywords = ["heart", "cardiac", "women", "health", "cardiology"]
-domain_embeddings = embedding_model.encode(domain_keywords)
-
-best_match_response_flag = 0
-
-
-def generate_response_with_placeholder(prompt):
-    response = "This is a placeholder response generated for your question."
-    return response
-
-
-def correct_spelling(text):
-    if len(text.split()) > 1:
-        corrected_words = [
-            spellchecker.correction(word) if spellchecker.correction(word) else word
-            for word in text.split()
-        ]
-        corrected_text = " ".join(corrected_words)
-        return corrected_text
-    return text
-
-
-def lemmatize_query(query):
-    lemmatized_query = " ".join([lemmatizer.lemmatize(word) for word in query.split()])
-    return lemmatized_query
-
+from .embeddings import embedding_model, column_embeddings, db_embeddings, domain_embeddings, column_names, database
+from .helpers import correct_spelling, lemmatize_query
 
 def find_best_context(query, threshold):
     query_embedding = embedding_model.encode([query.lower()])
@@ -205,7 +106,6 @@ def find_best_context(query, threshold):
         )
         return None
 
-
 def match_columns(query, best_match_response):
     query_lower = query.lower()
     query_lower = correct_spelling(query_lower)
@@ -274,18 +174,17 @@ def match_columns(query, best_match_response):
 
     return best_match_response.get(best_column_name, ""), best_match_response_flag
 
-
 def is_domain_relevant(query, threshold=0.4):
     query_embedding = embedding_model.encode([query.lower()])
     relevance_scores = [
         cosine_similarity(query_embedding, [dom_emb]).flatten()[0]
         for dom_emb in domain_embeddings
     ]
-
-    logging.info(f"Domain Relevance Scores for '{query}': {relevance_scores}")
-
     return any(score >= threshold for score in relevance_scores)
 
+def generate_response_with_placeholder(prompt):
+    response = "This is a placeholder response generated for your question."
+    return response
 
 def get_response(user_input, threshold=0.3):
     logging.info(f"Direct Match")
@@ -336,37 +235,3 @@ def get_response(user_input, threshold=0.3):
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     return fallback_response
 
-
-logging.basicConfig(
-    level=logging.INFO,
-    filename="chatbot.log",
-    filemode="a",
-    format="%(asctime)s - %(message)s",
-)
-
-
-@app.route("/chatbot", methods=["POST"])
-def chat():
-    try:
-        recieved_api_key = request.headers.get("X-API-KEY")
-        expected_api_key = os.getenv("API_KEY")
-
-        if recieved_api_key != expected_api_key:
-            return jsonify({"unauthorized_access": "invalid api key"}), 401
-
-        user_input = request.json.get("user_input", "").strip()
-
-        if not user_input:
-            return jsonify({"error": "Missing user input"}), 400
-
-        response = get_response(user_input)
-
-        return jsonify({"response": response}), 200
-
-    except Exception as exception:
-        logging.error(f"Error occurred: {str(exception)}")
-        return jsonify({"error": str(exception)}), 500
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

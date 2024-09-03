@@ -37,9 +37,13 @@ def create_csv(csv_file):
         writer.writerows(data)
 
 def get_bot_response(user_input):
+ try:
     payload = {"user_input": user_input}
     response = requests.post(url, headers=headers, json=payload)
     return response.json().get("response", "")
+ except requests.RequestException as e:
+        print(f"Request failed: {e}")
+        return ""
 
 def test_chatbot_responses(csv_file):
     with open(csv_file, mode='r', newline='', encoding='utf-8') as file:
@@ -53,9 +57,15 @@ def test_chatbot_responses(csv_file):
         
         print(f"Testing input: {user_input}")
         print(f"Expected Output: {expected_output}")
-        print(f"Bot Response: {bot_response}")
+       
+        if isinstance(bot_response, list):
+            bot_response_str = ' '.join([str(item) for item in bot_response])
+        else:
+            bot_response_str = bot_response
         
-        result = "PASS" if bot_response.strip() == expected_output.strip() else "FAIL"
+        print(f"Bot Response: {bot_response_str}")
+        
+        result = "PASS" if bot_response_str.strip() == expected_output.strip() else "FAIL"
         print("Test Passed: ", result)
         print("-" * 50)
         

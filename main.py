@@ -25,11 +25,11 @@ lemmatizer = WordNetLemmatizer()
 
 # Initialize the Flask app
 app = Flask(__name__)
-app.secret_key = 'rand'  # Use a secure method to handle secret keys
+app.secret_key = "rand"  # Use a secure method to handle secret keys
 CORS(app)
 
 # Initialize models and spellchecker
-embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+embedding_model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
 spellchecker = SpellChecker()
 
 # Load and the preprocess CSV data
@@ -40,51 +40,59 @@ df = pd.read_csv(csv_file).fillna('')
 database = []
 for index, row in df.iterrows():
     item = {
-        "trigger_word": row['trigger_word'],
-        "synonyms": row['synonyms'].split(','),  # Assuming synonyms are comma-separated
-        "keywords": row['keywords'].split(','),  # Assuming keywords are comma-separated
-        "What": row['What'],  # Response from 'What' column
-        "Why": row['Why'],    # Response from 'Why' column
-        "How": row['How'],    # Response from 'How' column
-        "Symptoms": row['Symptoms']  # Response from 'Symptoms' column
+        "trigger_word": row["trigger_word"],
+        "synonyms": row["synonyms"].split(","),  # Assuming synonyms are comma-separated
+        "keywords": row["keywords"].split(","),  # Assuming keywords are comma-separated
+        "What": row["What"],  # Response from 'What' column
+        "Why": row["Why"],  # Response from 'Why' column
+        "How": row["How"],  # Response from 'How' column
+        "Symptoms": row["Symptoms"],  # Response from 'Symptoms' column
     }
     database.append(item)
 
 # Precompute embeddings for each question-related field in batches
-trigger_embeddings = embedding_model.encode(df['trigger_word'].tolist(), batch_size=32)
-synonyms_embeddings = [embedding_model.encode(syn.split(','), batch_size=32) for syn in df['synonyms']]
-keywords_embeddings = [embedding_model.encode(kw.split(','), batch_size=32) for kw in df['keywords']]
+trigger_embeddings = embedding_model.encode(df["trigger_word"].tolist(), batch_size=32)
+synonyms_embeddings = [
+    embedding_model.encode(syn.split(","), batch_size=32) for syn in df["synonyms"]
+]
+keywords_embeddings = [
+    embedding_model.encode(kw.split(","), batch_size=32) for kw in df["keywords"]
+]
 
 # Precompute embeddings for column names
-column_names = ['What', 'Why', 'How', 'Symptoms']
+column_names = ["What", "Why", "How", "Symptoms"]
 column_embeddings = embedding_model.encode(column_names)
 
 db_embeddings = []
 for idx in range(len(df)):
-    db_embeddings.append({
-        "trigger_embedding": trigger_embeddings[idx],
-        "synonyms_embeddings": synonyms_embeddings[idx],
-        "keywords_embeddings": keywords_embeddings[idx]
-    })
+    db_embeddings.append(
+        {
+            "trigger_embedding": trigger_embeddings[idx],
+            "synonyms_embeddings": synonyms_embeddings[idx],
+            "keywords_embeddings": keywords_embeddings[idx],
+        }
+    )
 
 # Precompute embeddings for domain keywords
-domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
+domain_keywords = ["heart", "cardiac", "women", "health", "cardiology"]
 domain_embeddings = embedding_model.encode(domain_keywords)
+
+best_match_response_flag = 0
+
 
 def generate_response_with_placeholder(prompt):
     return "This is a placeholder response generated for your question."
 
+
 def correct_spelling(text):
-    # Split the text into words
-    words = text.split()
-
-    # Correct spelling for each word
-    corrected_words = [spellchecker.correction(word) or word for word in words]
-
-    # Join the corrected words into a single string
-    corrected_text = ' '.join(corrected_words)
-
-    return corrected_text
+    if len(text.split()) > 1:
+        corrected_words = [
+            spellchecker.correction(word) if spellchecker.correction(word) else word
+            for word in text.split()
+        ]
+        corrected_text = " ".join(corrected_words)
+        return corrected_text
+    return text
 
 
 def lemmatize_query(query):
@@ -112,6 +120,7 @@ def log_match_info(query, trigger_score, max_synonym_score, max_keyword_score, r
         f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
         f"Response: {response}"
     )
+
 
 def find_best_context(query, threshold):
     query_embedding = embedding_model.encode([query.lower()])
@@ -150,20 +159,27 @@ def find_best_context(query, threshold):
             f"Query: '{query}', Best Match Score: {best_score:.4f}, "
             f"Best Match Response: '{best_response}', Match Type: {best_match_type}"
         )
+
         return best_response
     
     elif max_score > best_score:
+
         logging.info(
             f"Query: '{query}', Max Match Score: {max_score:.4f}, "
             f"Best Match Response: '{max_response}', Match Type: {max_match_type}"
         )
+
         return max_response
     
     else:
-        logging.warning(f"No suitable match found for query: '{query}' with score above threshold: {threshold}")
+        logging.warning(
+            f"No suitable match found for query: '{query}' with score above threshold: {threshold}"
+        )
         return None
 
+
 def match_columns(query, best_match_response):
+
     query_lower =  correct_spelling(query).lower()
 
     intent_words = {
@@ -171,6 +187,7 @@ def match_columns(query, best_match_response):
         "Symptoms": ["Symptoms","Signs","Indications","Manifestations", "Warning", "Clues","Evidence", "Redflags","Markers","Presentations", "Outcomes", "Patterns","Phenomena", "Traits","Occurrences", ],
         "Why": ["Why", "Causes", "Reason",  "Purpose", "Explain", "Justification", "Origin","Motive",  "Trigger", "Rationale","Grounds", "Basis", "Excuse", "Source", "Factor", ],
         "How": [ "How", "Method", "Means","Procedure", "Steps", "Technique", "Process", "Way", "Approach","Strategy", "System", "Manner", "Framework", "Form", "Mode", "Prevention",  "Avoidance","Safeguard", "Protection", "Mitigation","Reduction", "Intervention", "Defense", "Deterrence", "Shielding", ],
+
     }
 
     # Collect matching columns and their first occurrence positions
@@ -187,11 +204,13 @@ def match_columns(query, best_match_response):
                 match_found = True  # Set match_found to True when a match is found
                 break  # Move to the next column once a match is found
 
-# If no match was found, add the response from the first column
+    # If no match was found, add the response from the first column
     if not match_found and intent_words:
         first_column = next(iter(intent_words))  # Get the first column
         if best_match_response.get(first_column):
-            matching_columns.append((0, best_match_response[first_column]))  # Add the first column's response
+            default_response = best_match_response[first_column]
+            best_match_response_flag = 1
+            matching_columns.append((0, default_response))
 
     # Sort the matched columns by the position of their first occurrence in the query
     matching_columns.sort(key=lambda x: x[0])
@@ -201,7 +220,7 @@ def match_columns(query, best_match_response):
 
     # Return the combined response
     if responses:
-        return " ".join(responses)
+        return " ".join(responses), best_match_response_flag
 
     # Fallback to the best matching column if no intent word is matched
     query_embedding = embedding_model.encode([query_lower])
@@ -210,18 +229,20 @@ def match_columns(query, best_match_response):
     best_column_name = column_names[best_column_index]
     logging.info( f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}" )
 
-    return best_match_response.get(best_column_name, "")
-
-
+    return best_match_response.get(best_column_name, ""), best_match_response_flag
 
 
 def is_domain_relevant(query, threshold=0.4):
     query_embedding = embedding_model.encode([query.lower()])
-    relevance_scores = [cosine_similarity(query_embedding, [dom_emb]).flatten()[0] for dom_emb in domain_embeddings]
+    relevance_scores = [
+        cosine_similarity(query_embedding, [dom_emb]).flatten()[0]
+        for dom_emb in domain_embeddings
+    ]
 
     logging.info(f"Domain Relevance Scores for '{query}': {relevance_scores}")
 
     return any(score >= threshold for score in relevance_scores)
+
 
 def get_response(user_input, threshold=0.3):
     logging.info(f"Direct Match")
@@ -238,7 +259,14 @@ def get_response(user_input, threshold=0.3):
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = find_best_context(corrected_input, threshold)
         if context_response:
-            column_response = match_columns(corrected_input, context_response)
+            column_response, best_match_response_flag = match_columns(
+                corrected_input, context_response
+            )
+            if best_match_response_flag == 1:
+                column_response = (
+                    column_response
+                    + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+                )
             return column_response
 
     logging.info(f"Checking Domain relevance")
@@ -246,16 +274,21 @@ def get_response(user_input, threshold=0.3):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
         response = generate_response_with_placeholder(prompt)
-        return response 
+        return response
 
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     return fallback_response
 
 
+logging.basicConfig(
+    level=logging.INFO,
+    filename="chatbot.log",
+    filemode="a",
+    format="%(asctime)s - %(message)s",
+)
 
-logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
 
-@app.route('/chatbot', methods=['POST'])
+@app.route("/chatbot", methods=["POST"])
 def chat():
     try:
         receieved_api_key = request.headers.get('X-API-KEY') 
@@ -269,12 +302,14 @@ def chat():
         if not user_input:
             return jsonify({"error": "Missing user input"}), 400
 
-        response= get_response(user_input)
+        response = get_response(user_input)
 
         return jsonify({"response": response}), 200
 
     except Exception as exception:
         logging.error(f"Error occurred: {str(exception)}")
         return jsonify({"error": str(exception)}), 500
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     app.run(debug=True)

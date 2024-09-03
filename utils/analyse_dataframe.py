@@ -17,19 +17,8 @@ def find_best_context(query, threshold):
     best_max_match_type = None
     matches = []
 
-    # Demo working area with generator for multiple matches
-    def match_generator():
-        for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
-            trigger_word = load_prerequisites.database[index]["trigger_word"].lower()
-            trigger_words = trigger_word.split()
-            common_words = set(trigger_words) & set(query_words)
-
-            if common_words:
-                yield load_prerequisites.database[index]
-                # print(f"Index: {index}, Trigger Words: {trigger_words}, Common Words: {common_words}")
-
     # Collect all matches from the generator
-    matches = list(match_generator())
+    matches = list(match_generator(query_words))
 
     # If there are matches,
     if matches:
@@ -175,4 +164,15 @@ def match_columns(query, best_match_response):
     )
 
     return best_match_response.get(best_column_name, ""), best_match_response_flag
+
+    # Demo working area with generator for multiple matches
+def match_generator(query_words):
+    for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
+        trigger_word = load_prerequisites.database[index]["trigger_word"].lower()
+        trigger_words = trigger_word.split()
+        common_words = set(trigger_words) & set(query_words)
+
+        if common_words:
+            yield load_prerequisites.database[index]
+            # print(f"Index: {index}, Trigger Words: {trigger_words}, Common Words: {
 

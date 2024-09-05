@@ -1,6 +1,6 @@
 **/*.log
 
-chatbot.log
+debug.log
 
 .env
 Tests/test.csv

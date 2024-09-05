@@ -43,11 +43,15 @@ def get_bot_response(user_input):
     return response.json().get("response", "")
 
 def test_chatbot_responses(csv_file):
+    pass_count = 0
+    fail_count = 0
+
     with open(csv_file, mode='r', newline='', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         rows = list(reader)
     
     for row in rows:
+        
         user_input = row["Input"]
         expected_output = row["Expected Output"]
         bot_response = get_bot_response(user_input)
@@ -61,12 +65,28 @@ def test_chatbot_responses(csv_file):
         print("-" * 50)
         
         row["Result"] = result
+        # Increment counters based on the result
+        if result == "PASS":
+            pass_count += 1
+        else:
+            fail_count += 1
 
     with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
         fieldnames = ["Concept", "Input", "Expected Output", "Result"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
+        
+    # Output the count of pass and fail cases
+    print(f"\nSummary:")
+    print(f"Total PASS cases: {pass_count}")
+    print(f"Total FAIL cases: {fail_count}")
+    if(fail_count == 0):
+        print(f"__________________________________")
+        print(f"GOOD JOB MATE!!! All test cases are cleared")
+    else:
+        print(f"__________________________________")
+        print(f"Sorry mate, Please check the code once again. \n There are {fail_count} Cases failed.")
 
 csv_file = "test.csv"
 create_csv(csv_file)

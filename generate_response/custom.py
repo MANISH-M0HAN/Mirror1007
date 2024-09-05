@@ -54,5 +54,5 @@ def get_response(user_input, threshold=0.3):
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     return fallback_response
 
-logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
+logging.basicConfig(level=logging.INFO, filename='debug.log', filemode='a', format='%(asctime)s - %(message)s')
 

@@ -59,5 +59,5 @@ def get_response(user_input, threshold=0.3):
     request_response(corrected_input, fallback_response)
     return fallback_response
 
-logging.basicConfig(level=logging.INFO, filename='debug.log', filemode='a', format='%(asctime)s - %(message)s')
+logging.basicConfig(level=logging.INFO, filename='Debug/debug.log', filemode='a', format='%(asctime)s - %(message)s')
 

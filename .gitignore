@@ -3,6 +3,6 @@
 chatbot.log
 
 .env
-test.csv
+Tests/test.csv
 
 __pycache__

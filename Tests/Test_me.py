@@ -19,6 +19,7 @@ data = [
     ["Single trigger", "what is angina?", "Angina is chest pain caused by reduced blood flow to the heart."],
     ["Single trigger", "what is angina? and why is it caused", "Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack."],
     ["Only trigger word", "angina", "Angina is chest pain caused by reduced blood flow to the heart.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
+    ["Only trigger word - multiple", "angina cardiovascular", "Cardiovascular refers to the heart and blood vessels. \n\n Angina is chest pain caused by reduced blood flow to the heart.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
     ["Domain relevance", "what is cardiac", "Cardiovascular refers to the heart and blood vessels. \n\n Myocardial infarction is a heart attack. \n\n Tachycardia is a rapid heartbeat."],
     ["Domain relevance", "what is football", "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"],
     ["Fallback", "what health", "This is a placeholder response generated for your question."],

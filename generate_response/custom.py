@@ -6,6 +6,12 @@ from utils import domain_check
 from utils import default_messages
 
 def get_response(user_input, threshold=0.3):
+    word_set = process_user_input.load_word_set('./heart_health_triggers.csv', 
+                             ['trigger_word', 'synonyms', 'keywords']) 
+    
+    
+    user_input = process_user_input.correct_spelling(user_input, word_set)
+    print(user_input)
     logging.info(f"Direct Match")
     context_responses = analyse_dataframe.find_best_context(user_input, threshold)
     if context_responses:
@@ -29,7 +35,7 @@ def get_response(user_input, threshold=0.3):
         return final_response
 
     logging.info(f"After Spell Correction")
-    corrected_input = process_user_input.correct_spelling(user_input)
+    corrected_input = process_user_input.correct_spelling(user_input, word_set)
     if corrected_input != user_input:
         logging.info(f"Corrected Input: {corrected_input}")
         context_response = analyse_dataframe.find_best_context(corrected_input, threshold)
@@ -55,4 +61,5 @@ def get_response(user_input, threshold=0.3):
     return fallback_response
 
 logging.basicConfig(level=logging.INFO, filename='chatbot.log', filemode='a', format='%(asctime)s - %(message)s')
+
 

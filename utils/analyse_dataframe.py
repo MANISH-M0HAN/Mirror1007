@@ -99,8 +99,11 @@ def find_best_context(query, threshold):
 
 def match_columns(query, best_match_response):
     query_lower = query.lower()
-    query_lower = process_user_input.correct_spelling(query_lower)
+    word_set = process_user_input.load_word_set('./heart_health_triggers.csv', 
+                             ['trigger_word', 'synonyms', 'keywords']) 
+    query_lower = process_user_input.correct_spelling(query_lower,word_set)
     best_match_response_flag = 0
+
 
     intent_words = {
         "What": [

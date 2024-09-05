@@ -5,4 +5,4 @@ chatbot.log
 .env
 test.csv
 
-/__pycache__
+*/__pycache__/

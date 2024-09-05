@@ -1,5 +1,8 @@
 **/*.log
 
 chatbot.log
+
 .env
 test.csv
+
+__pycache__

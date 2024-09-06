@@ -1,5 +1,4 @@
 import logging
-from utils import process_user_input
 from utils import load_prerequisites 
 from utils import analyse_dataframe
 from utils import domain_check

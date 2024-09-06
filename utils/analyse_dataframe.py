@@ -1,9 +1,6 @@
 from sklearn.metrics.pairwise import cosine_similarity
 from utils import load_prerequisites 
 import logging
-from utils import process_user_input
-
-
 
 def prepare_query(query):
     query_embedding = load_prerequisites.embedding_model.encode([query.lower()])

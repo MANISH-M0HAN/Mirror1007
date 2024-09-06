@@ -3,6 +3,7 @@ import requests
 import os
 from dotenv import load_dotenv
 import requests
+from datetime import datetime
 
 load_dotenv()
 
@@ -38,9 +39,13 @@ def create_csv(csv_file):
         writer.writerows(data)
 
 def get_bot_response(user_input):
+ try:
     payload = {"user_input": user_input}
     response = requests.post(url, headers=headers, json=payload)
     return response.json().get("response", "")
+ except requests.RequestException as e:
+        print(f"Request failed: {e}")
+        return ""
 
 def test_chatbot_responses(csv_file):
     pass_count = 0
@@ -58,9 +63,15 @@ def test_chatbot_responses(csv_file):
         
         print(f"Testing input: {user_input}")
         print(f"Expected Output: {expected_output}")
-        print(f"Bot Response: {bot_response}")
+       
+        if isinstance(bot_response, list):
+            bot_response_str = ' '.join([str(item) for item in bot_response])
+        else:
+            bot_response_str = bot_response
         
-        result = "PASS" if bot_response.strip() == expected_output.strip() else "FAIL"
+        print(f"Bot Response: {bot_response_str}")
+        
+        result = "PASS" if bot_response_str.strip() == expected_output.strip() else "FAIL"
         print("Test Passed: ", result)
         print("-" * 50)
         
@@ -78,7 +89,9 @@ def test_chatbot_responses(csv_file):
         writer.writerows(rows)
         
     # Output the count of pass and fail cases
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"\nSummary:")
+    print(f"Time of execution: {current_time}")
     print(f"Total PASS cases: {pass_count}")
     print(f"Total FAIL cases: {fail_count}")
     if(fail_count == 0):

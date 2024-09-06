@@ -1,6 +1,6 @@
 **/*.log
 
-debug.log
+Debug/debug.log
 
 .env
 Tests/test.csv

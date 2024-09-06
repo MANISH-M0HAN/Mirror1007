@@ -123,7 +123,6 @@ def find_best_context(query, threshold):
 
 def match_columns(query, best_match_response):
     query_lower = query.lower()
-    query_lower = process_user_input.correct_spelling(query_lower)
     best_match_response_flag = 0
 
     intent_words = {

@@ -103,7 +103,7 @@ def test_chatbot_responses(csv_file):
         print(f"__________________________________")
         print(f"Sorry {username}😞😞😞, Please check the code once again. \n There are {fail_count} Cases failed.")
 
-csv_file = "test.csv"
+csv_file = "Tests/test.csv"
 create_csv(csv_file)
 
 test_chatbot_responses(csv_file)

@@ -3,10 +3,11 @@ import requests
 import os
 from dotenv import load_dotenv
 import requests
-from datetime import datetime
+from datetime import datetime,timezone,timedelta
 
 load_dotenv()
 
+username = input("Please enter your name: ").upper()
 url = os.getenv("CHATBOT_URL")
 api_key = os.getenv("API_KEY")
 
@@ -89,17 +90,18 @@ def test_chatbot_responses(csv_file):
         writer.writerows(rows)
         
     # Output the count of pass and fail cases
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    current_time = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     print(f"\nSummary:")
+    print(f"Test Conducted By: {username}")
     print(f"Time of execution: {current_time}")
     print(f"Total PASS cases: {pass_count}")
     print(f"Total FAIL cases: {fail_count}")
     if(fail_count == 0):
         print(f"__________________________________")
-        print(f"GOOD JOB MATE!!! All test cases are cleared")
+        print(f"GOOD JOB {username}🥳🥳🥳!!! All test cases are cleared")
     else:
         print(f"__________________________________")
-        print(f"Sorry mate, Please check the code once again. \n There are {fail_count} Cases failed.")
+        print(f"Sorry {username}😞😞😞, Please check the code once again. \n There are {fail_count} Cases failed.")
 
 csv_file = "test.csv"
 create_csv(csv_file)

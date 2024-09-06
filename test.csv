@@ -1,0 +1,26 @@
+Concept,Input,Expected Output,Result
+Single trigger,what is angina?,Angina is chest pain caused by reduced blood flow to the heart.,FAIL
+Single trigger,what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.,FAIL
+Only trigger word,angina,"Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs.",FAIL
+Domain relevance,what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
+
+ Myocardial infarction is a heart attack. 
+
+ Tachycardia is a rapid heartbeat.",FAIL
+Domain relevance,what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?",FAIL
+Fallback,what health,This is a placeholder response generated for your question.,FAIL
+multiple triggers,what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
+
+ Angina is chest pain caused by reduced blood flow to the heart.",FAIL
+multiple triggers and multiple intent,what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
+
+ Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle.",FAIL
+only intent,how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?",FAIL
+Spell check,wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs.",FAIL
+Greetings,hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?",FAIL
+Edge Case,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs.",FAIL
+Edge Case,cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs.",FAIL

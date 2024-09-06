@@ -28,22 +28,6 @@ def get_response(user_input, threshold=0.3):
             )
         return final_response
 
-    logging.info(f"After Spell Correction")
-    corrected_input = process_user_input.correct_spelling(user_input)
-    if corrected_input != user_input:
-        logging.info(f"Corrected Input: {corrected_input}")
-        context_response = analyse_dataframe.find_best_context(corrected_input, threshold)
-        if context_response:
-            column_response, best_match_response_flag = analyse_dataframe.match_columns(
-                corrected_input, context_response
-            )
-            if best_match_response_flag == 1:
-                column_response = (
-                    column_response
-                    + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-                )
-            return column_response
-
     logging.info(f"Checking Domain relevance")
     if domain_check.is_domain_relevant(corrected_input):
         prompt = f"User asked: {corrected_input}. Please provide a helpful response related to women's heart health."

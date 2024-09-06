@@ -8,8 +8,9 @@ from utils import spell_checker
 def get_response(user_input, threshold=0.3):
     word_set = spell_checker.load_word_set('./heart_health_triggers.csv', 
                              ['trigger_word', 'synonyms', 'keywords']) 
-
+    logging.info(f"Before Spell Correct : {user_input}")
     user_input = spell_checker.correct_spelling(user_input, word_set)
+    logging.info(f"After Spell Correct : {user_input}")
     logging.info(f"Direct Match")
     context_responses = analyse_dataframe.find_best_context(user_input, threshold)
     if context_responses:

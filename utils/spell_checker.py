@@ -80,7 +80,7 @@ def correct_spelling(text, word_set, cutoff=0.85):
         for j in range(2, 0, -1):  # Start with 3-word combinations down to 1-word
             combined_word = ' '.join(words[i:i+j]).lower()
             matches = get_close_matches(combined_word, word_set, n=3, cutoff=cutoff)
-            print ("matches :",matches) #display the possible matches
+            #print ("matches :",matches) #display the possible matches
             
             # Find the best match from the available matches
             if matches:

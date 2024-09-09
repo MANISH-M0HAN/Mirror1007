@@ -1,3 +1,8 @@
 **/*.log
 
-chatbot.log
+Debug/debug.log
+
+.env
+Tests/test.csv
+
+*/__pycache__/

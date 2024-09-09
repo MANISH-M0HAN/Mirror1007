@@ -1,6 +1,7 @@
 from sklearn.metrics.pairwise import cosine_similarity
 from utils import load_prerequisites 
 import logging
+from utils import process_user_input
 
 def prepare_query(query):
     query_embedding = load_prerequisites.embedding_model.encode([query.lower()])
@@ -120,6 +121,7 @@ def find_best_context(query, threshold):
 
 def match_columns(query, best_match_response):
     query_lower = query.lower()
+    query_lower = process_user_input.correct_spelling(query_lower)
     best_match_response_flag = 0
 
     intent_words = {

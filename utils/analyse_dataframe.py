@@ -10,6 +10,7 @@ def match_generator(query_words):
             logging.warning(f"Yielding database entry: {load_prerequisites.database[index]}")
             yield load_prerequisites.database[index]
 
+
 def score_matches(query_embedding):
     avg_match_score = 0
     max_match_score = 0

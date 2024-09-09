@@ -33,13 +33,7 @@ data = [
     ["Edge Case", "cardiovascular?", "Cardiovascular refers to the heart and blood vessels.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."]
 ]
 
-# Get the absolute path of the 'Tests' folder relative to the script location
 script_dir = os.path.dirname(os.path.abspath(__file__))
-# tests_dir = os.path.join(script_dir, "Tests")
-
-# # Ensure the 'Tests' folder exists
-# os.makedirs(tests_dir, exist_ok=True)
-
 csv_file = os.path.join(script_dir, "test.csv")
 
 def create_csv(csv_file):
@@ -84,7 +78,6 @@ def test_chatbot_responses(csv_file):
         print("-" * 50)
 
         row["Result"] = result
-        # Increment counters based on the result
         if result == "PASS":
             pass_count += 1
         else:
@@ -96,7 +89,6 @@ def test_chatbot_responses(csv_file):
         writer.writeheader()
         writer.writerows(rows)
 
-    # Output the count of pass and fail cases
     current_time = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     print(f"\nSummary:")
     print(f"Test Conducted By: {username}")
@@ -110,6 +102,5 @@ def test_chatbot_responses(csv_file):
         print(f"__________________________________")
         print(f"Sorry {username}😞😞😞, Please check the code once again. \n There are {fail_count} Cases failed.")
 
-# Create the CSV and run the tests
 create_csv(csv_file)
 test_chatbot_responses(csv_file)

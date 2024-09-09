@@ -2,8 +2,7 @@ import csv
 import requests
 import os
 from dotenv import load_dotenv
-import requests
-from datetime import datetime,timezone,timedelta
+from datetime import datetime, timezone, timedelta
 
 load_dotenv()
 
@@ -34,17 +33,26 @@ data = [
     ["Edge Case", "cardiovascular?", "Cardiovascular refers to the heart and blood vessels.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."]
 ]
 
+# Get the absolute path of the 'Tests' folder relative to the script location
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# tests_dir = os.path.join(script_dir, "Tests")
+
+# # Ensure the 'Tests' folder exists
+# os.makedirs(tests_dir, exist_ok=True)
+
+csv_file = os.path.join(script_dir, "test.csv")
+
 def create_csv(csv_file):
     with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerows(data)
 
 def get_bot_response(user_input):
- try:
-    payload = {"user_input": user_input}
-    response = requests.post(url, headers=headers, json=payload)
-    return response.json().get("response", "")
- except requests.RequestException as e:
+    try:
+        payload = {"user_input": user_input}
+        response = requests.post(url, headers=headers, json=payload)
+        return response.json().get("response", "")
+    except requests.RequestException as e:
         print(f"Request failed: {e}")
         return ""
 
@@ -55,27 +63,26 @@ def test_chatbot_responses(csv_file):
     with open(csv_file, mode='r', newline='', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         rows = list(reader)
-    
+
     for row in rows:
-        
         user_input = row["Input"]
         expected_output = row["Expected Output"]
         bot_response = get_bot_response(user_input)
-        
+
         print(f"Testing input: {user_input}")
         print(f"Expected Output: {expected_output}")
-       
+
         if isinstance(bot_response, list):
             bot_response_str = ' '.join([str(item) for item in bot_response])
         else:
             bot_response_str = bot_response
-        
+
         print(f"Bot Response: {bot_response_str}")
-        
+
         result = "PASS" if bot_response_str.strip() == expected_output.strip() else "FAIL"
         print("Test Passed: ", result)
         print("-" * 50)
-        
+
         row["Result"] = result
         # Increment counters based on the result
         if result == "PASS":
@@ -88,7 +95,7 @@ def test_chatbot_responses(csv_file):
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-        
+
     # Output the count of pass and fail cases
     current_time = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     print(f"\nSummary:")
@@ -96,14 +103,13 @@ def test_chatbot_responses(csv_file):
     print(f"Time of execution: {current_time}")
     print(f"Total PASS cases: {pass_count}")
     print(f"Total FAIL cases: {fail_count}")
-    if(fail_count == 0):
+    if fail_count == 0:
         print(f"__________________________________")
         print(f"GOOD JOB {username}🥳🥳🥳!!! All test cases are cleared")
     else:
         print(f"__________________________________")
         print(f"Sorry {username}😞😞😞, Please check the code once again. \n There are {fail_count} Cases failed.")
 
-csv_file = "Tests/test.csv"
+# Create the CSV and run the tests
 create_csv(csv_file)
-
 test_chatbot_responses(csv_file)

@@ -3,7 +3,9 @@ import logging
 from flask import request, jsonify, Blueprint
 from dotenv import load_dotenv
 from generate_response import get_response
+
 load_dotenv()
+
 question_bot_bp = Blueprint('question_bot_bp', __name__) 
 
 @question_bot_bp.route('/question_chatbot', methods=['POST'])

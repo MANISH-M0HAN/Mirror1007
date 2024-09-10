@@ -30,16 +30,13 @@ common_english_words = {
     "very", "want", "wants", "was", "way", "we", "well", "went", "were", "what", "when", "where", 
     "whether", "which", "while", "who", "whom", "whose", "why", "will", "with", "within", "without", 
     "won't", "would", "yes", "yet", "you", "your", "yours", "yourself", "yourselves", "input", "read", "wake"
-
-
-    # Jennifer 
+ 
     "nausea", "vomit", "hand", "excercise", "precaution", "cancer", "parts", "stroke", "pills",
     "conditions", "imbalance", "cell", "cure", "growth", "friend", "organs", "breast", "sufficient",
     "reduce", "stress", "lumps", "stage", "extremely", "ill", "wear", "sure",  "virus", "sex",
     "become", "massive", "patients", "required", "face", "tissue", "fat", "shortage", "blood", "eyes", "body",
     "issue", "tube", "testing", "baby", "small", "genes", "high"     
 
-    # Jennifer - Intent words
     "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 
     "Summarize", "Designate", "Distinguish", "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", 
     "Redflags", "Markers", "Presentations",  "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences", "Causes", "Reason", 

@@ -3,6 +3,6 @@
 Debug/debug.log
 
 .env
-Tests/test.csv
+#Tests/test.csv
 
 */__pycache__/

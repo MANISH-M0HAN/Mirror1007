@@ -6,29 +6,29 @@ def unauthorized_user_error():
             "chatbot-response": "",
             "bot-type": ""
         },
-        "message": "Unauthorised request. The API key provided is not valid.",
-        "status": "Error"
+        "message": "Unauthorised Request",
+        "status": "error"
     }
 
-    return jsonify(unauthorized_error_json), 401
+    return jsonify(unauthorized_error_json),401
 
-def success_response(chatbot_response, bot_type= None):
+def bot_response(response, bot_type= None):
     if bot_type== None:
-        bot_type = "Custom"
-    success_response_json = {
+        bot_type = "custom"
+    bot_response_json = {
         "data": {
-            "chatbot-response": chatbot_response,
+            "chatbot-response": response,
             "bot-type": bot_type
         },
-        "message": "Successfully recieved response",
-        "status": "Success"
+        "message": "Sucessfully recieved response",
+        "status": "success"
     }
 
-    return jsonify(success_response_json), 200
+    return jsonify(bot_response_json),200
 
 def validation_error(message, bot_type= None):
     if bot_type== None:
-        bot_type = "Custom"
+        bot_type = "custom"
     validation_error_json = {
         "data": {
             "chatbot-response": message,

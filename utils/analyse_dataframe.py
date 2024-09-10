@@ -2,10 +2,15 @@ from sklearn.metrics.pairwise import cosine_similarity
 from utils import load_prerequisites 
 import logging
 from utils import process_user_input
+import re
 
-
+def preprocess_input(query):
+    preprocessed_query = re.sub(r'[^\w\s]', '', query).strip()
+    print("The preprocessed query: ", preprocessed_query)
+    return preprocessed_query
 
 def prepare_query(query):
+    query = preprocess_input(query)
     query_embedding = load_prerequisites.embedding_model.encode([query.lower()])
     query_words = query.strip().lower().split()
     return query_embedding, query_words

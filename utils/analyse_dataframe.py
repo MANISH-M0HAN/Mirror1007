@@ -5,8 +5,8 @@ from utils import process_user_input
 import re
 
 def preprocess_input(query):
+    #Remove special characters
     preprocessed_query = re.sub(r'[^\w\s]', '', query).strip()
-    print("The preprocessed query: ", preprocessed_query)
     return preprocessed_query
 
 def prepare_query(query):
@@ -124,13 +124,12 @@ def find_best_context(query, threshold):
         best_match_type, best_max_match_type, 
         threshold
     )
-
-
+    
 def match_columns(query, best_match_response):
     query_lower = query.lower()
     query_lower = process_user_input.correct_spelling(query_lower)
     best_match_response_flag = 0
-
+    
     intent_words = {
         "What": [
             "What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 

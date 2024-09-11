@@ -20,4 +20,3 @@ sleep 1
 
 python3 -m pip install --break-system-packages -r "$REQUIREMENTS_FILE"
 echo "Required packages installed from $REQUIREMENTS_FILE"
-

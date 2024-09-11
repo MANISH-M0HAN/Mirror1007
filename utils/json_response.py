@@ -6,7 +6,7 @@ def unauthorized_user_error():
             "chatbot-response": "",
             "bot-type": ""
         },
-        "message": "Unauthorised request",
+        "message": "Unauthorised request. The API key provided is not valid.",
         "status": "error"
     }
 
@@ -20,7 +20,7 @@ def success_response(chatbot_response, bot_type= None):
             "chatbot-response": chatbot_response,
             "bot-type": bot_type
         },
-        "message": "successfully recieved response",
+        "message": "Successfully recieved response",
         "status": "success"
     }
 
@@ -34,7 +34,7 @@ def validation_error(message, bot_type= None):
             "chatbot-response": message,
             "bot-type": bot_type
         },
-        "message": "validation error",
+        "message": "Validation error",
         "status": "error"
     }
 

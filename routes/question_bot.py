@@ -5,10 +5,14 @@ from flask import request, jsonify, Blueprint
 from dotenv import load_dotenv
 from generate_response import get_response
 <<<<<<< HEAD
+<<<<<<< HEAD
 from utils.json_response import unauthorized_user_error, success_response, validation_error, internal_server_error
 =======
 from utils.json_response import unauthorized_user_error, bot_response, validation_error
 >>>>>>> 1986c76 (feat: create json response methods)
+=======
+from utils.json_response import unauthorized_user_error, success_response, validation_error, internal_server_error
+>>>>>>> ca65cda (refactor: change function names)
 
 load_dotenv()
 
@@ -32,7 +36,11 @@ def question_chatbot():
 
         custom_response = get_response(user_input)
 
+<<<<<<< HEAD
         return success_response(custom_response)
+=======
+        return success_response(response)
+>>>>>>> ca65cda (refactor: change function names)
 
     except Exception as exception:
         exception = str(exception)

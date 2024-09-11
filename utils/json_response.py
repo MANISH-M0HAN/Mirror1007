@@ -39,3 +39,15 @@ def validation_error(message, bot_type= None):
     }
 
     return jsonify(validation_error_json),422
+
+def internal_server_error(exception):
+    internal_server_error_json = {
+        "data": {
+            "chatbot-response": "",
+            "bot-type": ""
+        },
+        "message": exception,
+        "status": "error"
+    }
+
+    return jsonify(internal_server_error_json), 500

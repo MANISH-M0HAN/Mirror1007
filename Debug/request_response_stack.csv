@@ -565,4 +565,17 @@ cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
 cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+<<<<<<< HEAD
 >>>>>>> c80ff75 (PR for adding env-example and revision of Test_me.py along with minor improvements (#22))
+=======
+lipid,"Cholesterol is a type of fat found in your blood.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+lipid and infection,"Cholesterol is a type of fat found in your blood. 
+
+ Endocarditis is the inflammation of the heart's inner lining.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+lipid and angina,"Cholesterol is a type of fat found in your blood. 
+
+ Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+>>>>>>> d1fb7c6 (fixed multiple_synonyms_keywords direct match)

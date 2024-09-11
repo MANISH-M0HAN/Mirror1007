@@ -5,11 +5,16 @@ import logging
 def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_words = [trigger.lower().strip() for trigger in load_prerequisites.database[index]["trigger_words"]]
-        common_words = set(trigger_words) & set(query_words)
+        synonyms = [synonym.lower().strip() for synonym in load_prerequisites.database[index]["synonyms"]]
+        keywords = [keyword.lower().strip() for keyword in load_prerequisites.database[index]["keywords"]]
+        
+        all_match_words = set(trigger_words + synonyms + keywords)
+        
+        common_words = all_match_words & set([word.lower().strip() for word in query_words])
+
         if common_words:
             logging.warning(f"Yielding database entry: {load_prerequisites.database[index]}")
             yield load_prerequisites.database[index]
-
 
 def score_matches(query_embedding):
     avg_match_score = 0

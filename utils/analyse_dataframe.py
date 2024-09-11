@@ -3,31 +3,33 @@ from utils import load_prerequisites
 import logging
 from utils import process_user_input
 
-
-def find_best_context(query, threshold):
+def prepare_query(query):
     query_embedding = load_prerequisites.embedding_model.encode([query.lower()])
-    # Strip the query and split it into a list of words
     query_words = query.strip().lower().split()
+    return query_embedding, query_words
 
+def match_generator(query_words):
+    for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
+        trigger_word = load_prerequisites.database[index]["trigger_word"].lower()
+        trigger_words = trigger_word.split()
+        common_words = set(trigger_words) & set(query_words)
+
+        if common_words:
+            yield load_prerequisites.database[index]
+
+def score_matches(query_embedding):
     best_match_score = 0
     best_max_match_score = 0
     best_match_response = []
     best_max_match_response = []
     best_match_type = None
     best_max_match_type = None
-    matches = []
-
-    # Collect all matches from the generator
-    matches = list(match_generator(query_words))
-
-    # If there are matches,
-    if matches:
-        return matches
 
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_score = cosine_similarity(
             query_embedding, item_embeddings["trigger_embedding"].reshape(1, -1)
         ).flatten()[0]
+        
         synonym_scores = [
             cosine_similarity(query_embedding, syn_emb.reshape(1, -1)).flatten()[0]
             for syn_emb in item_embeddings["synonyms_embeddings"]
@@ -49,7 +51,7 @@ def find_best_context(query, threshold):
             or max_keyword_score >= 0.65
         ):
             logging.info(
-                f"Strong direct match found. Query: '{query}', Trigger Score: {trigger_score:.4f}, "
+                f"Strong direct match found. Trigger Score: {trigger_score:.4f}, "
                 f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
                 f"Response: {load_prerequisites.database[index]}"
             )
@@ -66,35 +68,55 @@ def find_best_context(query, threshold):
             and max_keyword_score < 0.65
         ):
             logging.info(
-                f"Strong direct match found. Query: '{query}', Trigger Score: {trigger_score:.4f}, "
-                f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
-                f"Response: {load_prerequisites.database[index]}"
+                f"Strong direct match found. Avg Score: {avg_score:.4f}, "
+                f"Trigger Score: {trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, "
+                f"Keyword Score: {max_keyword_score:.4f} Response: {load_prerequisites.database[index]}"
             )
             best_match_score = avg_score
             best_match_response.append(load_prerequisites.database[index])
             best_match_type = "Avg Max Match"
 
+    return best_match_score, best_max_match_score, best_match_response, best_max_match_response, best_match_type, best_max_match_type
+
+def evaluate_matches(best_match_score, best_max_match_score, best_match_response, best_max_match_response, best_match_type, best_max_match_type, threshold):
     if best_match_score >= threshold and best_max_match_score < best_match_score:
         logging.info(
-            f"Query: '{query}', Best Match Score: {best_match_score:.4f}, "
-            f"Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
+            f"Best Match Score: {best_match_score:.4f}, Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
         )
         print("best match response")
         return best_match_response
 
     elif best_max_match_score > best_match_score:
         logging.info(
-            f"Query: '{query}', Max Match Score: {best_max_match_score:.4f}, "
-            f"Best Match Response: '{best_max_match_response}', Match Type: {best_max_match_type}"
+            f"Max Match Score: {best_max_match_score:.4f}, Best Match Response: '{best_max_match_response}', Match Type: {best_max_match_type}"
         )
         print("max match")
         return best_max_match_response
 
     else:
         logging.warning(
-            f"No suitable match found for query: '{query}' with score above threshold: {threshold}"
+            f"No suitable match found for query with score above threshold: {threshold}"
         )
         return None
+
+def find_best_context(query, threshold):
+    query_embedding, query_words = prepare_query(query)
+    
+    # Collect matches from the generator
+    matches = list(match_generator(query_words))
+    if matches:
+        return matches
+
+    # Score the matches
+    best_match_score, best_max_match_score, best_match_response, best_max_match_response, best_match_type, best_max_match_type = score_matches(query_embedding)
+    
+    # Evaluate the best matches and return the result
+    return evaluate_matches(
+        best_match_score, best_max_match_score, 
+        best_match_response, best_max_match_response, 
+        best_match_type, best_max_match_type, 
+        threshold
+    )
 
 
 def match_columns(query, best_match_response):
@@ -154,11 +176,11 @@ def match_columns(query, best_match_response):
         return " ".join(responses), best_match_response_flag
 
     # Fallback to the best matching column if no intent word is matched
-    query_embedding = embedding_model.encode([query_lower])
-    column_scores = cosine_similarity(query_embedding, column_embeddings).flatten()
+    query_embedding = load_prerequisites.embedding_model.encode([query_lower])
+    column_scores = cosine_similarity(query_embedding,load_prerequisites.column_embeddings).flatten()
 
     best_column_index = column_scores.argmax()
-    best_column_name = column_names[best_column_index]
+    best_column_name = load_prerequisites.column_names[best_column_index]
     logging.info(
         f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}"
     )

@@ -2,10 +2,11 @@ import csv
 import requests
 import os
 from dotenv import load_dotenv
+from request_response_csv import request_response
 from datetime import datetime, timezone, timedelta
+import requests
 
 load_dotenv()
-
 username = input("Please enter your name: ").upper()
 url = os.getenv("CHATBOT_URL")
 api_key = os.getenv("API_KEY")
@@ -27,11 +28,13 @@ data = [
     ["multiple triggers", "what is cholesterol and what is angina", "Cholesterol is a type of fat found in your blood. \n\n Angina is chest pain caused by reduced blood flow to the heart."],
     ["multiple triggers and multiple intent", "what is cholesterol and how is angina caused", "Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. \n\n Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."],
     ["only intent", "how", "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"],
-    ["Spell check", "wat is angina", "Angina is chest pain caused by reduced blood flow to the heart.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
+    ["Spell check", "wat is angina", "Angina is chest pain caused by reduced blood flow to the heart."],
     ["Greetings", "hi", "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"],
     ["Edge Case", "cardiovascular", "Cardiovascular refers to the heart and blood vessels.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
-    ["Edge Case", "cardiovascular?", "Cardiovascular refers to the heart and blood vessels.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."]
+    ["Edge Case", "cardiovascular?", "Cardiovascular refers to the heart and blood vessels.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
+    ["Edge Case", "angina cardiovascular?", "Cardiovascular refers to the heart and blood vessels. \n\n Angina is chest pain caused by reduced blood flow to the heart.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
 ]
+
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file = os.path.join(script_dir, "test.csv")
@@ -62,7 +65,7 @@ def test_chatbot_responses(csv_file):
         user_input = row["Input"]
         expected_output = row["Expected Output"]
         bot_response = get_bot_response(user_input)
-
+        
         print(f"Testing input: {user_input}")
         print(f"Expected Output: {expected_output}")
 
@@ -70,13 +73,13 @@ def test_chatbot_responses(csv_file):
             bot_response_str = ' '.join([str(item) for item in bot_response])
         else:
             bot_response_str = bot_response
-
+        
         print(f"Bot Response: {bot_response_str}")
-
+        
         result = "PASS" if bot_response_str.strip() == expected_output.strip() else "FAIL"
         print("Test Passed: ", result)
         print("-" * 50)
-
+        
         row["Result"] = result
         if result == "PASS":
             pass_count += 1
@@ -88,6 +91,7 @@ def test_chatbot_responses(csv_file):
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
+
 
     current_time = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M:%S")
     print(f"\nSummary:")

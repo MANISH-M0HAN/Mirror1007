@@ -2,7 +2,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 from utils import load_prerequisites 
 import logging
 from utils import process_user_input
+from nltk.stem import PorterStemmer
 import re
+
+stemmer = PorterStemmer()
 
 def preprocess_input(query):
     #Remove special characters
@@ -11,16 +14,19 @@ def preprocess_input(query):
 
 def prepare_query(query):
     query = preprocess_input(query)
-    query_embedding = load_prerequisites.embedding_model.encode([query.lower()])
+    # Stem the query words
     query_words = query.strip().lower().split()
-    return query_embedding, query_words
+    stemmed_query_words = [stemmer.stem(word) for word in query_words]
+    # Create embedding using stemmed words
+    query_embedding = load_prerequisites.embedding_model.encode([' '.join(stemmed_query_words)])
+    return query_embedding, stemmed_query_words
 
 def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_word = load_prerequisites.database[index]["trigger_word"].lower()
         trigger_words = trigger_word.split()
-        common_words = set(trigger_words) & set(query_words)
-
+        stemmed_trigger_words = [stemmer.stem(word) for word in trigger_words]
+        common_words = set(stemmed_trigger_words) & set(query_words)
         if common_words:
             yield load_prerequisites.database[index]
 
@@ -146,15 +152,21 @@ def match_columns(query, best_match_response):
         "How": [
             "How", "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", "Manner", 
             "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", "Reduction", 
-            "Intervention", "Defense", "Deterrence", "Shielding", "Do"
+            "Intervention", "Defence", "Deterrence", "Shielding", "Do"
         ]
     }
-
+    
+    # Stem the intent words
+    stemmed_intent_words = {
+        column: [stemmer.stem(word.lower()) for word in words]
+        for column, words in intent_words.items()
+    }
+    
     # Collect matching columns and their first occurrence positions
     matching_columns = []
     match_found = False  # Variable to track if a match is found
 
-    for column, keywords in intent_words.items():
+    for column, keywords in stemmed_intent_words.items():
         for keyword in keywords:
             keyword_lower = keyword.lower()
             position = query_lower.find(keyword_lower)
@@ -164,8 +176,8 @@ def match_columns(query, best_match_response):
                 break  # Move to the next column once a match is found
 
     # If no match was found, add the response from the first column
-    if not match_found and intent_words:
-        first_column = next(iter(intent_words))  # Get the first column
+    if not match_found and stemmed_intent_words:
+        first_column = next(iter(stemmed_intent_words))  # Get the first column
         if best_match_response.get(first_column):
             default_response = best_match_response[first_column]
             best_match_response_flag = 1

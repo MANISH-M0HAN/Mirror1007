@@ -20,7 +20,7 @@ def question_chatbot():
         if recieved_api_key != expected_api_key:
             return unauthorized_user_error()
 
-        user_input = request.json.get("user_input", "").strip()
+        user_input = request.json.get("user-input", "").strip()
 
         if not user_input:
             message = "Missing user input"

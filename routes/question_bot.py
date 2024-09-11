@@ -26,9 +26,9 @@ def question_chatbot():
             message = "Missing user input"
             return validation_error(message)
 
-        response = get_response(user_input)
+        custom_response = get_response(user_input)
 
-        return success_response(response)
+        return success_response(custom_response)
 
     except Exception as exception:
         exception = str(exception)

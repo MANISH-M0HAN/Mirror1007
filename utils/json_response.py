@@ -12,12 +12,12 @@ def unauthorized_user_error():
 
     return jsonify(unauthorized_error_json), 401
 
-def success_response(response, bot_type= None):
+def success_response(chatbot_response, bot_type= None):
     if bot_type== None:
         bot_type = "custom"
     success_response_json = {
         "data": {
-            "chatbot-response": response,
+            "chatbot-response": chatbot_response,
             "bot-type": bot_type
         },
         "message": "successfully recieved response",

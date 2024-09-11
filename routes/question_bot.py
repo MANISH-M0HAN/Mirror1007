@@ -31,7 +31,7 @@ def question_chatbot():
         return success_response(response)
 
     except Exception as exception:
-        message = str(exception)
-        return internal_server_error(message)
+        exception = str(exception)
+        return internal_server_error(exception)
 
 

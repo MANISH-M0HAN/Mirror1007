@@ -6,7 +6,7 @@ def unauthorized_user_error():
             "chatbot-response": "",
             "bot-type": ""
         },
-        "message": "Unauthorised Request",
+        "message": "Unauthorised request",
         "status": "error"
     }
 
@@ -20,7 +20,7 @@ def success_response(response, bot_type= None):
             "chatbot-response": response,
             "bot-type": bot_type
         },
-        "message": "Sucessfully recieved response",
+        "message": "successfully recieved response",
         "status": "success"
     }
 

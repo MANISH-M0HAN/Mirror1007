@@ -10,12 +10,12 @@ def unauthorized_user_error():
         "status": "error"
     }
 
-    return jsonify(unauthorized_error_json),401
+    return jsonify(unauthorized_error_json), 401
 
-def bot_response(response, bot_type= None):
+def success_response(response, bot_type= None):
     if bot_type== None:
         bot_type = "custom"
-    bot_response_json = {
+    success_response_json = {
         "data": {
             "chatbot-response": response,
             "bot-type": bot_type
@@ -24,7 +24,7 @@ def bot_response(response, bot_type= None):
         "status": "success"
     }
 
-    return jsonify(bot_response_json),200
+    return jsonify(success_response_json), 200
 
 def validation_error(message, bot_type= None):
     if bot_type== None:
@@ -38,7 +38,7 @@ def validation_error(message, bot_type= None):
         "status": "error"
     }
 
-    return jsonify(validation_error_json),422
+    return jsonify(validation_error_json), 422
 
 def internal_server_error(exception):
     internal_server_error_json = {

@@ -22,8 +22,7 @@ def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_word = load_prerequisites.database[index]["trigger_word"].lower()
         trigger_words = trigger_word.split()
-        stemmed_trigger_words = [stemmer.stem(word) for word in trigger_words]
-        common_words = set(stemmed_trigger_words) & set(query_words)
+        common_words = set(trigger_words) & set(query_words)
         if common_words:
             yield load_prerequisites.database[index]
 

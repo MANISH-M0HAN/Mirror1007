@@ -13,9 +13,10 @@ def preprocess_input(query):
 def prepare_query(query):
     query = preprocess_input(query)
     query_words = query.strip().lower().split()
-    stemmed_query_words = [stemmer.stem(word) for word in query_words]
-    query_embedding = load_prerequisites.embedding_model.encode([' '.join(stemmed_query_words)])
-    return query_embedding, stemmed_query_words
+    stemmed_query_words = [stemmer.stem(word) for word in query_words] 
+    stemmed_query_words = ' '.join(stemmed_query_words)
+    print(stemmed_query_words)
+    return stemmed_query_words
 
 def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
@@ -108,8 +109,8 @@ def evaluate_matches(best_match_score, best_max_match_score, best_match_response
         return None
 
 def find_best_context(query, threshold):
-    query_embedding, query_words = prepare_query(query)
-    
+    query_words = prepare_query(query).split()
+    query_embedding = load_prerequisites.embedding_model.encode([' '.join(query_words)])
     matches = list(match_generator(query_words))
     if matches:
         return matches
@@ -124,14 +125,15 @@ def find_best_context(query, threshold):
     )
     
 def match_columns(query, best_match_response):
+    query = prepare_query(query)
     query_lower = query.lower()
     best_match_response_flag = 0
     
     intent_words = {
-            'What': ['what', 'defin', 'identifi', 'describ', 'clarifi', 'specifi', 'detail', 'outlin', 'state', 'explain', 'determin', 'depict', 'summar', 'design', 'distinguish'], 
+            'What': ['what', 'defin', 'identif', 'describ', 'clarif', 'specif', 'detail', 'outlin', 'state', 'explain', 'determin', 'depict', 'summar', 'design', 'distinguish'], 
             'Symptoms': ['symptom', 'sign', 'indic', 'manifest', 'warn', 'clue', 'evid', 'redflag', 'marker', 'present', 'outcom', 'pattern', 'phenomena', 'trait', 'occurr'], 
             'Why': ['whi', 'caus', 'reason', 'purpos', 'explain', 'justif', 'origin', 'motiv', 'trigger', 'rational', 'ground', 'basi', 'excus', 'sourc', 'factor'], 
-            'How': ['how', 'method', 'mean', 'procedur', 'step', 'techniqu', 'process', 'way', 'approach', 'strategi', 'system', 'manner', 'framework', 'form', 'mode', 'prevent', 'avoid', 'safeguard', 'protect', 'mitig', 'reduct', 'intervent', 'defenc', 'deterr', 'shield', 'do']
+            'How': ['how', 'method', 'mean', 'procedur', 'step', 'techniqu', 'process', 'way', 'approach', 'strateg', 'system', 'manner', 'framework', 'form', 'mode', 'prevent', 'avoid', 'safeguard', 'protect', 'mitig', 'reduct', 'intervent', 'defenc', 'deterr', 'shield', 'do']
         }
     
     matching_columns = []

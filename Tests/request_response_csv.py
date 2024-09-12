@@ -1,7 +1,7 @@
 import csv
 import os
 
-def request_response(user_input, response):
+def request_response(user_input,corrected_input, response):
     file_path = "Debug/request_response_stack.csv"
     file_exists = os.path.isfile(file_path)
     
@@ -9,6 +9,6 @@ def request_response(user_input, response):
         writer = csv.writer(file)
         
         if not file_exists:
-            writer.writerow(["User Input", "Response"])
+            writer.writerow(["User Input","Corrected Input", "Response"])
         
-        writer.writerow([user_input, response])
+        writer.writerow([user_input, corrected_input, response])

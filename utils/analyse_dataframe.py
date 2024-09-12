@@ -5,6 +5,7 @@ from utils import process_user_input
 from nltk.stem import PorterStemmer
 import re
 
+
 stemmer = PorterStemmer()
 
 def preprocess_input(query):

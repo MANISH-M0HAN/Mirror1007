@@ -1,393 +1,141 @@
-User Input,Response
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
+User Input,Corrected Input,Response
+what is angina?,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+what is angina? and why is it caused,what is angina and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
+angina,angina,"Angina is chest pain caused by reduced blood flow to the heart.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+angina cardiovascular,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
 
  Angina is chest pain caused by reduced blood flow to the heart.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
+what is cardiac,what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
 
  Myocardial infarction is a heart attack. 
 
  Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
+what is football,what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+what health,what health,This is a placeholder response generated for your question.
+what is cholesterol and what is angina,what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
 
  Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
+what is cholesterol and how is angina caused,what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
 
  Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
+how,how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+wat is angina,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+hi,hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+cardiovascular,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
+cardiovascular?,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
+what is angina?,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+what is angina? and why is it caused,what is angina and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
+angina,angina,"Angina is chest pain caused by reduced blood flow to the heart.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+angina cardiovascular,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
 
  Angina is chest pain caused by reduced blood flow to the heart.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
+what is cardiac,what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
 
  Myocardial infarction is a heart attack. 
 
  Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
+what is football,what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+what health,what health,This is a placeholder response generated for your question.
+what is cholesterol and what is angina,what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
 
  Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
+what is cholesterol and how is angina caused,what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
 
  Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
+how,how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+wat is angina,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+hi,hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+cardiovascular,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
+cardiovascular?,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+angina?? cardiovascular,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
 
  Angina is chest pain caused by reduced blood flow to the heart.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
+angina??? cardiovascular,angina??? cardiovascular,"Cardiovascular refers to the heart and blood vessels.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+angina? cardiovascular???,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+
+ Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+angina?? cardiovascular???,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+
+ Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+angina??? cardiovascular?????,angina??? cardiovascular?????,"Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+angina cardiovascular?,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+
+ Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+what is angina?,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+what is angina? and why is it caused,what is angina and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
+angina,angina,"Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+angina cardiovascular,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+
+ Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+what is cardiac,what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
 
  Myocardial infarction is a heart attack. 
 
  Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
+what is football,what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+what health,what health,This is a placeholder response generated for your question.
+what is cholesterol and what is angina,what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
 
  Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
+what is cholesterol and how is angina caused,what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
 
  Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
+how,how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+wat is angina,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+hi,hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+cardiovascular,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
+cardiovascular?,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+angina cardiovascular,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
 
  Angina is chest pain caused by reduced blood flow to the heart.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
+what is angina?,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+what is angina? and why is it caused,what is angina and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
+angina,angina,"Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+angina cardiovascular,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+
+ Angina is chest pain caused by reduced blood flow to the heart.
+ For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
+what is cardiac,what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
 
  Myocardial infarction is a heart attack. 
 
  Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
+what is football,what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+what health,what health,This is a placeholder response generated for your question.
+what is cholesterol and what is angina,what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
 
  Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
+what is cholesterol and how is angina caused,what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
 
  Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
+how,how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+wat is angina,what is angina,Angina is chest pain caused by reduced blood flow to the heart.
+hi,hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
+cardiovascular,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
+cardiovascular?,cardiovascular,"Cardiovascular refers to the heart and blood vessels.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
+angina cardiovascular?,angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
 
  Angina is chest pain caused by reduced blood flow to the heart.
  For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack. 
-
- Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
-
- Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
-
- Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
-
- Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack. 
-
- Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
-
- Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
-
- Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
-
- Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack. 
-
- Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
-
- Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
-
- Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
-
- Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack. 
-
- Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
-
- Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
-
- Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is angina?,Angina is chest pain caused by reduced blood flow to the heart.
-what is angina? and why is it caused,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-angina cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
-
- Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-what is cardiac,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack. 
-
- Tachycardia is a rapid heartbeat."
-what is football,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-what health,This is a placeholder response generated for your question.
-what is cholesterol and what is angina,"Cholesterol is a type of fat found in your blood. 
-
- Angina is chest pain caused by reduced blood flow to the heart."
-what is cholesterol and how is angina caused,"Cholesterol is a type of fat found in your blood. Eat a low-fat diet, exercise regularly, and take prescribed medications. 
-
- Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-wat is angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-hi,"I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-cardiovascular,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-cardiovascular?,"Cardiovascular refers to the heart and blood vessels.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-What should i do when i feel chest pain,"Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-"What is angi,na and how is it > caused","Cardiovascular refers to the heart and blood vessels. Maintain a healthy lifestyle with exercise, a balanced diet, and regular check-ups. 
-
- Myocardial infarction is a heart attack. Recognize early signs and seek immediate medical attention."
-"What is angi,na and how is it > caused","Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-"What is angi,na and how is it > caused","Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-"How?,:123","I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-Angina??Cardiovascular,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Angina?? Cardiovascular,"Cardiovascular refers to the heart and blood vessels. 
-
- Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Angina??Cardiovascular,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Angina??Cardiovascular,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-"How?,:123","I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-"How?,:123,Angina","I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
-Why do I have to take the Heart Score?How will the results from my Heart Score be used?,This is a placeholder response generated for your question.
-How can Angina be prevented,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-Prevention Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-How can you give explanation of cholesterol,"Eat a low-fat diet, exercise regularly, and take prescribed medications."
-How can you give explain cholesterol,"Eat a low-fat diet, exercise regularly, and take prescribed medications. Cholesterol is a type of fat found in your blood. High levels increase the risk of heart disease."
-How can you give explaination of  cholesterol,"Eat a low-fat diet, exercise regularly, and take prescribed medications."
-How is Angina described,"Manage stress, avoid heavy meals, and follow a healthy lifestyle. Angina is chest pain caused by reduced blood flow to the heart."
-How is Angina explained,"Manage stress, avoid heavy meals, and follow a healthy lifestyle. Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack."
-How is Cholesterol explained,"Eat a low-fat diet, exercise regularly, and take prescribed medications. Cholesterol is a type of fat found in your blood. High levels increase the risk of heart disease."
-Explanation of cholestedrol,"Cardiovascular refers to the heart and blood vessels. 
-
- Hypertension is high blood pressure. 
-
- Cholesterol is a type of fat found in your blood.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Explanation of Angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Explanation of Cholesterol,"Cholesterol is a type of fat found in your blood.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Explanation of Cholesterol,"Cholesterol is a type of fat found in your blood.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-How is Cholesterol explained,"Eat a low-fat diet, exercise regularly, and take prescribed medications. Cholesterol is a type of fat found in your blood. High levels increase the risk of heart disease."
-How is Angina described,"Manage stress, avoid heavy meals, and follow a healthy lifestyle. Angina is chest pain caused by reduced blood flow to the heart."
-What is Angina and How is Angina described,"Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-What is Angina and How to explain ANgina,"Angina is chest pain caused by reduced blood flow to the heart. Manage stress, avoid heavy meals, and follow a healthy lifestyle. It signals an increased risk of heart attack."
-Angina??Cardiovascular,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-What is Angina,Angina is chest pain caused by reduced blood flow to the heart.
-What is Angina,Angina is chest pain caused by reduced blood flow to the heart.
-What is Angina,Angina is chest pain caused by reduced blood flow to the heart.
-What is Angina,Angina is chest pain caused by reduced blood flow to the heart.
-How can you give explanation of Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-How is Angina prevented,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-How is Angina explained,"Manage stress, avoid heavy meals, and follow a healthy lifestyle. Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack."
-How is Angina advantageous,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-Expain the difference between bradychardia and tachycardia,Tachycardia is a rapid heartbeat. It can increase the risk of stroke or heart failure.
-Please describe the warning signs of Angina,"Angina is chest pain caused by reduced blood flow to the heart. Chest pain, shortness of breath, nausea."
-Explain the reasoms of chest pain during exercise,Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack.
-What is the origin of palpitations,Arrhythmia is an irregular heartbeat. It can lead to serious complications like stroke.
-What are the ways to prevent heart attack,"Cardiovascular refers to the heart and blood vessels. Maintain a healthy lifestyle with exercise, a balanced diet, and regular check-ups."
-How can you give explanation of Cholesterol,"Eat a low-fat diet, exercise regularly, and take prescribed medications."
-How can you explain cholesterol,"Eat a low-fat diet, exercise regularly, and take prescribed medications. Cholesterol is a type of fat found in your blood. High levels increase the risk of heart disease."
-How is cholesterol explained,"Eat a low-fat diet, exercise regularly, and take prescribed medications. Cholesterol is a type of fat found in your blood. High levels increase the risk of heart disease."
-Explanation of cholesterol,"Cholesterol is a type of fat found in your blood.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Prevention  of cholesterol,"Eat a low-fat diet, exercise regularly, and take prescribed medications."
-Reason for cardiac arrest,Understanding cardiovascular health is key to preventing heart disease in women.
-How can we identify Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle. Angina is chest pain caused by reduced blood flow to the heart."
-Identification of Angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-How is Angina identified,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-How to identify Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle. Angina is chest pain caused by reduced blood flow to the heart."
-Clarification of Angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Specification of cholesterol,"Cholesterol is a type of fat found in your blood.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Angina Triggered,It signals an increased risk of heart attack.
-Procedures to prevent Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-What can be the indication of heart attack,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack."
-Indication of heart attack,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-Indication of heart attack,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-What can be the indication of heart attack,"Cardiovascular refers to the heart and blood vessels. 
-
- Myocardial infarction is a heart attack."
-Procedures to prevent Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-Procedures to prevent Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-Ways to prevent Angina?,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-I want to avoid Angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-I want to avoid Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-explain avoidance of angina,"Angina is chest pain caused by reduced blood flow to the heart. It signals an increased risk of heart attack. Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-avoidance of angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-how do i defend myself from angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-i want to defend myself from angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-i want to defence myself from angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-i want to defend myself from angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-i want to defence myself from angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-defence from angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-defence from angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-i want to defend myself from angina,"Angina is chest pain caused by reduced blood flow to the heart.
- For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
-clarification of angina,Angina is chest pain caused by reduced blood flow to the heart.
-Specification  of cholestrol,"Cardiovascular refers to the heart and blood vessels. 
-
- Hypertension is high blood pressure. 
-
- Cholesterol is a type of fat found in your blood."
-Specification of Angina,Angina is chest pain caused by reduced blood flow to the heart.
-Specification of Cholesterol,Cholesterol is a type of fat found in your blood.
-Clarification of Angina,Angina is chest pain caused by reduced blood flow to the heart.
-Specification of Cholesterol,Cholesterol is a type of fat found in your blood.
-Angina Triggered?,It signals an increased risk of heart attack.
-Procedures to prevent Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-Clarification of Angina,Angina is chest pain caused by reduced blood flow to the heart.
-Procedures to prevent Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-Specification of Cholesterol,Cholesterol is a type of fat found in your blood.
-Angina Triggered?,It signals an increased risk of heart attack.
-Angina Triggered?,It signals an increased risk of heart attack.
-Specification of Cholesterol,Cholesterol is a type of fat found in your blood.
-Procedures to prevent Angina,"Manage stress, avoid heavy meals, and follow a healthy lifestyle."

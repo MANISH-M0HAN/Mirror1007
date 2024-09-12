@@ -1,7 +1,6 @@
 from sklearn.metrics.pairwise import cosine_similarity
 from utils import load_prerequisites 
 import logging
-from utils import process_user_input
 from nltk.stem import PorterStemmer
 import re
 
@@ -171,5 +170,3 @@ def match_columns(query, best_match_response):
     )
 
     return best_match_response.get(best_column_name, ""), best_match_response_flag
-
-

@@ -1,6 +1,4 @@
 import logging
-from utils import process_user_input
-from utils import load_prerequisites 
 from utils import analyse_dataframe
 from utils import domain_check
 from utils import default_messages
@@ -20,14 +18,12 @@ def get_response(raw_user_input, threshold=0.3):
         combined_responses = []
 
         for context_response in context_responses:
-            # Fetch data from relevant columns
             column_response, best_match_response_flag = analyse_dataframe.match_columns(
                 user_input, context_response
             )
             if column_response:
                 combined_responses.append(column_response)
 
-        # Combine all the column responses into a single response
         final_response = " \n\n ".join(combined_responses)
         if best_match_response_flag == 1:
             final_response = (

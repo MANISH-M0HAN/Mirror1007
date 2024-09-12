@@ -137,30 +137,18 @@ def match_columns(query, best_match_response):
     best_match_response_flag = 0
     
     intent_words = {
-        "What": [
-            "What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 
-            "Summarize", "Designate", "Distinguish"
-        ],
-        "Symptoms": [
-            "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", "Redflags", "Markers", "Presentations", 
-            "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences"
-        ],
-        "Why": [
-            "Why", "Causes", "Reason", "Purpose", "Explain", "Justification", "Origin", "Motive", "Trigger", "Rationale", "Grounds", "Basis", 
-            "Excuse", "Source", "Factor"
-        ],
-        "How": [
-            "How", "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", "Manner", 
-            "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", "Reduction", 
-            "Intervention", "Defence", "Deterrence", "Shielding", "Do"
-        ]
-    }
+            'What': ['what', 'defin', 'identifi', 'describ', 'clarifi', 'specifi', 'detail', 'outlin', 'state', 'explain', 'determin', 'depict', 'summar', 'design', 'distinguish'], 
+            'Symptoms': ['symptom', 'sign', 'indic', 'manifest', 'warn', 'clue', 'evid', 'redflag', 'marker', 'present', 'outcom', 'pattern', 'phenomena', 'trait', 'occurr'], 
+            'Why': ['whi', 'caus', 'reason', 'purpos', 'explain', 'justif', 'origin', 'motiv', 'trigger', 'rational', 'ground', 'basi', 'excus', 'sourc', 'factor'], 
+            'How': ['how', 'method', 'mean', 'procedur', 'step', 'techniqu', 'process', 'way', 'approach', 'strategi', 'system', 'manner', 'framework', 'form', 'mode', 'prevent', 'avoid', 'safeguard', 'protect', 'mitig', 'reduct', 'intervent', 'defenc', 'deterr', 'shield', 'do']
+        }
     
     # Stem the intent words
     stemmed_intent_words = {
         column: [stemmer.stem(word.lower()) for word in words]
         for column, words in intent_words.items()
     }
+    print(stemmed_intent_words)
     
     # Collect matching columns and their first occurrence positions
     matching_columns = []

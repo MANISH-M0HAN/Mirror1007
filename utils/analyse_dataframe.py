@@ -41,7 +41,6 @@ def score_matches(query_embedding):
             for kw_emb in item_embeddings["keywords_embeddings"]
         ]
 
-
         max_trigger_score = max(trigger_scores) if trigger_scores else 0
         max_synonym_score = max(synonym_scores) if synonym_scores else 0
         max_keyword_score = max(keyword_scores) if keyword_scores else 0

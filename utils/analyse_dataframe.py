@@ -8,16 +8,13 @@ import re
 stemmer = PorterStemmer()
 
 def preprocess_input(query):
-    #Remove special characters
     preprocessed_query = re.sub(r'[^\w\s]', '', query).strip()
     return preprocessed_query
 
 def prepare_query(query):
     query = preprocess_input(query)
-    # Stem the query words
     query_words = query.strip().lower().split()
     stemmed_query_words = [stemmer.stem(word) for word in query_words]
-    # Create embedding using stemmed words
     query_embedding = load_prerequisites.embedding_model.encode([' '.join(stemmed_query_words)])
     return query_embedding, stemmed_query_words
 
@@ -115,15 +112,12 @@ def evaluate_matches(best_match_score, best_max_match_score, best_match_response
 def find_best_context(query, threshold):
     query_embedding, query_words = prepare_query(query)
     
-    # Collect matches from the generator
     matches = list(match_generator(query_words))
     if matches:
         return matches
 
-    # Score the matches
     best_match_score, best_max_match_score, best_match_response, best_max_match_response, best_match_type, best_max_match_type = score_matches(query_embedding)
     
-    # Evaluate the best matches and return the result
     return evaluate_matches(
         best_match_score, best_max_match_score, 
         best_match_response, best_max_match_response, 
@@ -133,67 +127,41 @@ def find_best_context(query, threshold):
     
 def match_columns(query, best_match_response):
     query_lower = query.lower()
-    query_lower = process_user_input.correct_spelling(query_lower)
     best_match_response_flag = 0
     
     intent_words = {
-        "What": [
-            "What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 
-            "Summarize", "Designate", "Distinguish"
-        ],
-        "Symptoms": [
-            "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", "Redflags", "Markers", "Presentations", 
-            "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences"
-        ],
-        "Why": [
-            "Why", "Causes", "Reason", "Purpose", "Explain", "Justification", "Origin", "Motive", "Trigger", "Rationale", "Grounds", "Basis", 
-            "Excuse", "Source", "Factor"
-        ],
-        "How": [
-            "How", "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", "Manner", 
-            "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", "Reduction", 
-            "Intervention", "Defence", "Deterrence", "Shielding", "Do"
-        ]
-    }
+            'What': ['what', 'defin', 'identifi', 'describ', 'clarifi', 'specifi', 'detail', 'outlin', 'state', 'explain', 'determin', 'depict', 'summar', 'design', 'distinguish'], 
+            'Symptoms': ['symptom', 'sign', 'indic', 'manifest', 'warn', 'clue', 'evid', 'redflag', 'marker', 'present', 'outcom', 'pattern', 'phenomena', 'trait', 'occurr'], 
+            'Why': ['whi', 'caus', 'reason', 'purpos', 'explain', 'justif', 'origin', 'motiv', 'trigger', 'rational', 'ground', 'basi', 'excus', 'sourc', 'factor'], 
+            'How': ['how', 'method', 'mean', 'procedur', 'step', 'techniqu', 'process', 'way', 'approach', 'strategi', 'system', 'manner', 'framework', 'form', 'mode', 'prevent', 'avoid', 'safeguard', 'protect', 'mitig', 'reduct', 'intervent', 'defenc', 'deterr', 'shield', 'do']
+        }
     
-    # Stem the intent words
-    stemmed_intent_words = {
-        column: [stemmer.stem(word.lower()) for word in words]
-        for column, words in intent_words.items()
-    }
-    
-    # Collect matching columns and their first occurrence positions
     matching_columns = []
-    match_found = False  # Variable to track if a match is found
+    match_found = False 
 
-    for column, keywords in stemmed_intent_words.items():
+    for column, keywords in intent_words.items():
         for keyword in keywords:
             keyword_lower = keyword.lower()
             position = query_lower.find(keyword_lower)
             if position != -1 and best_match_response.get(column):
                 matching_columns.append((position, best_match_response[column]))
-                match_found = True  # Set match_found to True when a match is found
-                break  # Move to the next column once a match is found
+                match_found = True  
+                break  
 
-    # If no match was found, add the response from the first column
-    if not match_found and stemmed_intent_words:
-        first_column = next(iter(stemmed_intent_words))  # Get the first column
+    if not match_found and intent_words:
+        first_column = next(iter(intent_words)) 
         if best_match_response.get(first_column):
             default_response = best_match_response[first_column]
             best_match_response_flag = 1
             matching_columns.append((0, default_response))
 
-    # Sort the matched columns by the position of their first occurrence in the query
     matching_columns.sort(key=lambda x: x[0])
 
-    # Combine responses in the order of their appearance in the query
     responses = [response for _, response in matching_columns]
 
-    # Return the combined response
     if responses:
         return " ".join(responses), best_match_response_flag
 
-    # Fallback to the best matching column if no intent word is matched
     query_embedding = load_prerequisites.embedding_model.encode([query_lower])
     column_scores = cosine_similarity(query_embedding,load_prerequisites.column_embeddings).flatten()
 
@@ -205,14 +173,4 @@ def match_columns(query, best_match_response):
 
     return best_match_response.get(best_column_name, ""), best_match_response_flag
 
-    # Demo working area with generator for multiple matches
-def match_generator(query_words):
-    for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
-        trigger_word = load_prerequisites.database[index]["trigger_word"].lower()
-        trigger_words = trigger_word.split()
-        common_words = set(trigger_words) & set(query_words)
-
-        if common_words:
-            yield load_prerequisites.database[index]
-            # print(f"Index: {index}, Trigger Words: {trigger_words}, Common Words: {
 

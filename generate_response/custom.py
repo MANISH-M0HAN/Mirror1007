@@ -11,7 +11,10 @@ def get_response(raw_user_input, threshold=0.3):
     logging.info(f"Before Spell Correct : {raw_user_input}")
     user_input = spell_checker.correct_spelling(raw_user_input, word_set)
     logging.info(f"After Spell Correct : {user_input}")
-
+    
+    user_input = analyse_dataframe.preprocess_input(user_input)
+    logging.info(f"After Regex : {user_input}")
+    
     logging.info(f"Direct Match")
     context_responses = analyse_dataframe.find_best_context(user_input, threshold)
     if context_responses:

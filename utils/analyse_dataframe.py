@@ -98,8 +98,9 @@ def evaluate_matches(best_match_score, best_max_match_score, best_match_response
         return None
 
 def find_best_context(query, threshold):
-    query_embedding = load_prerequisites.embedding_model.encode([' '.join(query_words)])
-    matches = list(match_generator(query_words))
+    query = query.split()
+    query_embedding = load_prerequisites.embedding_model.encode([' '.join(query)])
+    matches = list(match_generator(query))
     if matches:
         return matches
 
@@ -113,7 +114,6 @@ def find_best_context(query, threshold):
     )
     
 def match_columns(query, best_match_response):
-    query_lower = query.lower()
     best_match_response_flag = 0
     
     intent_words = {
@@ -129,7 +129,7 @@ def match_columns(query, best_match_response):
     for column, keywords in intent_words.items():
         for keyword in keywords:
             keyword_lower = keyword.lower()
-            position = query_lower.find(keyword_lower)
+            position = query.find(keyword_lower)
             if position != -1 and best_match_response.get(column):
                 matching_columns.append((position, best_match_response[column]))
                 match_found = True  

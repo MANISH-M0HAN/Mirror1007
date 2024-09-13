@@ -1,22 +1,11 @@
 from sklearn.metrics.pairwise import cosine_similarity
 from utils import load_prerequisites 
 import logging
-from nltk.stem import PorterStemmer
 import re
-
-stemmer = PorterStemmer()
 
 def preprocess_input(query):
     preprocessed_query = re.sub(r'[^\w\s]', '', query).strip()
     return preprocessed_query
-
-def prepare_query(query):
-    query = preprocess_input(query)
-    query_words = query.strip().lower().split()
-    stemmed_query_words = [stemmer.stem(word) for word in query_words] 
-    stemmed_query_words = ' '.join(stemmed_query_words)
-    print(stemmed_query_words)
-    return stemmed_query_words
 
 def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
@@ -109,7 +98,6 @@ def evaluate_matches(best_match_score, best_max_match_score, best_match_response
         return None
 
 def find_best_context(query, threshold):
-    query_words = prepare_query(query).split()
     query_embedding = load_prerequisites.embedding_model.encode([' '.join(query_words)])
     matches = list(match_generator(query_words))
     if matches:
@@ -125,7 +113,6 @@ def find_best_context(query, threshold):
     )
     
 def match_columns(query, best_match_response):
-    query = prepare_query(query)
     query_lower = query.lower()
     best_match_response_flag = 0
     

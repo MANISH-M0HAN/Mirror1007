@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 #Initialize models and spellchecker
 embedding_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
-
 # Load the CSV file into a DataFrame
 csv_file = 'heart_health_triggers.csv' # Replace with the path to your CSV file
 df = pd.read_csv(csv_file)
@@ -31,9 +30,9 @@ trigger_embeddings = embedding_model.encode(df['trigger_word'].tolist(), batch_s
 synonyms_embeddings = [embedding_model.encode(syn.split(','), batch_size=32) for syn in df['synonyms']]
 keywords_embeddings = [embedding_model.encode(kw.split(','), batch_size=32) for kw in df['keywords']]
 
-# Precompute embeddings for column names
-column_names = ['What', 'Why', 'How', 'Symptoms']
-column_embeddings = embedding_model.encode(column_names)
+# # Precompute embeddings for column names
+# column_names = ['What', 'Why', 'How', 'Symptoms']
+# column_embeddings = embedding_model.encode(column_names)
 
 db_embeddings = []
 for idx in range(len(df)):

@@ -21,7 +21,7 @@ def question_chatbot():
 
         if not user_input:
             return jsonify({"error": "Missing user input"}), 400
-
+        logging.info(f"Sent User Input: {user_input}")
         response = get_response(user_input)
 
         return jsonify({"response": response}), 200

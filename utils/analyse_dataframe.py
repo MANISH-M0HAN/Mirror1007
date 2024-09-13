@@ -13,6 +13,7 @@ def match_generator(query_words):
         trigger_words = trigger_word.split()
         common_words = set(trigger_words) & set(query_words)
         if common_words:
+            logging.warning(f"Yielding database entry: {load_prerequisites.database[index]}")
             yield load_prerequisites.database[index]
 
 def score_matches(query_embedding):
@@ -23,6 +24,7 @@ def score_matches(query_embedding):
     best_match_type = None
     best_max_match_type = None
 
+    logging.info(f"2)Cosine Match with Avg Score or Max")
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_score = cosine_similarity(
             query_embedding, item_embeddings["trigger_embedding"].reshape(1, -1)
@@ -49,7 +51,7 @@ def score_matches(query_embedding):
             or max_keyword_score >= 0.65
         ):
             logging.info(
-                f"Strong direct match found. Trigger Score: {trigger_score:.4f}, "
+                f"Strong direct match found for one of the features.\nTrigger Score: {trigger_score:.4f}, "
                 f"Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f} "
                 f"Response: {load_prerequisites.database[index]}"
             )
@@ -66,8 +68,8 @@ def score_matches(query_embedding):
             and max_keyword_score < 0.65
         ):
             logging.info(
-                f"Strong direct match found. Avg Score: {avg_score:.4f}, "
-                f"Trigger Score: {trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, "
+                f"Strong Average match found. Avg Score: {avg_score:.4f}, "
+                f"\nTrigger Score: {trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, "
                 f"Keyword Score: {max_keyword_score:.4f} Response: {load_prerequisites.database[index]}"
             )
             best_match_score = avg_score
@@ -77,18 +79,20 @@ def score_matches(query_embedding):
     return best_match_score, best_max_match_score, best_match_response, best_max_match_response, best_match_type, best_max_match_type
 
 def evaluate_matches(best_match_score, best_max_match_score, best_match_response, best_max_match_response, best_match_type, best_max_match_type, threshold):
+    logging.info("Evaluating matches with the threshold : ",threshold)
+
     if best_match_score >= threshold and best_max_match_score < best_match_score:
         logging.info(
             f"Best Match Score: {best_match_score:.4f}, Best Match Response: '{best_match_response}', Match Type: {best_match_type}"
         )
-        print("best match response")
+        print("This is from Average Match Response")
         return best_match_response
 
     elif best_max_match_score > best_match_score:
         logging.info(
             f"Max Match Score: {best_max_match_score:.4f}, Best Match Response: '{best_max_match_response}', Match Type: {best_max_match_type}"
         )
-        print("max match")
+        print("This is from Max Match Response")
         return best_max_match_response
 
     else:
@@ -100,6 +104,7 @@ def evaluate_matches(best_match_score, best_max_match_score, best_match_response
 def find_best_context(query, threshold):
     query = query.split()
     query_embedding = load_prerequisites.embedding_model.encode([' '.join(query)])
+    logging.info(f"1)Direct Match for all Trigger, Synonym and Keywords")
     matches = list(match_generator(query))
     if matches:
         return matches
@@ -131,6 +136,10 @@ def match_columns(query, best_match_response):
             keyword_lower = keyword.lower()
             position = query.find(keyword_lower)
             if position != -1 and best_match_response.get(column):
+                snippet_start = max(0, position - 10)  # 10 characters before the match
+                snippet_end = min(len(query), position + len(keyword_lower) + 10)  # 10 characters after the match
+                snippet = query[snippet_start:snippet_end]
+                logging.info(f"Match found for column: {column} with keyword: '{keyword}' at position {position}. Snippet: '{snippet}'")
                 matching_columns.append((position, best_match_response[column]))
                 match_found = True  
                 break  
@@ -140,6 +149,7 @@ def match_columns(query, best_match_response):
         if best_match_response.get(first_column):
             default_response = best_match_response[first_column]
             best_match_response_flag = 1
+            logging.info(f"No match found. Fetching default response : {default_response} from column :{first_column}.")
             matching_columns.append((0, default_response))
 
     matching_columns.sort(key=lambda x: x[0])
@@ -149,13 +159,10 @@ def match_columns(query, best_match_response):
     if responses:
         return " ".join(responses), best_match_response_flag
 
-    query_embedding = load_prerequisites.embedding_model.encode([query_lower])
-    column_scores = cosine_similarity(query_embedding,load_prerequisites.column_embeddings).flatten()
+    # query_embedding = load_prerequisites.embedding_model.encode([query])
+    # column_scores = cosine_similarity(query_embedding,load_prerequisites.column_embeddings).flatten()
 
-    best_column_index = column_scores.argmax()
-    best_column_name = load_prerequisites.column_names[best_column_index]
-    logging.info(
-        f"Best column match (fallback): {best_column_name} with score {column_scores[best_column_index]:.4f}"
-    )
-
-    return best_match_response.get(best_column_name, ""), best_match_response_flag
+    # best_column_index = column_scores.argmax()
+    # best_column_name = load_prerequisites.column_names[best_column_index]
+    # logging.info(f"Fallback to best column match: {best_column_name} with score {column_scores[best_column_index]:.4f}")
+    # return best_match_response.get(best_column_name, ""), best_match_response_flag

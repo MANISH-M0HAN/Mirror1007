@@ -54,7 +54,7 @@ def generate_queries(intent_words, trigger_words, expected_responses):
                 response = get_bot_response(query)
                 
                 if response != expected_response:
-                    print(f"Query: {query}\nResponse: {response}\nExpected: {expected_response}\n")
+                    print(f"Query: {query}\nResponse: {response}\nExpected: {expected_response}\nIntent: {intent}\nWord: {word}")
                 
                 query_combinations.append(query)
     

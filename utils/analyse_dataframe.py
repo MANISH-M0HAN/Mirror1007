@@ -4,6 +4,7 @@ import logging
 import re
 
 def preprocess_input(query):
+    query = query.lower()
     preprocessed_query = re.sub(r'[^\w\s]', '', query).strip()
     return preprocessed_query
 

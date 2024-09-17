@@ -94,4 +94,4 @@ def correct_spelling(text, word_set, cutoff=0.85):
             corrected_words.append(words[i])
             i += 1
 
-    return ' '.join(corrected_words)
+    return ' '.join(corrected_words).lower()

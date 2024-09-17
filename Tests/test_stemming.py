@@ -15,71 +15,49 @@ def get_bot_response(user_input):
     try:
         payload = {"user_input": user_input}
         response = requests.post(url, headers=headers, json=payload)
+        response.raise_for_status()  # Ensure request was successful
         return response.json().get("response", "")
     except requests.RequestException as e:
         print(f"Request failed: {e}")
         return ""
-
-what_response = "Angina is chest pain caused by reduced blood flow to the heart."
-why_response = "It signals an increased risk of heart attack."
-how_response = "Manage stress, avoid heavy meals, and follow a healthy lifestyle."
-symptoms_response = "Chest pain, shortness of breath, nausea."
-intent_words = {
-    "What": [
-        "What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", 
-        "Depict", "Summarize", "Designat", "Distinguish"
-    ],
-    "Symptoms": [
-        "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", "Redflags", "Markers", 
-        "Presentations", "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences"
-    ],
-    "Why": [
-        "Why", "Causes", "Reason", "Purpose", "Explain", "Justification", "Origin", "Motive", "Trigger", "Rationale", 
-        "Grounds", "Basis", "Excuse", "Source", "Factor"
-    ],
-    "How": [
-        "How", "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", 
-        "Manner", "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", 
-        "Reduction", "Intervention", "Defense", "Deterrence", "Shielding", "Do"
-    ]
+    
+expected_responses = {
+    "What": "Angina is chest pain caused by reduced blood flow to the heart.",
+    "Symptoms": "Chest pain, shortness of breath, nausea.",
+    "Why": "It signals an increased risk of heart attack.",
+    "How": "Manage stress, avoid heavy meals, and follow a healthy lifestyle."
 }
 
+intent_words = {
+    "What": ["What", "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", 
+             "Depict", "Summarize", "Designat", "Distinguish"],
+    "Symptoms": ["Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", "Redflags", "Markers", 
+                 "Presentations", "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences"],
+    "Why": ["Why", "Causes", "Reason", "Purpose", "Explain", "Justification", "Origin", "Motive", "Trigger", "Rationale", 
+            "Grounds", "Basis", "Excuse", "Source", "Factor"],
+    "How": ["How", "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", 
+            "Manner", "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", 
+            "Reduction", "Intervention", "Defense", "Deterrence", "Shielding", "Do"]
+}
 
 trigger_words = ["angina"]
 
-
-def generate_queries(intent_words, trigger_words):
+def generate_queries(intent_words, trigger_words, expected_responses):
     query_combinations = []
     
-    for intent_category, words in intent_words.items():
+    for intent, words in intent_words.items():
+        expected_response = expected_responses.get(intent, "")
+        
         for word in words:
             for trigger in trigger_words:
-                if intent_category == "What":
-                    query = f"{word} {trigger}?"
-                    response = get_bot_response(query)
-                    if response != what_response:
-                        print(response, "\n", word, "\n",intent_category)
-                elif intent_category == "Symptoms":
-                    query = f"{word} {trigger}?"
-                    response = get_bot_response(query)
-                    if response != symptoms_response:
-                        print(response, "\n", word, "\n",intent_category)
-                elif intent_category == "Why":
-                    query = f"{word} {trigger}?"
-                    response = get_bot_response(query)
-                    if response != why_response:
-                        print(response, "\n", word, "\n",intent_category)
-                elif intent_category == "How":
-                    query = f"{word} {trigger}?"
-                    response = get_bot_response(query)
-                    if response != how_response:
-                        print(response, "\n", word, "\n",intent_category)
+                query = f"{word} {trigger}?"
+                response = get_bot_response(query)
+                
+                if response != expected_response:
+                    print(f"Query: {query}\nResponse: {response}\nExpected: {expected_response}\n")
                 
                 query_combinations.append(query)
     
     return query_combinations
 
-queries = generate_queries(intent_words, trigger_words)
-
-
-
+queries = generate_queries(intent_words, trigger_words, expected_responses)

@@ -7,7 +7,7 @@ from utils import spell_checker
 
 def get_response(raw_user_input, threshold=0.3):
     word_set = spell_checker.load_word_set('./heart_health_triggers.csv', 
-                             ['trigger_word', 'synonyms', 'keywords']) 
+                             ['trigger_words', 'synonyms', 'keywords']) 
     logging.info(f"Before Regex : {raw_user_input}")
     regexd_user_input = analyse_dataframe.preprocess_input(raw_user_input)
     logging.info(f"After Regex : {regexd_user_input}")

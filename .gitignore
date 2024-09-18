@@ -1,8 +1,31 @@
-**/*.log
-
+# Logs
+*.log
 Debug/debug.log
 
+# Environment Variables
 .env
+
+# Test Data
 Tests/test.csv
 
-*/__pycache__/
+# Python Bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual Environment
+venv
+
+# MyPy and Pytest
+.mypy_cache/
+.pytest_cache/
+
+# IDE and Editor-specific
+*.swp
+.vscode/
+.idea/
+
+# Build and Distribution
+build/
+dist/
+*.egg-info/

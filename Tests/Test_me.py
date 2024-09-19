@@ -4,18 +4,22 @@ import os
 from dotenv import load_dotenv
 from request_response_csv import request_response
 from datetime import datetime, timezone, timedelta
-import requests
 
+#Load enviroment variables
 load_dotenv()
+
+# Get user input and enviroment variables
 username = input("Please enter your name: ").upper()
 url = os.getenv("CHATBOT_URL")
 api_key = os.getenv("API_KEY")
 
+# Set request headers
 headers = {
     "X-API-KEY": api_key,
     "Content-Type": "application/json"
 }
 
+#Test data
 data = [
     ["Concept", "Input", "Expected Output"],
     ["Single trigger", "what is angina?", "Angina is chest pain caused by reduced blood flow to the heart."],
@@ -35,15 +39,17 @@ data = [
     ["Edge Case", "angina cardiovascular?", "Cardiovascular refers to the heart and blood vessels. \n\n Angina is chest pain caused by reduced blood flow to the heart.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
 ]
 
-
+#File paths
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file = os.path.join(script_dir, "test.csv")
 
+# Create a CSV file with test data
 def create_csv(csv_file):
     with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerows(data)
 
+#Send a request to the chatbot and return the response
 def get_bot_response(user_input):
     try:
         payload = {"user_input": user_input}
@@ -53,6 +59,7 @@ def get_bot_response(user_input):
         print(f"Request failed: {e}")
         return ""
 
+# Test chatbot responses against expected outputs and log results
 def test_chatbot_responses(csv_file):
     pass_count = 0
     fail_count = 0

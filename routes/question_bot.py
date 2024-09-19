@@ -32,7 +32,7 @@ def question_chatbot():
         return jsonify({"response": response}), 200
 
     except Exception as exception:
-        logging.info(f"Received Error Chat Agent Output: {response}")
+        logging.info(f"Received Error Chat Agent Output: {str(exception)}")
         end_time = time.time()
         total_time_ms = (end_time - start_time) * 1000
         logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")

@@ -4,12 +4,13 @@ from utils import domain_check
 from utils import default_messages
 from Tests.request_response_csv import request_response
 from utils import spell_checker
+import re
 
 def get_response(raw_user_input, threshold=0.3):
     word_set = spell_checker.load_word_set('./heart_health_triggers.csv', 
                              ['trigger_words', 'synonyms', 'keywords']) 
     logging.info(f"Before Regex : {raw_user_input}")
-    regexd_user_input = analyse_dataframe.preprocess_input(raw_user_input)
+    regexd_user_input = re.sub(r'[^\w\s]', '', raw_user_input.lower()).strip()
     logging.info(f"After Regex : {regexd_user_input}")
     logging.info(f"Before Spell Correct : {regexd_user_input}")
     spell_corrected_user_input = spell_checker.correct_spelling(regexd_user_input, word_set)

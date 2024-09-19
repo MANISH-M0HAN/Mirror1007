@@ -1,12 +1,6 @@
 from sklearn.metrics.pairwise import cosine_similarity
 from utils import load_prerequisites 
 import logging
-import re
-
-def preprocess_input(query):
-    query = query.lower()
-    preprocessed_query = re.sub(r'[^\w\s]', '', query).strip()
-    return preprocessed_query
 
 def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):

@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 # Logs
 *.log
-=======
-**/*.log
-
->>>>>>> c80ff75 (PR for adding env-example and revision of Test_me.py along with minor improvements (#22))
 Debug/debug.log
 
 # Environment Variables
 .env
-<<<<<<< HEAD
-=======
-Tests/test.csv
->>>>>>> c80ff75 (PR for adding env-example and revision of Test_me.py along with minor improvements (#22))
 
 # Test Data
 Tests/test.csv

@@ -11,7 +11,7 @@ def match_generator(query_words):
         all_match_words = set(trigger_words + synonyms + keywords)
         
         common_words = all_match_words & set([word.lower().strip() for word in query_words])
-
+        logging.debug(f"Common words found: {common_words}")
         if common_words:
             logging.warning(f"Yielding database entry: {load_prerequisites.database[index]}")
             yield load_prerequisites.database[index]

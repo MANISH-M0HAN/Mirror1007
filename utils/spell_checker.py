@@ -37,13 +37,13 @@ common_english_words = {
     "become", "massive", "patients", "required", "face", "tissue", "fat", "shortage", "blood", "eyes", "body",
     "issue", "tube", "testing", "baby", "small", "genes", "high"     
 
-    "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 
-    "Summarize", "Designate", "Distinguish", "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", 
-    "Redflags", "Markers", "Presentations",  "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences", "Causes", "Reason", 
-    "Purpose",  "Justification", "Origin", "Motive", "Trigger", "Rationale", "Grounds", "Basis", "Excuse", "Source", "Factor", 
-    "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", "Manner", 
-    "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", "Reduction", "Intervention", 
-    "Defense", "Deterrence", "Shielding", "Explaination"         
+    "define", "identify", "describe", "clarify", "specify", "detail", "outline", "state", "explain", "determine", "depict", 
+    "summarize", "designate", "distinguish", "symptoms", "signs", "indications", "manifestations", "warning", "clues", "evidence", 
+    "redflags", "markers", "presentations",  "outcomes", "patterns", "phenomena", "traits", "occurrences", "causes", "reason", 
+    "purpose",  "justification", "origin", "motive", "trigger", "rationale", "grounds", "basis", "excuse", "source", "factor", 
+    "method", "means", "procedure", "steps", "technique", "process", "way", "approach", "strategy", "system", "manner", 
+    "framework", "form", "mode", "prevention", "avoidance", "safeguard", "protection", "mitigation", "reduction", "intervention", 
+    "defense", "deterrence", "shielding", "explaination"         
 
 }
 

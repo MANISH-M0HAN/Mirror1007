@@ -5,7 +5,13 @@ import logging
 def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_words = [trigger.lower().strip() for trigger in load_prerequisites.database[index]["trigger_words"]]
-        common_words = set(trigger_words) & set(query_words)
+        synonyms = [synonym.lower().strip() for synonym in load_prerequisites.database[index]["synonyms"]]
+        keywords = [keyword.lower().strip() for keyword in load_prerequisites.database[index]["keywords"]]
+        
+        all_match_words = set(trigger_words + synonyms + keywords)
+        
+        common_words = all_match_words & set([word.lower().strip() for word in query_words])
+        logging.debug(f"Common words found: {common_words}")
         if common_words:
             logging.warning(f"Yielding database entry: {load_prerequisites.database[index]}")
             yield load_prerequisites.database[index]
@@ -34,7 +40,6 @@ def score_matches(query_embedding):
             cosine_similarity(query_embedding, kw_emb.reshape(1, -1)).flatten()[0]
             for kw_emb in item_embeddings["keywords_embeddings"]
         ]
-
 
         max_trigger_score = max(trigger_scores) if trigger_scores else 0
         max_synonym_score = max(synonym_scores) if synonym_scores else 0

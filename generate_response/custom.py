@@ -1,5 +1,4 @@
 import logging
-<<<<<<< Updated upstream
 from utils import (
     default_messages,
     process_user_input,

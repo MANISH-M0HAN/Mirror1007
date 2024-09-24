@@ -1,5 +1,4 @@
 import os
-#trial
 from flask import Flask
 from routes import question_bot_bp
 

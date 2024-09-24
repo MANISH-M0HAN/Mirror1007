@@ -3,6 +3,8 @@ import logging
 from flask import request, jsonify, Blueprint
 from dotenv import load_dotenv
 from generate_response import get_response
+from utils.match_generator import match_generator
+from utils.score_matches import score_matches
 
 #Load enviroment variable
 load_dotenv()

@@ -1,4 +1,5 @@
 import logging
+<<<<<<< Updated upstream
 from utils import (
     default_messages,
     process_user_input,
@@ -8,6 +9,20 @@ from utils import (
     spell_checker
 )
 from Tests.request_response_csv import request_response
+=======
+from utils import domain_check
+from utils import default_messages
+from Tests.request_response_csv import request_response
+import re
+from utils import(
+    spell_checker,
+    evaluate_matches,
+    find_best_context,
+    match_columns,
+    match_generator,
+    score_matches
+)
+>>>>>>> Stashed changes
 
 def get_response(raw_user_input, threshold=0.3):
     #Load word set for spell checking
@@ -23,12 +38,21 @@ def get_response(raw_user_input, threshold=0.3):
     logging.info(f"Direct Match")
     context_responses = analyse_dataframe.find_best_context(user_input, threshold)
     
+<<<<<<< Updated upstream
+=======
+    context_responses = find_best_context(spell_corrected_user_input, threshold)
+>>>>>>> Stashed changes
     if context_responses:
         combined_responses = []
 
         # Fetch data from relevant columns
         for context_response in context_responses:
+<<<<<<< Updated upstream
             column_response, best_match_response_flag = analyse_dataframe.match_columns(user_input, context_response)
+=======
+            logging.info(f"Row is picked, now triggering match_columns()")
+            column_response, ambiguous_query_flag = match_columns(spell_corrected_user_input, context_response)
+>>>>>>> Stashed changes
             if column_response:
                 combined_responses.append(column_response)
 

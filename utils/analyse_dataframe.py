@@ -4,9 +4,9 @@ import logging
 
 def match_generator(query_words):
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
-        trigger_words = [trigger.lower().strip() for trigger in load_prerequisites.database[index]["trigger_words"]]
-        synonyms = [synonym.lower().strip() for synonym in load_prerequisites.database[index]["synonyms"]]
-        keywords = [keyword.lower().strip() for keyword in load_prerequisites.database[index]["keywords"]]
+        trigger_words = [word.lower().strip() for trigger in load_prerequisites.database[index]["trigger_words"] for word in trigger.split(' ')]
+        synonyms = [word.lower().strip() for synonym in load_prerequisites.database[index]["synonyms"]for word in synonym.split(' ')]
+        keywords = [word.lower().strip() for keyword in load_prerequisites.database[index]["keywords"]for word in keyword.split(' ')]
         
         all_match_words = set(trigger_words + synonyms + keywords)
         

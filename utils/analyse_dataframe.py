@@ -140,7 +140,7 @@ def match_columns(query, matched_response):
     
     matching_columns = []
     match_found = False
-    logging.info(f"Finding intent for : {matched_response['trigger_words']}")
+ 
     for column, keywords in intent_words.items():
         for keyword in keywords:
             keyword_lower = keyword.lower()

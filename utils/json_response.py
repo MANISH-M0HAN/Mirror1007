@@ -43,7 +43,7 @@ def validation_error(message, bot_type= None):
 def internal_server_error(exception):
     internal_server_error_json = {
         "data": {
-            "chatbot-response": "",
+            "chatbot-response": "Something went wrong",
             "bot-type": ""
         },
         "message": "Internal server error",

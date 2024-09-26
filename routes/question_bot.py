@@ -26,12 +26,20 @@ def question_chatbot():
             message = "Missing user input"
             return validation_error(message)
 
+        logging.info(f"Sent User Input: {user_input}")
         custom_response = get_response(user_input)
 
-        return success_response(custom_response)
+        logging.info(f"Received Success Chat Agent Output: {custom_response}")
+        end_time = time.time()
+        total_time_ms = (end_time - start_time) * 1000
+        logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")
+        
+        return success_response(custom_response, "AI")
 
     except Exception as exception:
         exception = str(exception)
+        logging.info(f"Received Error Chat Agent Output: exception")
+        print("An exception occured that is ", exception) 
         return internal_server_error(exception)
 
 

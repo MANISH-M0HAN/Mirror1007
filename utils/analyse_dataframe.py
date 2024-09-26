@@ -65,6 +65,7 @@ def score_matches(query_embedding):
  
         if (
             avg_score > 0.3
+            and avg_score > avg_match_score
             and max_trigger_score < 0.65
             and max_synonym_score < 0.65
             and max_keyword_score < 0.65

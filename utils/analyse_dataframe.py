@@ -149,6 +149,7 @@ def match_columns(query, matched_response):
                 snippet_start = max(0, position - 6)
                 snippet_end = min(len(query), position + 6)
                 snippet = query[snippet_start:snippet_end]
+                logging.info(f"Finding intent for : {matched_response['trigger_words']}")
                 logging.info(f"Match found for column: {column} with keyword: '{keyword}' at position {position}. Snippet: '{snippet}'")
                 if matched_response.get(column) and matched_response[column]!='Nan':
                     logging.info(f"Found Data for {keyword}")

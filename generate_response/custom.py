@@ -21,7 +21,7 @@ def get_response(raw_user_input, threshold=0.3):
         combined_responses = []
 
         for context_response in context_responses:
-            logging.info(f"Row is picked, now triggering match_columns()")
+            logging.info(f"Row is picked, now triggering match_columns() for Trigger : {context_response['trigger_words']}")
             column_response, ambiguous_query_flag = analyse_dataframe.match_columns(spell_corrected_user_input, context_response)
             if column_response:
                 combined_responses.append(column_response)
@@ -35,15 +35,15 @@ def get_response(raw_user_input, threshold=0.3):
         request_response(raw_user_input, spell_corrected_user_input, final_response)
         return final_response
     
-    logging.info(f"3)Checking Domain relevance")
+    logging.info("3)Checking Domain relevance")
     if domain_check.is_domain_relevant(spell_corrected_user_input):
-        logging.info(f"Passing to AI method")
+        logging.info("Passing to AI method")
         prompt = f"User asked: {spell_corrected_user_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
         response = default_messages.generate_response_with_placeholder(prompt)
         request_response(raw_user_input, spell_corrected_user_input, response)
         return response
-    logging.info(f"Failed Domain relevance")
+    logging.info("Failed Domain relevance")
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     request_response(raw_user_input, spell_corrected_user_input, fallback_response)
     return fallback_response

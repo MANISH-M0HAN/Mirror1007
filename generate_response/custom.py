@@ -21,7 +21,7 @@ def get_response(raw_user_input, threshold=0.3):
         combined_responses = []
 
         for context_response in context_responses:
-            logging.info(f"Row is picked, now triggering match_columns() for Trigger : {context_response['trigger_words']}")
+            logging.info("Row is picked, now triggering match_columns()")
             column_response, ambiguous_query_flag = analyse_dataframe.match_columns(spell_corrected_user_input, context_response)
             if column_response:
                 combined_responses.append(column_response)

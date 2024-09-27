@@ -60,7 +60,6 @@ def score_matches(query_embedding):
                 f"Max match count = {max_match_count}. "
                 f"Trigger: {load_prerequisites.database[index]['trigger_words']}."
                 f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f}."
-                
             )
  
         if (
@@ -142,20 +141,25 @@ def match_columns(query, matched_response):
     
     matching_columns = []
     match_found = False
- 
+    logging.info(f"Finding intent for : {matched_response['trigger_words']}")
     for column, keywords in intent_words.items():
         for keyword in keywords:
             keyword_lower = keyword.lower()
             position = query.find(keyword_lower)
-            if position != -1 and matched_response.get(column) and matched_response[column]!='Nan':
-                snippet_start = max(0, position - 8)
-                snippet_end = min(len(query), position + len(keyword_lower) + 8)
+            if position != -1 :
+                snippet_start = max(0, position - 6)
+                snippet_end = min(len(query), position + 6)
                 snippet = query[snippet_start:snippet_end]
-                logging.info(f"Finding intent for : {matched_response['trigger_words']}")
                 logging.info(f"Match found for column: {column} with keyword: '{keyword}' at position {position}. Snippet: '{snippet}'")
-                matching_columns.append((position, matched_response[column]))
-                match_found = True  
-                break  
+                if matched_response.get(column) and matched_response[column]!='Nan':
+                    logging.info(f"Found Data for {keyword}")
+                    matching_columns.append((position, matched_response[column]))
+                    match_found = True  
+                    break
+                elif matched_response.get(column) and matched_response[column]=='Nan':
+                    logging.info(f"Found Nan for {keyword}")
+                    matching_columns.append((position, matched_response['What']))
+                    break
  
     if not match_found and intent_words:
         first_column = next(iter(intent_words))
@@ -171,4 +175,3 @@ def match_columns(query, matched_response):
  
     if responses:
         return " ".join(responses), ambiguous_query_flag
- 

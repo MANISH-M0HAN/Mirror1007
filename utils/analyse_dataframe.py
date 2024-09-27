@@ -159,6 +159,7 @@ def match_columns(query, matched_response):
                 elif matched_response.get(column) and matched_response[column]=='Nan':
                     logging.info(f"Found Nan for {keyword}")
                     matching_columns.append((position, matched_response['What']))
+                    match_found = True  
                     break
  
     if not match_found and intent_words:

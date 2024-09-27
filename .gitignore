@@ -30,3 +30,6 @@ build/
 dist/
 *.egg-info/
 
+#Vulnerable Files
+.DS_Store
+

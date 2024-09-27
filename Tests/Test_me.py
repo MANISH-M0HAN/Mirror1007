@@ -64,9 +64,9 @@ def create_csv(csv_file):
 
 def get_bot_response(user_input):
     try:
-        payload = {"user_input": user_input}
+        payload = {"user-input": user_input}
         response = requests.post(url, headers=headers, json=payload)
-        return response.json().get("response", "")
+        return response.json().get("data", {}).get("chatbot-response")
     except requests.RequestException as e:
         print(f"Request failed: {e}")
         return ""

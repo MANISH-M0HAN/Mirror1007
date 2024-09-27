@@ -147,7 +147,7 @@ def match_columns(query, matched_response):
         for keyword in keywords:
             keyword_lower = keyword.lower()
             position = query.find(keyword_lower)
-            if position != -1 and matched_response.get(column):
+            if position != -1 and matched_response.get(column) and matched_response[column]!='Nan':
                 snippet_start = max(0, position - 8)
                 snippet_end = min(len(query), position + len(keyword_lower) + 8)
                 snippet = query[snippet_start:snippet_end]

@@ -28,6 +28,7 @@ def question_chatbot():
         logging.info("Received Success Chat Agent Output")
         end_time = time.time()
         total_time_ms = (end_time - start_time) * 1000
+        send_time(total_time_ms)
         logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")
         return jsonify({"response": response}), 200
 
@@ -36,7 +37,23 @@ def question_chatbot():
                      f"\n{str(exception)}")
         end_time = time.time()
         total_time_ms = (end_time - start_time) * 1000
+        send_time(total_time_ms)
         logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")
         return jsonify({"error": str(exception)}), 500
 
+def send_time(total_time_ms):
+    file_path = "Debug/request_response_stack.csv"
 
+    # Open the file and append the time taken to the last line
+    with open(file_path, mode='r+', encoding='utf-8') as file:
+        # Read all lines
+        lines = file.readlines()
+
+        # Check if there are lines to modify
+        if lines:
+            # Modify the last line by appending the time data
+            lines[-1] = lines[-1].strip() + f", {total_time_ms:.2f} ms\n"
+
+            # Move the cursor to the start and rewrite the modified lines
+            file.seek(0)
+            file.writelines(lines)

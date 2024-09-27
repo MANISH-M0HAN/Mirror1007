@@ -34,7 +34,7 @@ def question_chatbot():
         total_time_ms = (end_time - start_time) * 1000
         logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")
         
-        return success_response(custom_response, "AI")
+        return success_response(custom_response)
 
     except Exception as exception:
         exception = str(exception)

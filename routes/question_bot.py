@@ -38,6 +38,9 @@ def question_chatbot():
 
     except Exception as exception:
         exception = str(exception)
+        end_time = time.time()
+        total_time_ms = (end_time - start_time) * 1000
+        logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")
         logging.info(f"Received Error Chat Agent Output: exception")
         print("An exception occured that is ", exception) 
         return internal_server_error(exception)

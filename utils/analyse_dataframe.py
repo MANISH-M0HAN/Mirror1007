@@ -16,7 +16,7 @@ def match_generator(query_words):
             logging.warning(f"Yielding database entry of Trigger word : {load_prerequisites.database[index]['trigger_words']}")
             yield load_prerequisites.database[index]
  
-def score_matches(query_embedding):
+def score_matches(query_embedding, threshold):
     avg_match_score = 0
     max_match_score = 0
     avg_match_response = []
@@ -61,9 +61,8 @@ def score_matches(query_embedding):
                 f"Trigger: {load_prerequisites.database[index]['trigger_words']}."
                 f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f}."
             )
- 
         if (
-            avg_score > 0.3
+            avg_score > threshold
             and avg_score > avg_match_score
             and max_trigger_score < 0.65
             and max_synonym_score < 0.65
@@ -119,7 +118,7 @@ def find_best_context(query, threshold):
     (avg_match_score, max_match_score,
     avg_match_response, max_match_response,
     avg_match_count, max_match_count,
-    avg_match_flag, max_match_flag) = score_matches(query_embedding)
+    avg_match_flag, max_match_flag) = score_matches(query_embedding, threshold)
      
     return evaluate_matches(
         avg_match_score, max_match_score,

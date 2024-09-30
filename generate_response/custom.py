@@ -32,6 +32,7 @@ def get_response(raw_user_input, threshold=0.3):
                 + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
             )
         request_response(raw_user_input, spell_corrected_user_input, final_response)
+        logging.info(f"Giving following trigger_words response: {[dict['trigger_words'] for dict in context_responses]}")
         return final_response
     
     logging.info("3)Checking Domain relevance")
@@ -41,10 +42,12 @@ def get_response(raw_user_input, threshold=0.3):
         logging.info(f"Prompt for Generative API: {prompt}")
         response = default_messages.generate_response_with_placeholder(prompt)
         request_response(raw_user_input, spell_corrected_user_input, response)
+        logging.info("Giving AI Placeholder response")
         return response
     logging.info("Failed Domain relevance")
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     request_response(raw_user_input, spell_corrected_user_input, fallback_response)
+    logging.info("Giving Fallback response")
     return fallback_response
 
 

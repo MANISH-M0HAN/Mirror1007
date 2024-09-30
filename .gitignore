@@ -1,6 +1,8 @@
 # Logs
 *.log
 Debug/debug.log
+#Remove this in production and staging
+Debug/request_response_stack.csv
 
 # Environment Variables
 .env
@@ -29,4 +31,3 @@ venv
 build/
 dist/
 *.egg-info/
-

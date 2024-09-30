@@ -12,5 +12,5 @@ def is_domain_relevant(query, threshold=0.8):
     max_index = relevance_scores.index(max_domain_score)
     max_domain_word = domain_keywords[max_index]
 
-    logging.info(f"The highest domain score is {max_domain_score} for keyword '{max_domain_word}'")
+    logging.info(f"The highest domain score is {max_domain_score:.4f} for keyword '{max_domain_word}'")
     return any(score >= threshold for score in relevance_scores)

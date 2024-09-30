@@ -17,8 +17,8 @@ def match_generator(query_words):
             yield load_prerequisites.database[index]
  
 def score_matches(query_embedding, threshold):
-    avg_match_score = 0
-    max_match_score = 0
+    avg_match_score = [0,]
+    max_match_score = [0,]
     avg_match_response = []
     max_match_response = []
     avg_match_count = 0
@@ -52,52 +52,51 @@ def score_matches(query_embedding, threshold):
             or max_synonym_score >= 0.65
             or max_keyword_score >= 0.65
         ):
-            max_match_score = max(max_trigger_score, max_synonym_score, max_keyword_score)
+            max_match_score.append(max(max_trigger_score, max_synonym_score, max_keyword_score))
             max_match_response.append(load_prerequisites.database[index])
             max_match_count += 1
             max_match_flag = True
             logging.info(
-                f"Max match count = {max_match_count}. "
+                f"Max match count = {max_match_count}. Max Score: {max(max_trigger_score, max_synonym_score, max_keyword_score):.4f}. "
                 f"Trigger: {load_prerequisites.database[index]['trigger_words']}."
                 f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f}."
             )
         if (
             avg_score > threshold
-            and avg_score > avg_match_score
             and max_trigger_score < 0.65
             and max_synonym_score < 0.65
             and max_keyword_score < 0.65
         ):
-            avg_match_score = avg_score
+            avg_match_score.append(avg_score)
             avg_match_response.append(load_prerequisites.database[index])
             avg_match_count += 1
             avg_match_flag = True
             logging.info(
-                f"Avg match count = {avg_match_count}. "
-                f"Trigger: {load_prerequisites.database[index]['trigger_words']}. Avg Score: {avg_score:.4f}. "
+                f"Avg match count = {avg_match_count}. Avg Score: {avg_score:.4f}. "
+                f"Trigger: {load_prerequisites.database[index]['trigger_words']}."
                 f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f}"
             )
             
-    return (avg_match_score, max_match_score,
+    return (max(avg_match_score), max(max_match_score),
             avg_match_response, max_match_response,
             avg_match_count, max_match_count,
             avg_match_flag, max_match_flag)
  
 def evaluate_matches(avg_match_score, max_match_score, avg_match_response, max_match_response, avg_match_count, max_match_count, avg_match_flag, max_match_flag, threshold):
     if avg_match_score >= threshold and max_match_score < avg_match_score:
+        logging.info(f"Picked responses from avg_match_response. As Highest avg_match_score {avg_match_score:.4f} > Highest max_match_score {max_match_score:.4f}. ")
         logging.info(
-            f"Avg Match Score: {avg_match_score:.4f},"
+            f"Avg Match Score: {avg_match_score:.4f}, "
             f"Match Count: {avg_match_count}, Avg Match: {avg_match_flag}"
         )
-        print("This is from Average Match Response")
         return avg_match_response
  
     elif max_match_score > avg_match_score:
+        logging.info(f"Picked responses from max_match_response. As Highest max_match_score {max_match_score:.4f} > Highest avg_match_score {avg_match_score:.4f}.")
         logging.info(
-            f"Max Match Score: {max_match_score:.4f},'"
+            f"Max Match Score: {max_match_score:.4f}, "
             f"Match Count: {max_match_count}, Max Match: {max_match_flag}"
         )
-        print("This is from Max Match Response")
         return max_match_response
  
     else:
@@ -114,6 +113,7 @@ def find_best_context(query, threshold):
     
     if matches:
         return matches
+    logging.info("No matches found in direct match with trigger_words, synonyms and keywords!")
     logging.info("2)Cosine Match with Avg Score or Max")
     (avg_match_score, max_match_score,
     avg_match_response, max_match_response,

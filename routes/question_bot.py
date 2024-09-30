@@ -39,7 +39,7 @@ def question_chatbot():
         return success_response(custom_response)
 
     except Exception as exception:
-        logging.info("Received Error Chat Agent Output:"
+        logging.info("Error Message:"
                      f"\n{str(exception)}")
         exception = str(exception)
         end_time = time.time()

@@ -2,7 +2,7 @@ import logging
 from utils import analyse_dataframe
 from utils import domain_check
 from utils import default_messages
-from Tests.request_response_csv import request_response
+from tests.request_response_csv import request_response
 from utils import spell_checker
 import re
 
@@ -17,11 +17,13 @@ def get_response(raw_user_input, threshold=0.3):
     logging.info(f"After Spell Correct : {spell_corrected_user_input}")
     
     context_responses = analyse_dataframe.find_best_context(spell_corrected_user_input, threshold)
+
     if context_responses:
         combined_responses = []
 
         for context_response in context_responses:
             logging.info(f"Row is picked, now triggering match_columns()")
+
             column_response, ambiguous_query_flag = analyse_dataframe.match_columns(spell_corrected_user_input, context_response)
             if column_response:
                 combined_responses.append(column_response)

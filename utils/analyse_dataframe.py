@@ -108,7 +108,7 @@ def evaluate_matches(avg_match_score, max_match_score, avg_match_response, max_m
 def find_best_context(query, threshold):
     query = query.split()
     query_embedding = load_prerequisites.embedding_model.encode([' '.join(query)])
-    logging.info("1)Direct Match for all Trigger, Synonym and Keywords")
+    logging.info(f"1)Direct Match for all Trigger, Synonym and Keywords for query: {query}")
     matches = list(match_generator(query))
     
     if matches:

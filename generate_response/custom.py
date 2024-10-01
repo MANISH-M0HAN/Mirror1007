@@ -49,5 +49,3 @@ def get_response(raw_user_input, threshold=0.3):
     request_response(raw_user_input, spell_corrected_user_input, fallback_response)
     logging.info("Giving Fallback response")
     return fallback_response
-
-

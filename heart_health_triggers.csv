@@ -1,4 +1,4 @@
-trigger_word,synonyms,keywords,What,Why,How,Symptoms
+trigger_words,synonyms,keywords,What,Why,How,Symptoms
 Cardiovascular,Coronary,Arterial,Cardiovascular refers to the heart and blood vessels.,Understanding cardiovascular health is key to preventing heart disease in women.,"Maintain a healthy lifestyle with exercise, a balanced diet, and regular check-ups.","Shortness of breath, fatigue, chest pain."
 Hypertension,Blood_pressure,Hypertensive,Hypertension is high blood pressure.,It increases the risk of heart attacks and strokes in women.,"Regular monitoring, reducing salt intake, and managing stress.","Headaches, dizziness, shortness of breath."
 Cholesterol,Lipid,Triglyceride,Cholesterol is a type of fat found in your blood.,High levels increase the risk of heart disease.,"Eat a low-fat diet, exercise regularly, and take prescribed medications.","No symptoms, but detected through blood tests."

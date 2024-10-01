@@ -1,10 +1,13 @@
 import os
 import logging
+import time
 from flask import request, jsonify, Blueprint
 from dotenv import load_dotenv
 from generate_response import get_response
 from utils.match_generator import match_generator
 from utils.score_matches import score_matches
+from utils.json_response import unauthorized_user_error, success_response, validation_error, internal_server_error
+
 
 #Load enviroment variable
 load_dotenv()
@@ -16,25 +19,39 @@ question_bot_bp = Blueprint('question_bot_bp', __name__)
 def question_chatbot():
     try:
         #Retrieve and verify the API key from headers
+        start_time = time.time()
         recieved_api_key = request.headers.get("X-API-KEY")
         expected_api_key = os.getenv("API_KEY")
 
         if recieved_api_key != expected_api_key:
-            return jsonify({"unauthorized_access": "invalid api key"}), 401
-        
-        #Get user input from the request JSON
-        user_input = request.json.get("user_input", "").strip()
-        
+            return unauthorized_user_error()
+
+        user_input = request.json.get("user-input", "").strip()
+
         if not user_input:
-            return jsonify({"error": "Missing user input"}), 400
+            message = "Missing user input"
+            return validation_error(message)
 
-        #Generate response from user input
-        response = get_response(user_input)
 
-        return jsonify({"response": response}), 200
+        logging.info(f"Sent User Input: {user_input}")
+        custom_response = get_response(user_input)
+
+
+        logging.info(f"Received Success Chat Agent Output: {custom_response}")
+        end_time = time.time()
+        total_time_ms = (end_time - start_time) * 1000
+        logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")
+        
+        return success_response(custom_response)
 
     except Exception as exception:
-        logging.error(f"Error occurred: {str(exception)}")
-        return jsonify({"error": str(exception)}), 500
+        exception = str(exception)
+        end_time = time.time()
+        total_time_ms = (end_time - start_time) * 1000
+        logging.info(f"Total time taken for request: {total_time_ms:.2f} ms")
+        logging.info(f"Received Error Chat Agent Output: exception")
+        print("An exception occured that is ", exception) 
+        
+        return internal_server_error(exception)
 
 

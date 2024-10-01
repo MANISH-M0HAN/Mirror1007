@@ -40,7 +40,7 @@ for idx in range(len(df)):
 
 # Populate this list with words that can sign that chat-agent when it does not find any answer
 # Triggers the AI Method with the user input and set prompt
-domain_keywords = ['women', 'health']
+domain_keywords = ['women', 'health','MyAdesso']
 
 # Below lines were added to create a domain list from the CSV data, 
 # but it is redundant after using trigger_words, synonyms and keywords for direct match

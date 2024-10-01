@@ -30,12 +30,8 @@ venv
 # Build and Distribution
 build/
 dist/
-<<<<<<< HEAD
 *.egg-info/
 
 #Vulnerable Files
 .DS_Store
 
-=======
-*.egg-info/
->>>>>>> 1026759 (Added requested changes:)

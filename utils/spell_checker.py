@@ -1,5 +1,3 @@
-# spell_checker.py
-
 import csv
 from difflib import get_close_matches
 import re
@@ -37,13 +35,13 @@ common_english_words = {
     "become", "massive", "patients", "required", "face", "tissue", "fat", "shortage", "blood", "eyes", "body",
     "issue", "tube", "testing", "baby", "small", "genes", "high"     
 
-    "define", "identify", "describe", "clarify", "specify", "detail", "outline", "state", "explain", "determine", "depict", 
-    "summarize", "designate", "distinguish", "symptoms", "signs", "indications", "manifestations", "warning", "clues", "evidence", 
-    "redflags", "markers", "presentations",  "outcomes", "patterns", "phenomena", "traits", "occurrences", "causes", "reason", 
-    "purpose",  "justification", "origin", "motive", "trigger", "rationale", "grounds", "basis", "excuse", "source", "factor", 
-    "method", "means", "procedure", "steps", "technique", "process", "way", "approach", "strategy", "system", "manner", 
-    "framework", "form", "mode", "prevention", "avoidance", "safeguard", "protection", "mitigation", "reduction", "intervention", 
-    "defense", "deterrence", "shielding", "explaination"         
+    "Define", "Identify", "Describe", "Clarify", "Specify", "Detail", "Outline", "State", "Explain", "Determine", "Depict", 
+    "Summarize", "Designate", "Distinguish", "Symptoms", "Signs", "Indications", "Manifestations", "Warning", "Clues", "Evidence", 
+    "Redflags", "Markers", "Presentations",  "Outcomes", "Patterns", "Phenomena", "Traits", "Occurrences", "Causes", "Reason", 
+    "Purpose",  "Justification", "Origin", "Motive", "Trigger", "Rationale", "Grounds", "Basis", "Excuse", "Source", "Factor", 
+    "Method", "Means", "Procedure", "Steps", "Technique", "Process", "Way", "Approach", "Strategy", "System", "Manner", 
+    "Framework", "Form", "Mode", "Prevention", "Avoidance", "Safeguard", "Protection", "Mitigation", "Reduction", "Intervention", 
+    "Defense", "Deterrence", "Shielding"         
 
 }
 
@@ -72,9 +70,10 @@ def correct_spelling(text, word_set, cutoff=0.85):
     while i < len(words):
         best_match = None
         best_match_score = 0
+        num_matched_words = 1
         
         # Check combinations of up to 3 words
-        for j in range(2, 0, -1):  # Start with 3-word combinations down to 1-word
+        for j in range(3, 0, -1):  # Start with 3-word combinations down to 1-word
             combined_word = ' '.join(words[i:i+j]).lower()
             matches = get_close_matches(combined_word, word_set, n=3, cutoff=cutoff)
             #print ("matches :",matches) #display the possible matches
@@ -86,12 +85,15 @@ def correct_spelling(text, word_set, cutoff=0.85):
                 if match_score > best_match_score:
                     best_match = match
                     best_match_score = match_score
+                    num_matched_words = j
         
         if best_match:
             corrected_words.append(best_match)
-            i += best_match.count(' ') + 1  # Skip the matched words
+            i += num_matched_words  # Skip the matched words
         else:
             corrected_words.append(words[i])
             i += 1
 
-    return ' '.join(corrected_words).lower()
+    return ' '.join(corrected_words)
+
+    

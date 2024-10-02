@@ -9,6 +9,6 @@ def request_response(user_input,corrected_input, response):
         writer = csv.writer(file)
         
         if not file_exists:
-            writer.writerow(["User Input","Corrected Input", "Response"])
+            writer.writerow(["User Input","Corrected Input", "Response", "Time Taken"])
         
         writer.writerow([user_input, corrected_input, response])

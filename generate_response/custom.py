@@ -19,9 +19,8 @@ def get_response(raw_user_input, threshold=0.3):
     context_responses = analyse_dataframe.find_best_context(spell_corrected_user_input, threshold)
     if context_responses:
         combined_responses = []
-
+        logging.info("Row is picked, now triggering match_columns()")
         for context_response in context_responses:
-            logging.info(f"Row is picked, now triggering match_columns()")
             column_response, ambiguous_query_flag = analyse_dataframe.match_columns(spell_corrected_user_input, context_response)
             if column_response:
                 combined_responses.append(column_response)
@@ -33,19 +32,20 @@ def get_response(raw_user_input, threshold=0.3):
                 + "\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."
             )
         request_response(raw_user_input, spell_corrected_user_input, final_response)
+        logging.info(f"Giving following trigger_words response: {[dict['trigger_words'] for dict in context_responses]}")
         return final_response
     
-    logging.info(f"3)Checking Domain relevance")
+    logging.info("3)Checking Domain relevance")
     if domain_check.is_domain_relevant(spell_corrected_user_input):
-        logging.info(f"Passing to AI method")
+        logging.info("Passing to AI method")
         prompt = f"User asked: {spell_corrected_user_input}. Please provide a helpful response related to women's heart health."
         logging.info(f"Prompt for Generative API: {prompt}")
         response = default_messages.generate_response_with_placeholder(prompt)
         request_response(raw_user_input, spell_corrected_user_input, response)
+        logging.info("Giving AI Placeholder response")
         return response
-    logging.info(f"Failed Domain relevance")
+    logging.info("Failed Domain relevance")
     fallback_response = "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"
     request_response(raw_user_input, spell_corrected_user_input, fallback_response)
+    logging.info("Giving Fallback response")
     return fallback_response
-
-

@@ -38,8 +38,13 @@ for idx in range(len(df)):
         "keywords_embeddings": keywords_embeddings[idx]
     })
 
-# Precompute embeddings for domain keywords
-domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
+# Populate this list with words that can sign that chat-agent when it does not find any answer
+# Triggers the AI Method with the user input and set prompt
+domain_keywords = ['women', 'health','MyAdesso']
+
+# Below lines were added to create a domain list from the CSV data, 
+# but it is redundant after using trigger_words, synonyms and keywords for direct match
+
 # for index, item_embeddings in enumerate(db_embeddings):
 #         trigger_words = [trigger.lower().strip() for trigger in database[index]["trigger_words"]]
 #         synonyms = [synonym.lower().strip() for synonym in database[index]["synonyms"]]
@@ -47,5 +52,3 @@ domain_keywords = ['heart', 'cardiac', 'women', 'health', 'cardiology']
 #         domain_keywords.extend(trigger_words + synonyms + keywords)
 # domain_keywords = list(set(domain_keywords))
 domain_embeddings = embedding_model.encode(domain_keywords)
-
-

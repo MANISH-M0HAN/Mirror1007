@@ -10,9 +10,9 @@ app.debug = True
 
 app.register_blueprint(question_bot_bp)
 
-logging.basicConfig(level=logging.INFO, filename='Debug/debug.log', filemode='a', format='%(asctime)s - %(message)s')
+logging.basicConfig(level=logging.INFO, filename='Debug/debug.log', filemode='a', format='%(asctime)s - %(message)s', datefmt=' %d/%m/%y %H:%M:%S')
 
-logging.info(f"Flask app Started!")
+logging.info("Flask app Started!")
 if __name__ == '__main__':
     app.run()
 

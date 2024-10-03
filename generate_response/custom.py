@@ -6,7 +6,7 @@ from Tests.request_response_csv import request_response
 from utils import spell_checker
 import re
 
-def get_response(raw_user_input, threshold=0.5):
+def get_response(raw_user_input, threshold=0.49):
     word_set = spell_checker.load_word_set('./heart_health_triggers.csv', 
                              ['trigger_words', 'synonyms', 'keywords']) 
     logging.info(f"Before Regex : {raw_user_input}")

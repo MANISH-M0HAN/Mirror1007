@@ -146,18 +146,12 @@ def find_best_context(query, threshold):
         threshold
     )
     
-    print("Direct Matches: ", direct_match_list,"\n-------------------------------------\n")
-    print("Cosine Matches: ", cosine_match_list,"\n-------------------------------------\n")
-    # print("All matches: ", cosine_match_list,"\n-------------------------------------\n")
-    
     if direct_match_list and cosine_match_list:
         return get_unique_dicts(direct_match_list + cosine_match_list)
-        #return (direct_match_list + cosine_match_list)
     elif direct_match_list and not cosine_match_list:
         return direct_match_list
     elif not direct_match_list and cosine_match_list:
         return get_unique_dicts(cosine_match_list)
-        #return (cosine_match_list)
     else:
         return []
     

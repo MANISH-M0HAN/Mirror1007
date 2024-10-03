@@ -72,6 +72,7 @@ def correct_spelling(text, word_set, cutoff=0.85):
     while i < len(words):
         best_match = None
         best_match_score = 0
+        num_matched_words = 1
         
         # Check combinations of up to 3 words
         for j in range(3, 0, -1):  # Start with 3-word combinations down to 1-word
@@ -86,10 +87,11 @@ def correct_spelling(text, word_set, cutoff=0.85):
                 if match_score > best_match_score:
                     best_match = match
                     best_match_score = match_score
+                    num_matched_words = j
         
         if best_match:
             corrected_words.append(best_match)
-            i += best_match.count(' ') + 1  # Skip the matched words
+            i += num_matched_words  # Skip the matched words
         else:
             corrected_words.append(words[i])
             i += 1

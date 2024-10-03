@@ -74,7 +74,7 @@ def correct_spelling(text, word_set, cutoff=0.85):
         best_match_score = 0
         
         # Check combinations of up to 3 words
-        for j in range(2, 0, -1):  # Start with 3-word combinations down to 1-word
+        for j in range(3, 0, -1):  # Start with 3-word combinations down to 1-word
             combined_word = ' '.join(words[i:i+j]).lower()
             matches = get_close_matches(combined_word, word_set, n=3, cutoff=cutoff)
             #print ("matches :",matches) #display the possible matches

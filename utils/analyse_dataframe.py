@@ -3,6 +3,7 @@ from utils import load_prerequisites
 import logging
 
 def match_generator(query_words):
+    direct_matches = []
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_words = [trigger_words.lower().strip() for trigger_words in load_prerequisites.database[index]["trigger_words"]]
         synonyms = [synonym.lower().strip() for synonym in load_prerequisites.database[index]["synonyms"]]
@@ -13,18 +14,21 @@ def match_generator(query_words):
         common_words = all_match_words & set([word.lower().strip() for word in query_words])
         logging.debug(f"Common words found: {common_words}")
         if common_words:
+            direct_matches.extend(common_words)
             logging.warning(f"Yielding database entry of Trigger word : {load_prerequisites.database[index]['trigger_words']}")
             yield load_prerequisites.database[index]
+    return direct_matches
  
 def score_matches(query_embedding, threshold):
-    avg_match_score = [0,]
-    max_match_score = [0,]
+    avg_match_score = []
+    max_match_score = []
     avg_match_response = []
     max_match_response = []
     avg_match_count = 0
     max_match_count = 0
     avg_match_flag = False
     max_match_flag = False
+    cosine_matched_words = []
     
     for index, item_embeddings in enumerate(load_prerequisites.db_embeddings):
         trigger_scores = [
@@ -35,37 +39,30 @@ def score_matches(query_embedding, threshold):
             cosine_similarity(query_embedding, syn_emb.reshape(1, -1)).flatten()[0]
             for syn_emb in item_embeddings["synonyms_embeddings"]
         ]
-        keyword_scores = [
-            cosine_similarity(query_embedding, kw_emb.reshape(1, -1)).flatten()[0]
-            for kw_emb in item_embeddings["keywords_embeddings"]
-        ]
- 
+
         max_trigger_score = max(trigger_scores) if trigger_scores else 0
         max_synonym_score = max(synonym_scores) if synonym_scores else 0
-        max_keyword_score = max(keyword_scores) if keyword_scores else 0
- 
-        max_scores_sum = max_trigger_score + max_synonym_score + max_keyword_score
-        avg_score = max_scores_sum / 3
+
+        max_scores_sum = max_trigger_score + max_synonym_score
+        avg_score = max_scores_sum / 2
  
         if (
             max_trigger_score >= 0.65
             or max_synonym_score >= 0.65
-            or max_keyword_score >= 0.65
-        ):
-            max_match_score.append(max(max_trigger_score, max_synonym_score, max_keyword_score))
+        ):  
+            max_match_score.append(max(max_trigger_score, max_synonym_score))
             max_match_response.append(load_prerequisites.database[index])
             max_match_count += 1
             max_match_flag = True
             logging.info(
-                f"Max match count = {max_match_count}. Max Score: {max(max_trigger_score, max_synonym_score, max_keyword_score):.4f}. "
+                f"Max match count = {max_match_count}. Max Score: {max(max_trigger_score, max_synonym_score):.4f}. "
                 f"Trigger: {load_prerequisites.database[index]['trigger_words']}."
-                f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f}."
+                f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}."
             )
         if (
             avg_score > threshold
             and max_trigger_score < 0.65
             and max_synonym_score < 0.65
-            and max_keyword_score < 0.65
         ):
             avg_match_score.append(avg_score)
             avg_match_response.append(load_prerequisites.database[index])
@@ -74,13 +71,19 @@ def score_matches(query_embedding, threshold):
             logging.info(
                 f"Avg match count = {avg_match_count}. Avg Score: {avg_score:.4f}. "
                 f"Trigger: {load_prerequisites.database[index]['trigger_words']}."
-                f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}, Keyword Score: {max_keyword_score:.4f}"
+                f"Trigger Score: {max_trigger_score:.4f}, Synonym Score: {max_synonym_score:.4f}"
             )
             
-    return (max(avg_match_score), max(max_match_score),
-            avg_match_response, max_match_response,
-            avg_match_count, max_match_count,
-            avg_match_flag, max_match_flag)
+    return (
+        max(avg_match_score) if avg_match_score else 0,
+        max(max_match_score) if max_match_score else 0, 
+        avg_match_response, 
+        max_match_response,
+        avg_match_count, 
+        max_match_count,
+        avg_match_flag, 
+        max_match_flag
+    )
  
 def evaluate_matches(avg_match_score, max_match_score, avg_match_response, max_match_response, avg_match_count, max_match_count, avg_match_flag, max_match_flag, threshold):
     if avg_match_score >= threshold and max_match_score < avg_match_score:
@@ -104,29 +107,59 @@ def evaluate_matches(avg_match_score, max_match_score, avg_match_response, max_m
             f"No suitable match found for query with score above threshold: {threshold}"
         )
         return None
+
+def get_unique_dicts(dict_list):
+    seen = set()
+    unique_dicts = []
+    
+    for d in dict_list:
+        dict_tuple = frozenset((k, tuple(v) if isinstance(v, list) else v) for k, v in d.items())
+        
+        if dict_tuple not in seen:
+            seen.add(dict_tuple) 
+            unique_dicts.append(d) 
+    
+    return unique_dicts
  
 def find_best_context(query, threshold):
     query = query.split()
     query_embedding = load_prerequisites.embedding_model.encode([' '.join(query)])
-    logging.info("1)Direct Match for all Trigger, Synonym and Keywords")
-    matches = list(match_generator(query))
+    direct_match_list = []
+    cosine_match_list = []
     
-    if matches:
-        return matches
-    logging.info("No matches found in direct match with trigger_words, synonyms and keywords!")
+    logging.info("1)Direct Match for all Trigger, Synonym and Keywords")
+    direct_match_list = list(match_generator(query))
+    
+    if not direct_match_list:
+        logging.info("No matches found in direct match with trigger_words, synonyms and keywords!")
+    
     logging.info("2)Cosine Match with Avg Score or Max")
     (avg_match_score, max_match_score,
     avg_match_response, max_match_response,
     avg_match_count, max_match_count,
-    avg_match_flag, max_match_flag) = score_matches(query_embedding, threshold)
-     
-    return evaluate_matches(
+    avg_match_flag, max_match_flag) = score_matches(query_embedding, threshold) 
+    cosine_match_list = evaluate_matches(
         avg_match_score, max_match_score,
         avg_match_response, max_match_response,
         avg_match_count, max_match_count,
         avg_match_flag, max_match_flag,
         threshold
     )
+    
+    print("Direct Matches: ", direct_match_list,"\n-------------------------------------\n")
+    print("Cosine Matches: ", cosine_match_list,"\n-------------------------------------\n")
+    # print("All matches: ", cosine_match_list,"\n-------------------------------------\n")
+    
+    if direct_match_list and cosine_match_list:
+        return get_unique_dicts(direct_match_list + cosine_match_list)
+        #return (direct_match_list + cosine_match_list)
+    elif direct_match_list and not cosine_match_list:
+        return direct_match_list
+    elif not direct_match_list and cosine_match_list:
+        return get_unique_dicts(cosine_match_list)
+        #return (cosine_match_list)
+    else:
+        return []
     
 def match_columns(query, matched_response):
     ambiguous_query_flag = 0

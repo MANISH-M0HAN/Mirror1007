@@ -6,7 +6,7 @@ from Tests.request_response_csv import request_response
 from utils import spell_checker
 import re
 
-def get_response(raw_user_input, threshold=0.3):
+def get_response(raw_user_input, threshold=0.5):
     word_set = spell_checker.load_word_set('./heart_health_triggers.csv', 
                              ['trigger_words', 'synonyms', 'keywords']) 
     logging.info(f"Before Regex : {raw_user_input}")
@@ -17,6 +17,7 @@ def get_response(raw_user_input, threshold=0.3):
     logging.info(f"After Spell Correct : {spell_corrected_user_input}")
     
     context_responses = analyse_dataframe.find_best_context(spell_corrected_user_input, threshold)
+    
     if context_responses:
         combined_responses = []
         logging.info("Row is picked, now triggering match_columns()")

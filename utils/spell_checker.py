@@ -54,7 +54,7 @@ def load_word_set(csv_file, column_names):
         reader = csv.DictReader(file)
         for row in reader:
             for col in column_names:
-                if col in ['trigger_word', 'synonyms', 'keywords']:
+                if col in ['trigger_words', 'synonyms', 'keywords']:
                     phrases = re.split(r'[;,]', row[col].lower())  # Split by semicolon or comma
                     for phrase in phrases:
                         words = phrase.split()  # Further split each phrase by spaces

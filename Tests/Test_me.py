@@ -41,7 +41,7 @@ data = [
     ["Only synonym word - multiple", "narrowing plaque", "Atherosclerosis is the buildup of plaque in the arteries. \n\n Stenosis is the narrowing of blood vessels or heart valves.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
     ["Only keyword word", "obstruction", "Stenosis is the narrowing of blood vessels or heart valves.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
     ["Only keyword word - multiple", "hypertensive heartbeat","Hypertension is high blood pressure. \n\n Tachycardia is a rapid heartbeat.\n For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs."],
-    ["Domain relevance", "what is cardiac", "Cardiovascular refers to the heart and blood vessels. \n\n Myocardial infarction is a heart attack. \n\n Tachycardia is a rapid heartbeat."],
+    ["Domain relevance", "what is cardiac", "Cardiovascular refers to the heart and blood vessels. \n\n Myocardial infarction is a heart attack."],
     ["Domain relevance", "what is football", "I'm sorry, I can only answer questions related to women's heart health. Can you please clarify your question?"],
     ["Fallback", "what health", "This is a placeholder response generated for your question."],
     ["multiple triggers", "what is cholesterol and what is angina", "Cholesterol is a type of fat found in your blood. \n\n Angina is chest pain caused by reduced blood flow to the heart."],

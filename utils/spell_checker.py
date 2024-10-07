@@ -43,7 +43,7 @@ common_english_words = {
     "purpose",  "justification", "origin", "motive", "trigger", "rationale", "grounds", "basis", "excuse", "source", "factor", 
     "method", "means", "procedure", "steps", "technique", "process", "way", "approach", "strategy", "system", "manner", 
     "framework", "form", "mode", "prevention", "avoidance", "safeguard", "protection", "mitigation", "reduction", "intervention", 
-    "defense", "deterrence", "shielding", "explaination"         
+    "defense", "deterrence", "shielding", "explaination", "health"        
 
 }
 

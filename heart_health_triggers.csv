@@ -9,3 +9,4 @@ Stenosis,Narrowing,Obstruction,Stenosis is the narrowing of blood vessels or hea
 Tachycardia,Rapid,Heartbeat,Tachycardia is a rapid heartbeat.,It can increase the risk of stroke or heart failure.,"Avoid stimulants, manage stress, and follow medical advice.","Rapid heartbeat, dizziness, shortness of breath."
 Endocarditis,Inflammation,Infection,Endocarditis is the inflammation of the heart's inner lining.,It can damage heart valves and lead to heart failure.,"Prevent infections, maintain dental hygiene, and take antibiotics if needed.","Fever, fatigue, shortness of breath."
 Angina,Chest_pain,Discomfort,Angina is chest pain caused by reduced blood flow to the heart.,It signals an increased risk of heart attack.,"Manage stress, avoid heavy meals, and follow a healthy lifestyle.","Chest pain, shortness of breath, nausea."
+heart_score,,,What-Heart_score,Why-Heart_score,How-Heart_score,Symptoms-heart_score

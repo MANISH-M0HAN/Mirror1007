@@ -43,7 +43,7 @@ common_english_words = {
     "purpose",  "justification", "origin", "motive", "trigger", "rationale", "grounds", "basis", "excuse", "source", "factor", 
     "method", "means", "procedure", "steps", "technique", "process", "way", "approach", "strategy", "system", "manner", 
     "framework", "form", "mode", "prevention", "avoidance", "safeguard", "protection", "mitigation", "reduction", "intervention", 
-    "defense", "deterrence", "shielding", "explaination"         
+    "defense", "deterrence", "shielding", "explaination", "health"        
 
 }
 
@@ -54,7 +54,7 @@ def load_word_set(csv_file, column_names):
         reader = csv.DictReader(file)
         for row in reader:
             for col in column_names:
-                if col in ['trigger_word', 'synonyms', 'keywords']:
+                if col in ['trigger_words', 'synonyms', 'keywords']:
                     phrases = re.split(r'[;,]', row[col].lower())  # Split by semicolon or comma
                     for phrase in phrases:
                         words = phrase.split()  # Further split each phrase by spaces
@@ -72,9 +72,10 @@ def correct_spelling(text, word_set, cutoff=0.85):
     while i < len(words):
         best_match = None
         best_match_score = 0
+        num_matched_words = 1
         
         # Check combinations of up to 3 words
-        for j in range(2, 0, -1):  # Start with 3-word combinations down to 1-word
+        for j in range(3, 0, -1):  # Start with 3-word combinations down to 1-word
             combined_word = ' '.join(words[i:i+j]).lower()
             matches = get_close_matches(combined_word, word_set, n=3, cutoff=cutoff)
             #print ("matches :",matches) #display the possible matches
@@ -86,10 +87,11 @@ def correct_spelling(text, word_set, cutoff=0.85):
                 if match_score > best_match_score:
                     best_match = match
                     best_match_score = match_score
+                    num_matched_words = j
         
         if best_match:
             corrected_words.append(best_match)
-            i += best_match.count(' ') + 1  # Skip the matched words
+            i += num_matched_words  # Skip the matched words
         else:
             corrected_words.append(words[i])
             i += 1

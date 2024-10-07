@@ -47,8 +47,8 @@ def score_matches(query_embedding, threshold):
         avg_score = max_scores_sum / 2
  
         if (
-            max_trigger_score >= 0.65
-            or max_synonym_score >= 0.65
+            max_trigger_score >= 0.67
+            or max_synonym_score >= 0.67
         ):  
             max_match_score.append(max(max_trigger_score, max_synonym_score))
             max_match_response.append(load_prerequisites.database[index])
@@ -61,8 +61,8 @@ def score_matches(query_embedding, threshold):
             )
         if (
             avg_score > threshold
-            and max_trigger_score < 0.65
-            and max_synonym_score < 0.65
+            and max_trigger_score < 0.67
+            and max_synonym_score < 0.67
         ):
             avg_match_score.append(avg_score)
             avg_match_response.append(load_prerequisites.database[index])

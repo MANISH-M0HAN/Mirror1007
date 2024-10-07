@@ -1,5 +1,13 @@
 User Input,Corrected Input,Response,Time Taken
-heart score,heart_score score,"Cardiovascular refers to the heart and blood vessels.
-For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs.", 101.70 ms
-heart score,heart_score,"Cardiovascular refers to the heart and blood vessels.
-For personalized advice or concerns about your health, Please consult our healthcare professional. We can provide you with the best guidance based on your specific needs.", 89.39 ms
+what heart score,what heart score,"Cardiovascular refers to the heart and blood vessels. 
+
+ Myocardial infarction is a heart attack. 
+
+Tachycardia is a rapid heartbeat.", 210.96 ms
+what heart score,what heart_score,What-Heart_score, 92.11 ms
+what heart,what heart,Tachycardia is a rapid heartbeat., 98.38 ms
+what hearts,what hearts,"Cardiovascular refers to the heart and blood vessels. 
+
+ Myocardial infarction is a heart attack. 
+
+Tachycardia is a rapid heartbeat.", 117.90 ms
